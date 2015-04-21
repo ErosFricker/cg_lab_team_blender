@@ -1,0 +1,377 @@
+TFramework
+v7
+r0
+t383427530.444505
+cCheck dependencies
+cProcessInfoPlistFile /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Info.plist Framework-Info.plist
+cCpResource build/Debug-iphonesimulator/Framework.app/Shader.fsh Shaders/Shader.fsh
+cCpResource build/Debug-iphonesimulator/Framework.app/Shader.vsh Shaders/Shader.vsh
+cCompileXIB /Users/steiner/Desktop/test/Framework/MainWindow.xib
+cCompileXIB /Users/steiner/Desktop/test/Framework/FrameworkViewController.xib
+cProcessPCH /var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch.gch Framework_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/main.o /Users/steiner/Desktop/test/Framework/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkAppDelegate.o /Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/EAGLView.o /Users/steiner/Desktop/test/Framework/Classes/EAGLView.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkViewController.o /Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework normal i386
+cGenerateDSYMFile /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app.dSYM /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework
+cTouch /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk
+c000000005113A5620000000000000110
+t1360242018
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004D54CFE5000000000029DA70
+t1297403877
+s2742896
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004D54CFB80000000000001466
+t1297403832
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/EAGL.h
+c000000004D54D24F000000000000094F
+t1297404495
+s2383
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/gl.h
+c000000004D54D24F0000000000009369
+t1297404495
+s37737
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1/glext.h
+c000000004D54D24F0000000000003C4A
+t1297404495
+s15434
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES2/gl.h
+c000000004D54D24F00000000000092AA
+t1297404495
+s37546
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES2/glext.h
+c000000004D54D24F00000000000026AA
+t1297404495
+s9898
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/OpenGLES.framework/OpenGLES
+c000000004D54D28100000000000191D0
+t1297404545
+s102864
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
+c000000004D54D2DD00000000000000C4
+t1297404637
+s196
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c000000004D54D4200000000000162C50
+t1297404960
+s1453136
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004D5615B40000000000000AA1
+t1297487284
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004D5616030000000000766870
+t1297487363
+s7759984
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk/usr/include/Availability.h
+c000000004D4F7A2B0000000000001B19
+t1297054251
+s6937
+
+N/Users/steiner/Desktop/test/Framework/Classes/EAGLView.h
+c00000000512A6C4200000000000003E1
+t1361734722
+s993
+i<UIKit/UIKit.h>
+i<OpenGLES/ES1/gl.h>
+i<OpenGLES/ES1/glext.h>
+i<OpenGLES/ES2/gl.h>
+i<OpenGLES/ES2/glext.h>
+
+N/Users/steiner/Desktop/test/Framework/Classes/EAGLView.m
+c00000000512A6C420000000000000EE9
+t1361734722
+s3817
+i<QuartzCore/QuartzCore.h>
+i"EAGLView.h"
+
+N/Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.h
+c00000000512A6C4200000000000001EC
+t1361734722
+s492
+i<UIKit/UIKit.h>
+
+N/Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.m
+c00000000512A6C4200000000000004C1
+t1361734722
+s1217
+i"FrameworkAppDelegate.h"
+i"FrameworkViewController.h"
+
+N/Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.h
+c00000000512A6C4200000000000002BF
+t1361734722
+s703
+i<UIKit/UIKit.h>
+i<OpenGLES/EAGL.h>
+i<OpenGLES/ES1/gl.h>
+i<OpenGLES/ES1/glext.h>
+i<OpenGLES/ES2/gl.h>
+i<OpenGLES/ES2/glext.h>
+
+N/Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.m
+c00000000512A6C42000000000000272C
+t1361734722
+s10028
+i<QuartzCore/QuartzCore.h>
+i"FrameworkViewController.h"
+i"EAGLView.h"
+
+N/Users/steiner/Desktop/test/Framework/FrameworkViewController.xib
+c00000000512A6C420000000000003F46
+t1361734722
+s16198
+
+N/Users/steiner/Desktop/test/Framework/Framework_Prefix.pch
+c00000000512A6C42000000000000013C
+t1361734722
+s316
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/steiner/Desktop/test/Framework/MainWindow.xib
+c00000000512A6C4200000000000050C3
+t1361734722
+s20675
+
+N/Users/steiner/Desktop/test/Framework/Shaders/Shader.fsh
+c00000000512A6C4200000000000000DD
+t1361734722
+s221
+
+N/Users/steiner/Desktop/test/Framework/Shaders/Shader.vsh
+c00000000512A6C420000000000000163
+t1361734722
+s355
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app
+t1361734730
+s306
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app.dSYM
+t1361734730
+s102
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework
+t1361734730
+s34104
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/FrameworkViewController.nib
+t1361734729
+s1305
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Info.plist
+t1361734729
+s833
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/MainWindow.nib
+t1361734729
+s1739
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/PkgInfo
+t1361734729
+s8
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Shader.fsh
+t1361734729
+s221
+
+N/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Shader.vsh
+t1361734729
+s355
+
+N/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/EAGLView.o
+t1361734730
+s48116
+
+N/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/Framework.LinkFileList
+c00000000512A6C49000000000000021B
+t1361734729
+s539
+
+N/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkAppDelegate.o
+t1361734730
+s51916
+
+N/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkViewController.o
+t1361734730
+s61992
+
+N/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/main.o
+t1361734730
+s6308
+
+N/Users/steiner/Desktop/test/Framework/main.m
+c00000000512A6C42000000000000016C
+t1361734722
+s364
+i<UIKit/UIKit.h>
+
+N/var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch.gch
+t1361734730
+s15797680
+
+NFramework-Info.plist
+c00000000512A6C4200000000000004D1
+t1361734722
+s1233
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies383427529#383427529#0(0"0(0#1#0"17250437120#0"0#
+
+CCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/EAGLView.o /Users/steiner/Desktop/test/Framework/Classes/EAGLView.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s383427530.227620
+e383427530.329198
+r1
+xCompileC
+xbuild/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/EAGLView.o
+x/Users/steiner/Desktop/test/Framework/Classes/EAGLView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@64"Compile /Users/steiner/Desktop/test/Framework/Classes/EAGLView.m383427530#383427530#0(0"0(0#0#56"/Users/steiner/Desktop/test/Framework/Classes/EAGLView.m4550831760#1963"    cd /Users/steiner/Desktop/test/Framework    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-generated-files.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-own-target-headers.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-all-target-headers.hmap -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-project-headers.hmap -F/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator -I/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/include -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources/i386 -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources -include /var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch -c /Users/steiner/Desktop/test/Framework/Classes/EAGLView.m -o /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/EAGLView.o0#
+
+CCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkAppDelegate.o /Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s383427530.226923
+e383427530.326763
+r1
+xCompileC
+xbuild/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkAppDelegate.o
+x/Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.m383427530#383427530#0(0"0(0#0#68"/Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.m4550831760#1987"    cd /Users/steiner/Desktop/test/Framework    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-generated-files.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-own-target-headers.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-all-target-headers.hmap -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-project-headers.hmap -F/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator -I/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/include -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources/i386 -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources -include /var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch -c /Users/steiner/Desktop/test/Framework/Classes/FrameworkAppDelegate.m -o /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkAppDelegate.o0#
+
+CCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkViewController.o /Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s383427530.228442
+e383427530.343930
+r1
+xCompileC
+xbuild/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkViewController.o
+x/Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@79"Compile /Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.m383427530#383427530#0(0"0(0#0#71"/Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.m4550831760#1993"    cd /Users/steiner/Desktop/test/Framework    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-generated-files.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-own-target-headers.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-all-target-headers.hmap -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-project-headers.hmap -F/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator -I/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/include -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources/i386 -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources -include /var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch -c /Users/steiner/Desktop/test/Framework/Classes/FrameworkViewController.m -o /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/FrameworkViewController.o0#
+
+CCompileC build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/main.o /Users/steiner/Desktop/test/Framework/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s383427530.225915
+e383427530.308715
+r1
+xCompileC
+xbuild/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/main.o
+x/Users/steiner/Desktop/test/Framework/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@52"Compile /Users/steiner/Desktop/test/Framework/main.m383427530#383427530#0(0"0(0#0#44"/Users/steiner/Desktop/test/Framework/main.m4550831760#1947"    cd /Users/steiner/Desktop/test/Framework    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-generated-files.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-own-target-headers.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-all-target-headers.hmap -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-project-headers.hmap -F/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator -I/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/include -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources/i386 -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources -include /var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch -c /Users/steiner/Desktop/test/Framework/main.m -o /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/main.o0#
+
+CCompileXIB /Users/steiner/Desktop/test/Framework/FrameworkViewController.xib
+s383427529.278011
+e383427529.654309
+r1
+xCompileXIB
+x/Users/steiner/Desktop/test/Framework/FrameworkViewController.xib
+lSLF07#2@38"CompileXIB FrameworkViewController.xib383427529#383427529#0(0"0(0#0#65"/Users/steiner/Desktop/test/Framework/FrameworkViewController.xib4550831760#595"    cd /Users/steiner/Desktop/test/Framework    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/FrameworkViewController.nib /Users/steiner/Desktop/test/Framework/FrameworkViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCompileXIB /Users/steiner/Desktop/test/Framework/MainWindow.xib
+s383427529.277478
+e383427529.654935
+r1
+xCompileXIB
+x/Users/steiner/Desktop/test/Framework/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib383427529#383427529#0(0"0(0#0#52"/Users/steiner/Desktop/test/Framework/MainWindow.xib4550831760#569"    cd /Users/steiner/Desktop/test/Framework    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/MainWindow.nib /Users/steiner/Desktop/test/Framework/MainWindow.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk0#
+
+CCpResource build/Debug-iphonesimulator/Framework.app/Shader.fsh Shaders/Shader.fsh
+s383427529.275663
+e383427529.291443
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Framework.app/Shader.fsh
+xShaders/Shader.fsh
+lSLF07#2@23"Copy Shaders/Shader.fsh383427529#383427529#0(0"0(0#0#56"/Users/steiner/Desktop/test/Framework/Shaders/Shader.fsh4550831760#475"    cd /Users/steiner/Desktop/test/Framework    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/steiner/Desktop/test/Framework/Shaders/Shader.fsh /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app0#
+
+CCpResource build/Debug-iphonesimulator/Framework.app/Shader.vsh Shaders/Shader.vsh
+s383427529.276950
+e383427529.293052
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/Framework.app/Shader.vsh
+xShaders/Shader.vsh
+lSLF07#2@23"Copy Shaders/Shader.vsh383427529#383427529#0(0"0(0#0#56"/Users/steiner/Desktop/test/Framework/Shaders/Shader.vsh4550831760#475"    cd /Users/steiner/Desktop/test/Framework    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/steiner/Desktop/test/Framework/Shaders/Shader.vsh /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app0#
+
+CGenerateDSYMFile /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app.dSYM /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework
+s383427530.412186
+e383427530.441821
+r1
+xGenerateDSYMFile
+x/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app.dSYM
+x/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework
+lSLF07#2@115"GenerateDSYMFile build/Debug-iphonesimulator/Framework.app.dSYM build/Debug-iphonesimulator/Framework.app/Framework383427530#383427530#0(0"0(0#0#89"/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework4550831760#386"    cd /Users/steiner/Desktop/test/Framework    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework -o /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app.dSYM0#
+
+CLd /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework normal i386
+s383427530.344027
+e383427530.412101
+r1
+xLd
+x/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework
+xnormal
+xi386
+lSLF07#2@94"Link /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework383427530#383427530#0(0"0(0#0#0"4550831760#923"    cd /Users/steiner/Desktop/test/Framework    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -L/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator -F/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator -filelist /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Objects-normal/i386/Framework.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework OpenGLES -framework QuartzCore -o /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Framework0#
+
+CProcessInfoPlistFile /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Info.plist Framework-Info.plist
+s383427529.267103
+e383427529.275581
+r1
+xProcessInfoPlistFile
+x/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Info.plist
+xFramework-Info.plist
+lSLF07#2@28"Process Framework-Info.plist383427529#383427529#0(0"0(0#0#58"/Users/steiner/Desktop/test/Framework/Framework-Info.plist17258567936#482"    cd /Users/steiner/Desktop/test/Framework    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility Framework-Info.plist -genpkginfo /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app/Info.plist0#
+
+CProcessPCH /var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch.gch Framework_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s383427529.655065
+e383427530.225816
+r1
+xProcessPCH
+x/var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch.gch
+xFramework_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@31"Precompile Framework_Prefix.pch383427529#383427530#0(0"0(0#0#58"/Users/steiner/Desktop/test/Framework/Framework_Prefix.pch4550831760#1838"    cd /Users/steiner/Desktop/test/Framework    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40300 -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-generated-files.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-own-target-headers.hmap -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-all-target-headers.hmap -iquote /Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/Framework-project-headers.hmap -F/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator -I/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/include -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources/i386 -I/Users/steiner/Desktop/test/Framework/build/Framework.build/Debug-iphonesimulator/Framework.build/DerivedSources -c /Users/steiner/Desktop/test/Framework/Framework_Prefix.pch -o /var/folders/rj/0p7mt44s4xx5dvq8b6dzgjg00000gp/C/com.apple.Xcode.502/SharedPrecompiledHeaders/Framework_Prefix-gcfjgodivfvrfveblcyyfpcegmjv/Framework_Prefix.pch.gch0#
+
+CTouch /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app
+s383427530.441908
+e383427530.444474
+r1
+xTouch
+x/Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app
+lSLF07#2@85"Touch /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app383427530#383427530#0(0"0(0#0#0"4550831760#278"    cd /Users/steiner/Desktop/test/Framework    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/steiner/Desktop/test/Framework/build/Debug-iphonesimulator/Framework.app0#
+
