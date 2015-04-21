@@ -89,7 +89,8 @@ void DemoSceneManager::initialize(size_t width, size_t height)
 
     _modelMatrixStack.push(vmml::mat4f::IDENTITY);
 
-    loadModel("guy.obj", true, true);
+    loadModel("pipe_model.obj", true, true);
+//    loadModel("guy.obj", true, true);
 //    loadSound("test.mp3");
 }
 
@@ -168,5 +169,5 @@ void DemoSceneManager::draw(double deltaT)
 
     _modelMatrix = translation * scaling;
     
-    drawModel("guy");
+    drawModel("pipe_model");
 }

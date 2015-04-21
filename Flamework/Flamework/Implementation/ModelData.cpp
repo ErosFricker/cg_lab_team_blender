@@ -244,7 +244,7 @@ void ModelDataImpl::genVertex(const IndexData &d)
         v.normal.y = _normals[index].y();
         v.normal.z = _normals[index].z();
         
-        v.tangent.x = _tangents[index].x();
+       v.tangent.x = _tangents[index].x();
         v.tangent.y = _tangents[index].y();
         v.tangent.z = _tangents[index].z();
         

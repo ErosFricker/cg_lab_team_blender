@@ -11,7 +11,10 @@
 		283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 283D33F212AEDA3D00C06CB4 /* FrameworkViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
-		C3235CEC1AE67E6000BA30C4 /* pipe.obj in Resources */ = {isa = PBXBuildFile; fileRef = C3235CEB1AE67E6000BA30C4 /* pipe.obj */; };
+		B9C677DA1AE6836300F895E2 /* pipe_model.vert in Resources */ = {isa = PBXBuildFile; fileRef = B9C677D91AE6836300F895E2 /* pipe_model.vert */; };
+		B9C677DC1AE6836D00F895E2 /* pipe_model.frag in Resources */ = {isa = PBXBuildFile; fileRef = B9C677DB1AE6836D00F895E2 /* pipe_model.frag */; };
+		B9CAE98A1AE6A29D003D394B /* pipe_model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B9CAE9881AE6A29D003D394B /* pipe_model.mtl */; };
+		B9CAE98B1AE6A29D003D394B /* pipe_model.obj in Resources */ = {isa = PBXBuildFile; fileRef = B9CAE9891AE6A29D003D394B /* pipe_model.obj */; };
 		F814A6161716A0E000A2A910 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F814A6121716A0E000A2A910 /* obj.cpp */; };
 		F814A6171716A0E000A2A910 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F814A6141716A0E000A2A910 /* obj_parser.cpp */; };
 		F81D4CAB16DABE50001FA5DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F81D4CAA16DABE50001FA5DD /* CoreGraphics.framework */; };
@@ -70,7 +73,10 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* Flamework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flamework_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Flamework-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Flamework-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		C3235CEB1AE67E6000BA30C4 /* pipe.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe.obj; sourceTree = "<group>"; };
+		B9C677D91AE6836300F895E2 /* pipe_model.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pipe_model.vert; sourceTree = "<group>"; };
+		B9C677DB1AE6836D00F895E2 /* pipe_model.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pipe_model.frag; sourceTree = "<group>"; };
+		B9CAE9881AE6A29D003D394B /* pipe_model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe_model.mtl; sourceTree = "<group>"; };
+		B9CAE9891AE6A29D003D394B /* pipe_model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe_model.obj; sourceTree = "<group>"; };
 		F814A6121716A0E000A2A910 /* obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj.cpp; sourceTree = "<group>"; };
 		F814A6131716A0E000A2A910 /* obj.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = obj.hpp; sourceTree = "<group>"; };
 		F814A6141716A0E000A2A910 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
@@ -279,6 +285,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B9CAE9871AE6A093003D394B /* pipe */ = {
+			isa = PBXGroup;
+			children = (
+				B9CAE9881AE6A29D003D394B /* pipe_model.mtl */,
+				B9CAE9891AE6A29D003D394B /* pipe_model.obj */,
+			);
+			name = pipe;
+			sourceTree = "<group>";
+		};
 		F814A6111716A0E000A2A910 /* obj */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,9 +424,9 @@
 		F87C331F1910561A00E8A523 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B9CAE9871AE6A093003D394B /* pipe */,
 				F855EF2D1AC0D47400B32C23 /* guy */,
 				F87C33201910561A00E8A523 /* sphere.obj */,
-				C3235CEB1AE67E6000BA30C4 /* pipe.obj */,
 				F87C33271910561A00E8A523 /* quad.obj */,
 			);
 			path = Models;
@@ -422,6 +437,8 @@
 			children = (
 				F87C33311910561A00E8A523 /* guy.frag */,
 				F87C33321910561A00E8A523 /* guy.vert */,
+				B9C677D91AE6836300F895E2 /* pipe_model.vert */,
+				B9C677DB1AE6836D00F895E2 /* pipe_model.frag */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -565,6 +582,8 @@
 				F8757CA119107FA000B62379 /* guy.vert in Resources */,
 				F8757CA019107F9800B62379 /* guy.frag in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				B9CAE98A1AE6A29D003D394B /* pipe_model.mtl in Resources */,
+				B9CAE98B1AE6A29D003D394B /* pipe_model.obj in Resources */,
 				F87C33491910561A00E8A523 /* test.mp3 in Resources */,
 				283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */,
 				F8ED69F316E64F7400E6D6CA /* Default-568h@2x.png in Resources */,
@@ -575,9 +594,10 @@
 				F855EF351AC0D47400B32C23 /* guy.obj in Resources */,
 				F855EF341AC0D47400B32C23 /* guy.mtl in Resources */,
 				F8ED69F516E64F7400E6D6CA /* Default@2x.png in Resources */,
+				B9C677DA1AE6836300F895E2 /* pipe_model.vert in Resources */,
 				F855EF371AC0D47400B32C23 /* specular.png in Resources */,
 				F8ED6AD016E652B800E6D6CA /* ACKNOWLEDGEMENTS in Resources */,
-				C3235CEC1AE67E6000BA30C4 /* pipe.obj in Resources */,
+				B9C677DC1AE6836D00F895E2 /* pipe_model.frag in Resources */,
 				F87C33371910561A00E8A523 /* sphere.obj in Resources */,
 				F8ED6AD116E652B800E6D6CA /* LICENSE in Resources */,
 			);
@@ -676,6 +696,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SRCROOT;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -693,6 +714,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SRCROOT;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
