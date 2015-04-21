@@ -39,14 +39,14 @@ void main()
     mediump vec4 pos = posVarying;
     mediump vec3 n = normalize(normalVarying);
     
-    mediump vec3 t = normalize(tangentVarying - dot(tangentVarying, n));
+    /*mediump vec3 t = normalize(tangentVarying - dot(tangentVarying, n));
     
     mediump vec3 b = normalize(cross(n, t));
     mediump mat3 tbn = mat3(t, b, n);
     mediump vec3 bumpNormal = texture2D(NormalMap, texCoordVarying.xy).xyz;
     bumpNormal = 2.0*bumpNormal - vec3(1.0);
     
-    n = normalize(tbn*bumpNormal);
+    n = normalize(tbn*bumpNormal);*/
     
     mediump vec3 l = normalize(LightPos - pos).xyz;
     
@@ -69,5 +69,5 @@ void main()
     //lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
     lowp vec4 color = vec4(1.0, 0.0, 0.0, 1.0);
     gl_FragColor = color;
-   // gl_FragColor = (ambientResult + diffuseResult)*color + specularResult*texture2D(SpecularMap, texCoordVarying.xy);
+    gl_FragColor = (ambientResult + diffuseResult)*color + specularResult*texture2D(SpecularMap, texCoordVarying.xy);
 }
