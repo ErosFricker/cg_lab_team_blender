@@ -670,6 +670,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = $SRCROOT;
 				INFOPLIST_FILE = "Flamework-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = Flamework;
 			};
 			name = Debug;
@@ -691,6 +692,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = $SRCROOT;
 				INFOPLIST_FILE = "Flamework-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = Flamework;
 				VALIDATE_PRODUCT = YES;
 			};
