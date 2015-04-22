@@ -11,6 +11,8 @@
 		283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 283D33F212AEDA3D00C06CB4 /* FrameworkViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
+		B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B138EA1AE78ACB00F3FFED /* Main.storyboard */; };
+		B9B138EE1AE78DC200F3FFED /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */; };
 		B9C677DA1AE6836300F895E2 /* pipe_model.vert in Resources */ = {isa = PBXBuildFile; fileRef = B9C677D91AE6836300F895E2 /* pipe_model.vert */; };
 		B9C677DC1AE6836D00F895E2 /* pipe_model.frag in Resources */ = {isa = PBXBuildFile; fileRef = B9C677DB1AE6836D00F895E2 /* pipe_model.frag */; };
 		B9CAE98A1AE6A29D003D394B /* pipe_model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B9CAE9881AE6A29D003D394B /* pipe_model.mtl */; };
@@ -73,6 +75,9 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* Flamework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flamework_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Flamework-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Flamework-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B9B138EA1AE78ACB00F3FFED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B9B138EC1AE78DC200F3FFED /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
+		B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
 		B9C677D91AE6836300F895E2 /* pipe_model.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pipe_model.vert; sourceTree = "<group>"; };
 		B9C677DB1AE6836D00F895E2 /* pipe_model.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pipe_model.frag; sourceTree = "<group>"; };
 		B9CAE9881AE6A29D003D394B /* pipe_model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe_model.mtl; sourceTree = "<group>"; };
@@ -261,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				B9B138EA1AE78ACB00F3FFED /* Main.storyboard */,
 				283D33F212AEDA3D00C06CB4 /* FrameworkViewController.xib */,
 				8D1107310486CEB800E47090 /* Flamework-Info.plist */,
 			);
@@ -391,6 +397,8 @@
 				F87C32F81910554000E8A523 /* Sound.mm */,
 				F87C32F91910554000E8A523 /* TextureData.mm */,
 				F87C32FA1910554000E8A523 /* Util.mm */,
+				B9B138EC1AE78DC200F3FFED /* StartScreenViewController.h */,
+				B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -584,6 +592,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				B9CAE98A1AE6A29D003D394B /* pipe_model.mtl in Resources */,
 				B9CAE98B1AE6A29D003D394B /* pipe_model.obj in Resources */,
+				B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */,
 				F87C33491910561A00E8A523 /* test.mp3 in Resources */,
 				283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */,
 				F8ED69F316E64F7400E6D6CA /* Default-568h@2x.png in Resources */,
@@ -621,6 +630,7 @@
 				F87C33081910554000E8A523 /* FrameworkAppDelegate.m in Sources */,
 				F87C33141910554000E8A523 /* PhysicsManager.cpp in Sources */,
 				F87C33161910554000E8A523 /* Shader.cpp in Sources */,
+				B9B138EE1AE78DC200F3FFED /* StartScreenViewController.m in Sources */,
 				F87C33101910554000E8A523 /* Material.cpp in Sources */,
 				F87C33121910554000E8A523 /* ModelData.cpp in Sources */,
 				F87C33461910561A00E8A523 /* guy.vert in Sources */,
