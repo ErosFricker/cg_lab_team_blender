@@ -17,6 +17,7 @@
 #include "Util.h"
 
 #include <boost/lexical_cast.hpp>
+#include <glm/glm/gtc/matrix_transform.hpp>
 
 using boost::lexical_cast;
 
@@ -41,7 +42,7 @@ void DemoSceneManager::onTouchBegan(float x, float y)
     vmml::vec2f cScrollPos(x, y);
     _lScrollPos = cScrollPos;
     
-//    getSound("test")->play();
+//    getSound("test")->play();*/
 }
 
 void DemoSceneManager::onTouchMoved(float x, float y)
@@ -61,7 +62,7 @@ void DemoSceneManager::onTouchEnded(float x, float y, int tapCount)
 void DemoSceneManager::onScaleBegan(float x, float y)
 {
     util::log("onScaleBegan");
-    vmml::vec2f cScale(-x, y);
+vmml::vec2f cScale(-x, y);
     _lScale = cScale;
 }
 
@@ -90,6 +91,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     _modelMatrixStack.push(vmml::mat4f::IDENTITY);
 
     loadModel("pipe_model.obj", true, true);
+    loadModel("ship.obj", true, true);
 //    loadModel("guy.obj", true, true);
 //    loadSound("test.mp3");
 }
@@ -119,7 +121,37 @@ void DemoSceneManager::drawModel(const std::string &name, GLenum mode)
         ShaderPtr shader = material->getShader();
         if (shader.get())
         {
-            shader->setUniform("ProjectionMatrix", vmml::mat4f::IDENTITY);
+            vmml::mat4f m = vmml::mat4f::ZERO;
+            
+            
+            float fieldOfViewDegrees = 33.0f;
+            const float aspect = 3.0f/4.0f;
+            const float zNear = 0.1f;
+            const float zFar = 1000.0f;
+            const float minimumFOV = 33.0f;
+            const float maximumFOV = 360.0f;
+            
+            if (fieldOfViewDegrees < minimumFOV) {
+                fieldOfViewDegrees = minimumFOV;
+            }
+            if (fieldOfViewDegrees > maximumFOV) {
+                fieldOfViewDegrees = maximumFOV;
+            }
+            
+         
+            const float fieldOfView = fieldOfViewDegrees*(M_PI_F/360);
+            
+            
+            const float f = 1 / tanf(fieldOfView/2.0f);
+            
+            m[0][0] = f / aspect;
+            m[1][1] = f;
+            m[2][2] = (zFar + zNear)/(zNear - zFar);
+            m[2][3] = (2*zFar*zNear)/(zNear - zFar);
+            m[3][2] = -1.0f;
+            
+         
+            shader->setUniform("ProjectionMatrix", m);
             shader->setUniform("ViewMatrix", _viewMatrix);
             shader->setUniform("ModelMatrix", _modelMatrix);
             
@@ -129,7 +161,7 @@ void DemoSceneManager::drawModel(const std::string &name, GLenum mode)
             
             shader->setUniform("EyePos", _eyePos);
             
-            shader->setUniform("LightPos", vmml::vec4f(0.f, 3.f, 1.f, 1.f));
+            shader->setUniform("LightPos", vmml::vec4f(0.01, 0.01, -4, 1.f));
             shader->setUniform("Ia", vmml::vec3f(1.f));
             shader->setUniform("Id", vmml::vec3f(1.f));
             shader->setUniform("Is", vmml::vec3f(1.f));
@@ -142,8 +174,20 @@ void DemoSceneManager::drawModel(const std::string &name, GLenum mode)
     }
 }
 
+int firstTime = 1;
 void DemoSceneManager::draw(double deltaT)
 {
+    if (firstTime==1){
+        _eyePos = vmml::vec3f(0, 0.0, 100);
+        firstTime = 0;
+    }else{
+        _eyePos.z() = _eyePos.z() - 0.4;
+    }
+    if (_eyePos.z() < 0.0f) {
+    
+        printf("EYEPOS NEGATIVE");
+    }
+    
     _time += deltaT;
     float angle = _time * .1;   // .1 radians per second
     
@@ -153,21 +197,37 @@ void DemoSceneManager::draw(double deltaT)
     glDepthFunc(GL_LEQUAL);
     
     glCullFace(GL_BACK);
-    glEnable(GL_CULL_FACE);
+    glDisable(GL_CULL_FACE);
     
     Gyro *gyro = Gyro::getInstance();
     gyro->read();
-
-    vmml::mat4f translation = vmml::create_translation(vmml::vec3f(_scrolling.x(), -_scrolling.y(), 0));
+    
+    vmml::mat4f translation = vmml::create_translation(vmml::vec3f(-.01, -.007, 20));
+    vmml::mat4f translationPlayer = vmml::create_translation(vmml::vec3f(_eyePos.x(), _eyePos.y()-0.05, _eyePos.z()-1));
     vmml::mat4f scaling = vmml::create_scaling(vmml::vec3f(.2f));
+    vmml::mat4f scalingPlayer = vmml::create_scaling(vmml::vec3f(.01f));
     
     vmml::mat3f rotation = vmml::create_rotation(gyro->getRoll() * -M_PI_F - .3f, vmml::vec3f::UNIT_Y) *
     vmml::create_rotation(gyro->getPitch() * -M_PI_F + .3f, vmml::vec3f::UNIT_X);
-    _eyePos = rotation * vmml::vec3f(0, 0, 0.25);
     vmml::vec3f eyeUp = vmml::vec3f::UP;
-    _viewMatrix = lookAt(_eyePos, vmml::vec3f::ZERO, rotation * eyeUp);
+    _viewMatrix = lookAt(_eyePos, vmml::vec3f::ZERO, eyeUp);
 
+    _modelMatrix = translationPlayer*scalingPlayer;
+    drawModel("ship");
+    
     _modelMatrix = translation * scaling;
     
     drawModel("pipe_model");
+    
+    for (int i = 0; i < 10; i++) {
+        translation = vmml::create_translation(vmml::vec3f(-.01, -.007, 20+i*8));
+        _modelMatrix = translation * scaling;
+        drawModel("pipe_model");
+    }
+    
+    
+    
+
+    
+    
 }

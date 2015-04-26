@@ -66,7 +66,7 @@ void main()
         specularResult = vec4(clamp(specular, 0.0, 1.0), 1.0);
     }
     
-    //lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
-    gl_FragColor = vec4(n, 1.0);
+    lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
+    gl_FragColor = (ambientResult + diffuseResult)*color + specularResult;
 
 }

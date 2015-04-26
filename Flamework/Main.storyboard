@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WHc-OR-yNd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WHc-OR-yNd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Start Screen View Controller-->
@@ -16,8 +16,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-hl-Ujm">
-                                <rect key="frame" x="261" y="197" width="79" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="e4N-8i-oe7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kg-nn-EbI">
+                                <rect key="frame" x="63" y="477" width="474" height="30"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Black Hole Apocalypse" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9K-ve-6f8">
+                                <rect key="frame" x="16" y="50" width="568" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="QoE-TZ-rCU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8c-hl-Ujm">
+                                <rect key="frame" x="63" y="380" width="474" height="30"/>
                                 <state key="normal" title="Start Game">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -25,15 +43,33 @@
                                     <segue destination="MVl-99-Wiw" kind="show" id="M6q-gZ-UnA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kg-nn-EbI">
-                                <rect key="frame" x="272" y="293" width="57" height="30"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Kg-nn-EbI" firstAttribute="top" secondItem="I8c-hl-Ujm" secondAttribute="bottom" constant="67" id="13N-F6-wCa"/>
+                            <constraint firstItem="I8c-hl-Ujm" firstAttribute="top" secondItem="S9K-ve-6f8" secondAttribute="bottom" constant="150" id="5Lw-hY-AOe"/>
+                            <constraint firstItem="I8c-hl-Ujm" firstAttribute="leading" secondItem="7l1-Rq-NTq" secondAttribute="leading" constant="63" id="8q2-uf-iSO"/>
+                            <constraint firstAttribute="trailing" secondItem="7Kg-nn-EbI" secondAttribute="trailing" constant="63" id="C3u-Ka-Wod"/>
+                            <constraint firstItem="e4N-8i-oe7" firstAttribute="top" secondItem="7l1-Rq-NTq" secondAttribute="top" id="DVa-Ia-ieE"/>
+                            <constraint firstAttribute="centerX" secondItem="7Kg-nn-EbI" secondAttribute="centerX" id="HYB-oM-cSw"/>
+                            <constraint firstAttribute="trailing" secondItem="e4N-8i-oe7" secondAttribute="trailing" id="I2W-Nb-pF0"/>
+                            <constraint firstAttribute="centerX" secondItem="S9K-ve-6f8" secondAttribute="centerX" id="MfA-JS-640"/>
+                            <constraint firstAttribute="trailing" secondItem="I8c-hl-Ujm" secondAttribute="trailing" constant="63" id="QoN-9C-k3Z"/>
+                            <constraint firstItem="e4N-8i-oe7" firstAttribute="leading" secondItem="7l1-Rq-NTq" secondAttribute="leading" id="R35-j2-bGc"/>
+                            <constraint firstItem="S9K-ve-6f8" firstAttribute="top" secondItem="qxo-h0-TLU" secondAttribute="bottom" constant="30" id="TON-mz-O8h"/>
+                            <constraint firstItem="S9K-ve-6f8" firstAttribute="leading" secondItem="7l1-Rq-NTq" secondAttribute="leading" constant="16" id="bND-Qu-ZfB"/>
+                            <constraint firstAttribute="trailing" secondItem="S9K-ve-6f8" secondAttribute="trailing" constant="16" id="mNb-sw-cot"/>
+                            <constraint firstItem="kRp-Qg-BWl" firstAttribute="top" secondItem="e4N-8i-oe7" secondAttribute="bottom" id="meE-fS-x8m"/>
+                            <constraint firstItem="7Kg-nn-EbI" firstAttribute="leading" secondItem="7l1-Rq-NTq" secondAttribute="leading" constant="63" id="nrG-Vg-Xxu"/>
+                            <constraint firstAttribute="centerX" secondItem="I8c-hl-Ujm" secondAttribute="centerX" id="vud-jl-Jro"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="TitleTextLabel" destination="S9K-ve-6f8" id="i6W-TY-GoN"/>
+                        <outlet property="backgroundImageView" destination="e4N-8i-oe7" id="Y22-2M-QWE"/>
+                        <outlet property="settingsButton" destination="7Kg-nn-EbI" id="muV-l2-SdL"/>
+                        <outlet property="startGameButton" destination="I8c-hl-Ujm" id="U7o-Dj-6CY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bc6-Fp-SAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,4 +97,8 @@
             <point key="canvasLocation" x="240" y="-613"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Background" width="2200" height="1237"/>
+    </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

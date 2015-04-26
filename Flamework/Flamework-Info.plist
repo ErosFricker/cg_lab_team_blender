@@ -41,5 +41,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>alexisv3laserital.ttf</string>
+		<string>alexisv3bulletital.ttf</string>
+	</array>
 </dict>
 </plist>
