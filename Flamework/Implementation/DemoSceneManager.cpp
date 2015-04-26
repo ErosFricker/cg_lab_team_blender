@@ -181,7 +181,7 @@ void DemoSceneManager::draw(double deltaT)
         _eyePos = vmml::vec3f(0, 0.0, 100);
         firstTime = 0;
     }else{
-        _eyePos.z() = _eyePos.z() - 0.4;
+        _eyePos.z() = _eyePos.z() - 0.1;
     }
     if (_eyePos.z() < 0.0f) {
     

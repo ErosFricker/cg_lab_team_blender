@@ -18,8 +18,8 @@
 		B98819CA1AED1954006536E8 /* glm in Resources */ = {isa = PBXBuildFile; fileRef = B98819C91AED1954006536E8 /* glm */; };
 		B98819CD1AED29C5006536E8 /* pipe_model.obj in Resources */ = {isa = PBXBuildFile; fileRef = B98819CB1AED29C5006536E8 /* pipe_model.obj */; };
 		B98819CE1AED29C5006536E8 /* pipe_model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B98819CC1AED29C5006536E8 /* pipe_model.mtl */; };
-		B98819E71AED3FF5006536E8 /* ship_mat.frag in Resources */ = {isa = PBXBuildFile; fileRef = B98819E61AED3FF5006536E8 /* ship_mat.frag */; };
-		B98819E91AED3FFB006536E8 /* ship_mat.vert in Resources */ = {isa = PBXBuildFile; fileRef = B98819E81AED3FFB006536E8 /* ship_mat.vert */; };
+		B98819E71AED3FF5006536E8 /* ship.frag in Resources */ = {isa = PBXBuildFile; fileRef = B98819E61AED3FF5006536E8 /* ship.frag */; };
+		B98819E91AED3FFB006536E8 /* ship.vert in Resources */ = {isa = PBXBuildFile; fileRef = B98819E81AED3FFB006536E8 /* ship.vert */; };
 		B98819F01AED48B2006536E8 /* ship.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B98819EE1AED48B2006536E8 /* ship.mtl */; };
 		B98819F11AED48B2006536E8 /* ship.obj in Resources */ = {isa = PBXBuildFile; fileRef = B98819EF1AED48B2006536E8 /* ship.obj */; };
 		B98819F61AED4B84006536E8 /* s_1024_S.png in Resources */ = {isa = PBXBuildFile; fileRef = B98819F21AED4B84006536E8 /* s_1024_S.png */; };
@@ -97,8 +97,8 @@
 		B98819C91AED1954006536E8 /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
 		B98819CB1AED29C5006536E8 /* pipe_model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe_model.obj; sourceTree = "<group>"; };
 		B98819CC1AED29C5006536E8 /* pipe_model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe_model.mtl; sourceTree = "<group>"; };
-		B98819E61AED3FF5006536E8 /* ship_mat.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship_mat.frag; sourceTree = "<group>"; };
-		B98819E81AED3FFB006536E8 /* ship_mat.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship_mat.vert; sourceTree = "<group>"; };
+		B98819E61AED3FF5006536E8 /* ship.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship.frag; sourceTree = "<group>"; };
+		B98819E81AED3FFB006536E8 /* ship.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship.vert; sourceTree = "<group>"; };
 		B98819EE1AED48B2006536E8 /* ship.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ship.mtl; sourceTree = "<group>"; };
 		B98819EF1AED48B2006536E8 /* ship.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ship.obj; sourceTree = "<group>"; };
 		B98819F21AED4B84006536E8 /* s_1024_S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_1024_S.png; sourceTree = "<group>"; };
@@ -506,8 +506,8 @@
 				F87C33321910561A00E8A523 /* guy.vert */,
 				B9C677D91AE6836300F895E2 /* pipe_model.vert */,
 				B9C677DB1AE6836D00F895E2 /* pipe_model.frag */,
-				B98819E61AED3FF5006536E8 /* ship_mat.frag */,
-				B98819E81AED3FFB006536E8 /* ship_mat.vert */,
+				B98819E61AED3FF5006536E8 /* ship.frag */,
+				B98819E81AED3FFB006536E8 /* ship.vert */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -660,7 +660,7 @@
 				B98819821AED0A14006536E8 /* Assets.xcassets in Resources */,
 				B98819A11AED0B9C006536E8 /* alexisv3laserital.ttf in Resources */,
 				B98819F11AED48B2006536E8 /* ship.obj in Resources */,
-				B98819E71AED3FF5006536E8 /* ship_mat.frag in Resources */,
+				B98819E71AED3FF5006536E8 /* ship.frag in Resources */,
 				B98819CE1AED29C5006536E8 /* pipe_model.mtl in Resources */,
 				B98819F61AED4B84006536E8 /* s_1024_S.png in Resources */,
 				B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */,
@@ -674,7 +674,7 @@
 				F855EF351AC0D47400B32C23 /* guy.obj in Resources */,
 				F855EF341AC0D47400B32C23 /* guy.mtl in Resources */,
 				B98819CA1AED1954006536E8 /* glm in Resources */,
-				B98819E91AED3FFB006536E8 /* ship_mat.vert in Resources */,
+				B98819E91AED3FFB006536E8 /* ship.vert in Resources */,
 				B98819F01AED48B2006536E8 /* ship.mtl in Resources */,
 				F8ED69F516E64F7400E6D6CA /* Default@2x.png in Resources */,
 				B9C677DA1AE6836300F895E2 /* pipe_model.vert in Resources */,
