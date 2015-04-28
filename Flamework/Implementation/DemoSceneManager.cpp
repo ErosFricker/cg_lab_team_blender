@@ -23,6 +23,7 @@ using boost::lexical_cast;
 
 #define SCROLL_SPEED    0.002f
 #define SCALE_SPEED     0.008f
+#define WINDOW_WIDTH    1024.0f
 
 
 DemoSceneManager::DemoSceneManager(Application *application)
@@ -41,6 +42,13 @@ void DemoSceneManager::onTouchBegan(float x, float y)
     util::log("onTouchBegan");
     vmml::vec2f cScrollPos(x, y);
     _lScrollPos = cScrollPos;
+    
+    if (cScrollPos.x() > (WINDOW_WIDTH/2.0f)){
+        util::log("RIGHT");
+    }else{
+        util::log("LEFT");
+    }
+    
     
 //    getSound("test")->play();*/
 }
