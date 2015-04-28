@@ -8,13 +8,14 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "StartScreenViewController.h"
+#import "SettingsViewController.h"
 
-@interface StartScreenViewController ()
+@interface StartScreenViewController () <MusicDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *TitleTextLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startGameButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property(nonatomic, strong) AVAudioPlayer* player;
+@property(nonatomic, strong) AVAudioPlayer* backgroundMusicPlayer;
 
 @end
 
@@ -36,13 +37,31 @@
     NSString* pathToSoundFile = [[NSBundle mainBundle] pathForResource:@"pampam" ofType:@"mp3"];
     NSError* error;
     NSData* data = [[NSData alloc] initWithContentsOfFile:pathToSoundFile];
-    _player = [[AVAudioPlayer alloc] initWithData:data error:&error];
-    _player.numberOfLoops = -1;
-    _player.delegate = self;
-    [_player play];
+    _backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
+    _backgroundMusicPlayer.numberOfLoops = -1;
+    _backgroundMusicPlayer.delegate = self;
+    [_backgroundMusicPlayer play];
     
     // Do any additional setup after loading the view.
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"settings"]) {
+        SettingsViewController* vc = [segue destinationViewController];
+        vc.musicDelegate = self;
+        vc.backgroundMusicSlider.value = _backgroundMusicPlayer.volume;
+    }
+}
+
+-(void)musicSliderValueChanged:(float)value{
+    
+    [_backgroundMusicPlayer setVolume:value];
+    
+}
+-(void)sfxSliderValueChanged:(float)value{
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

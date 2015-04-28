@@ -11,6 +11,7 @@
 		283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 283D33F212AEDA3D00C06CB4 /* FrameworkViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
+		B92F88551AEFD133005EDB9C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92F88541AEFD133005EDB9C /* SettingsViewController.m */; };
 		B98819821AED0A14006536E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B98819811AED0A14006536E8 /* Assets.xcassets */; };
 		B98819A11AED0B9C006536E8 /* alexisv3laserital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */; };
 		B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B98819901AED0B9C006536E8 /* alexisv3half.ttf */; };
@@ -90,6 +91,8 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* Flamework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flamework_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Flamework-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Flamework-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B92F88531AEFD133005EDB9C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B92F88541AEFD133005EDB9C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B98819811AED0A14006536E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3laserital.ttf; sourceTree = "<group>"; };
 		B98819901AED0B9C006536E8 /* alexisv3half.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3half.ttf; sourceTree = "<group>"; };
@@ -457,6 +460,8 @@
 				F87C32FA1910554000E8A523 /* Util.mm */,
 				B9B138EC1AE78DC200F3FFED /* StartScreenViewController.h */,
 				B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */,
+				B92F88531AEFD133005EDB9C /* SettingsViewController.h */,
+				B92F88541AEFD133005EDB9C /* SettingsViewController.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -699,6 +704,7 @@
 				F87C33131910554000E8A523 /* PhysicalObject.cpp in Sources */,
 				F87C330B1910554000E8A523 /* main.m in Sources */,
 				F87C330F1910554000E8A523 /* Geometry.cpp in Sources */,
+				B92F88551AEFD133005EDB9C /* SettingsViewController.m in Sources */,
 				F87C330D1910554000E8A523 /* TextureData.mm in Sources */,
 				F87C330C1910554000E8A523 /* Sound.mm in Sources */,
 				F87C33181910554000E8A523 /* Texture.cpp in Sources */,
