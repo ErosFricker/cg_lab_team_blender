@@ -54,6 +54,11 @@ private:
     MatrixStack _modelMatrixStack;
     vmml::mat4f _modelMatrix;
     vmml::mat4f _viewMatrix;
+    vmml::mat4f _projectionMatrix;
+    
+    vmml::mat4f _modelMatrixAccelerator;
+    vmml::mat4f _modelMatrixShip;
+    
 };
 
 

@@ -98,13 +98,8 @@ void DemoSceneManager::initialize(size_t width, size_t height)
 
     _modelMatrixStack.push(vmml::mat4f::IDENTITY);
 
-    loadModel("tunnel_fragment.obj", true, true);
+    loadModel("accelerator.obj", true, true);
     loadModel("ship.obj", true, true);
-    
-    // loadModel("pipe_model.obj", true, true);
-    
-    // loadModel("guy.obj", true, true);
-    // loadSound("test.mp3");
 }
 
 vmml::mat4f lookAt(vmml::vec3f eye, vmml::vec3f target, vmml::vec3f up)
@@ -132,37 +127,7 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
         ShaderPtr shader = material->getShader();
         if (shader.get())
         {
-            vmml::mat4f m = vmml::mat4f::ZERO;
-            
-            
-            float fieldOfViewDegrees = 33.0f;
-            const float aspect = 3.0f/4.0f;
-            const float zNear = 0.1f;
-            const float zFar = 1000.0f;
-            const float minimumFOV = 33.0f;
-            const float maximumFOV = 360.0f;
-            
-            if (fieldOfViewDegrees < minimumFOV) {
-                fieldOfViewDegrees = minimumFOV;
-            }
-            if (fieldOfViewDegrees > maximumFOV) {
-                fieldOfViewDegrees = maximumFOV;
-            }
-            
-         
-            const float fieldOfView = fieldOfViewDegrees*(M_PI_F/360);
-            
-            
-            const float f = 1 / tanf(fieldOfView/2.0f);
-            
-            m[0][0] = f / aspect;
-            m[1][1] = f;
-            m[2][2] = (zFar + zNear)/(zNear - zFar);
-            m[2][3] = (2*zFar*zNear)/(zNear - zFar);
-            m[3][2] = -1.0f;
-            
-         
-            shader->setUniform("ProjectionMatrix", m);
+            shader->setUniform("ProjectionMatrix", _projectionMatrix);
             shader->setUniform("ViewMatrix", _viewMatrix);
             shader->setUniform("ModelMatrix", _modelMatrix);
             
@@ -191,26 +156,60 @@ void DemoSceneManager::draw(double deltaT)
 {
     // Catch the first function call
     if (firstTime==1){
+        
+        // Define viewmatrix
         _eyePos = vmml::vec3f(0, 0, 100);
         vmml::vec3f eyeUp = vmml::vec3f::UP;
         _viewMatrix = lookAt(_eyePos, vmml::vec3f::ZERO, eyeUp);
+        
+        // Define projectionmatrix
+        _projectionMatrix = vmml::mat4f::ZERO;
+        
+        float fieldOfViewDegrees = 33.0f;
+        const float aspect = 3.0f/4.0f;
+        const float zNear = 0.1f;
+        const float zFar = 1000.0f;
+        const float minimumFOV = 33.0f;
+        const float maximumFOV = 360.0f;
+        
+        if (fieldOfViewDegrees < minimumFOV) fieldOfViewDegrees = minimumFOV;
+        if (fieldOfViewDegrees > maximumFOV) fieldOfViewDegrees = maximumFOV;
+        
+        const float fieldOfView = fieldOfViewDegrees*(M_PI_F/360);
+        const float f = 1 / tanf(fieldOfView/2.0f);
+        
+        _projectionMatrix[0][0] = f / aspect;
+        _projectionMatrix[1][1] = f;
+        _projectionMatrix[2][2] = (zFar + zNear)/(zNear - zFar);
+        _projectionMatrix[2][3] = (2*zFar*zNear)/(zNear - zFar);
+        _projectionMatrix[3][2] = -1.0f;
+        
+        // Define timereferences
         deltaT = 0; // !!!
         firstTime = 0;
+        
+        // Setup modelmatrices
+        _modelMatrixAccelerator =
+            vmml::create_rotation(-M_PI_F/2, vmml::vec3f(1,0,0))
+            * vmml::create_scaling(6.f);
+        _modelMatrixShip =
+            vmml::create_translation(vmml::vec3f(0, -2, 80))
+            * vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0))
+            * vmml::create_scaling(.2f);
     }
-     
+    
+    // Update timereference
     _time += deltaT;
-    float angle = _time * 0.1f;   // .1 radians per second
     
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
-    
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
     
-    // Userinput - tablet rotation
     /*
+    // Userinput - tablet rotation
     Gyro *gyro = Gyro::getInstance();
     gyro->read();
     
@@ -219,24 +218,13 @@ void DemoSceneManager::draw(double deltaT)
         * vmml::create_rotation(gyro->getPitch() * -M_PI_F + .3f, vmml::vec3f::UNIT_X);
     */
     
+    // Define the "speed"
+    float time = .1f * _time;
     
-    // ACCELERATOR
-    float travel_speed = 2*angle;
-    _modelMatrix = vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0));
-    _modelMatrix *= vmml::create_scaling(20.f); // Initial scale.
-    vmml::mat4f scaling = vmml::create_scaling(.5f);
-    for (int i=1; i<10; ++i) {
-        _modelMatrix *= scaling;
-        drawModel(travel_speed, "tunnel_fragment");
-    }
-    
-    // PLAYER-SHIP
-    vmml::mat4f set_size = vmml::create_scaling(.2f);
-    vmml::mat4f rot_y = vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0));
-    //vmml::mat4f rot_x = vmml::create_rotation(M_PI_F/12.f, vmml::vec3f(1,0,0));
-    vmml::mat4f trans = vmml::create_translation(vmml::vec3f(0, -2, 80));
-    _modelMatrix = trans * rot_y * set_size;
-    drawModel(0.f, "ship");
-    
-    
+    // Draw stuff
+    _modelMatrix = _modelMatrixAccelerator;
+    drawModel(time, "accelerator");
+
+    _modelMatrix = _modelMatrixShip;
+    drawModel(0, "ship");
 }
