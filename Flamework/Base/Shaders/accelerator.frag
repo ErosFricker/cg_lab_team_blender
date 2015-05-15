@@ -1,4 +1,5 @@
 uniform mediump float deltaT;
+uniform mediump vec4 ColorVector;
 
 uniform mediump mat4 ViewMatrix;
 uniform mediump mat4 ModelMatrix;
@@ -31,6 +32,7 @@ varying lowp vec4 texCoordVarying;
 varying mediump vec4 posVarying;        // pos in world space
 varying mediump vec3 normalVarying;     // normal in world space
 varying mediump vec3 tangentVarying;    // tangent in world space
+varying lowp vec4 colorVarying;
 
 void main()
 {

@@ -1,6 +1,4 @@
 
-precision highp float;
-
 uniform mediump float deltaT;
 uniform mediump vec4 ColorVector;
 
@@ -71,6 +69,7 @@ void main()
         specularResult = vec4(clamp(specular, 0.0, 1.0), 1.0);
     }
     
-    lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
-    gl_FragColor = (ambientResult + diffuseResult)*color + specularResult;
+    // Make the texture move
+    lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy + vec2(0,-deltaT));
+    gl_FragColor = (ambientResult + diffuseResult)*color;
 }

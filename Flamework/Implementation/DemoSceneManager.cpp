@@ -15,6 +15,9 @@
 #include "ShaderData.h"
 #include "Framework_GL.h"
 #include "Util.h"
+#include "Particle.h"
+#include <cmath>
+#include <list>
 
 #include <boost/lexical_cast.hpp>
 #include <glm/glm/gtc/matrix_transform.hpp>
@@ -45,7 +48,8 @@ void DemoSceneManager::onTouchBegan(float x, float y)
     
     if (cScrollPos.x() > (WINDOW_WIDTH/2.0f)){
         util::log("RIGHT");
-    }else{
+    }
+    else{
         util::log("LEFT");
     }
     
@@ -100,6 +104,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
 
     loadModel("accelerator.obj", true, true);
     loadModel("ship.obj", true, true);
+    loadModel("core.obj", true, true);
 }
 
 vmml::mat4f lookAt(vmml::vec3f eye, vmml::vec3f target, vmml::vec3f up)
@@ -142,6 +147,8 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
             shader->setUniform("Id", vmml::vec3f(1.f));
             shader->setUniform("Is", vmml::vec3f(1.f));
             shader->setUniform("deltaT", deltaT);
+            
+            shader->setUniform("ColorVector", _color);
         }
         else
         {
@@ -152,10 +159,20 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
 }
 
 int firstTime = 1;
+std::list<Particle> activeParticles;
+Particle p;
+
 void DemoSceneManager::draw(double deltaT)
 {
+    
+    // Update timereference
+    _time += deltaT;
+    
     // Catch the first function call
     if (firstTime==1){
+        
+        // Random seed
+        srand((unsigned int) _time);
         
         // Define viewmatrix
         _eyePos = vmml::vec3f(0, 0, 100);
@@ -187,19 +204,23 @@ void DemoSceneManager::draw(double deltaT)
         // Define timereferences
         deltaT = 0; // !!!
         firstTime = 0;
+        _time = 0;
+        
+        // Set default color
+        _color = vmml::vec4f(0,0,0,1);
         
         // Setup modelmatrices
         _modelMatrixAccelerator =
             vmml::create_rotation(-M_PI_F/2, vmml::vec3f(1,0,0))
             * vmml::create_scaling(6.f);
+        
         _modelMatrixShip =
             vmml::create_translation(vmml::vec3f(0, -2, 80))
             * vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0))
             * vmml::create_scaling(.2f);
+        
+        
     }
-    
-    // Update timereference
-    _time += deltaT;
     
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -219,12 +240,35 @@ void DemoSceneManager::draw(double deltaT)
     */
     
     // Define the "speed"
-    float time = .1f * _time;
+    float time = .05f * _time;
     
-    // Draw stuff
+    // Accelerator
     _modelMatrix = _modelMatrixAccelerator;
     drawModel(time, "accelerator");
 
-    _modelMatrix = _modelMatrixShip;
+    // Ship
+    _modelMatrix =  vmml::create_translation(vmml::vec3f(0.015 * sin(80*time + M_PI_F/2.f), 0.03*sin(40*time), 0)) * _modelMatrixShip;
     drawModel(0, "ship");
+    
+    // Particles
+    
+    // Generate new particles
+    // If particlelist < x, generate new particle with probability p
+    if (rand()%101 < 5 && activeParticles.size() < 10) {
+        // Generate new seed
+        Particle p;
+        p.generateRandomParticle(_time + (double) rand());
+        activeParticles.push_back(p);
+    }
+    
+    // Draw active particles
+    for (std::list<Particle>::iterator it=activeParticles.begin(); it != activeParticles.end(); ++it) {
+        //if ((*it).passed()) continue;
+        _modelMatrix = (*it).getModelMatrix(0.4f * deltaT, .2f);
+        drawModel(0, "core");
+    }
+    
+    // Remove inactive particles
+    while ((*activeParticles.begin()).passed()) activeParticles.pop_front();
+    
 }

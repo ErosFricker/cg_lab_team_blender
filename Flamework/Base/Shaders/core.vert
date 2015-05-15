@@ -1,6 +1,6 @@
 
 uniform mediump float deltaT;
-uniform mediump vec4 ColorVector;
+uniform vec4 ColorVector;
 
 uniform mediump mat4 ViewMatrix;
 uniform mediump mat4 ModelMatrix;

@@ -59,6 +59,7 @@ private:
     vmml::mat4f _modelMatrixAccelerator;
     vmml::mat4f _modelMatrixShip;
     
+    vmml::vec4f _color;
 };
 
 
