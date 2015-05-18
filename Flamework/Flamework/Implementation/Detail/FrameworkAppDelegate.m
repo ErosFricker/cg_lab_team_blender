@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window.rootViewController = self.viewController;
+//    self.window.rootViewController = self.viewController;
     return YES;
 }
 

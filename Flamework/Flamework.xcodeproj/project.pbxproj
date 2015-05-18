@@ -11,6 +11,28 @@
 		283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 283D33F212AEDA3D00C06CB4 /* FrameworkViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
+		B92F88551AEFD133005EDB9C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92F88541AEFD133005EDB9C /* SettingsViewController.m */; };
+		B98819821AED0A14006536E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B98819811AED0A14006536E8 /* Assets.xcassets */; };
+		B98819A11AED0B9C006536E8 /* alexisv3laserital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */; };
+		B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B98819901AED0B9C006536E8 /* alexisv3half.ttf */; };
+		B98819A91AED0B9C006536E8 /* alexisv3bulletital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B98819961AED0B9C006536E8 /* alexisv3bulletital.ttf */; };
+		B98819CA1AED1954006536E8 /* glm in Resources */ = {isa = PBXBuildFile; fileRef = B98819C91AED1954006536E8 /* glm */; };
+		B98819CD1AED29C5006536E8 /* pipe_model.obj in Resources */ = {isa = PBXBuildFile; fileRef = B98819CB1AED29C5006536E8 /* pipe_model.obj */; };
+		B98819CE1AED29C5006536E8 /* pipe_model.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B98819CC1AED29C5006536E8 /* pipe_model.mtl */; };
+		B98819E71AED3FF5006536E8 /* ship.frag in Resources */ = {isa = PBXBuildFile; fileRef = B98819E61AED3FF5006536E8 /* ship.frag */; };
+		B98819E91AED3FFB006536E8 /* ship.vert in Resources */ = {isa = PBXBuildFile; fileRef = B98819E81AED3FFB006536E8 /* ship.vert */; };
+		B98819F01AED48B2006536E8 /* ship.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B98819EE1AED48B2006536E8 /* ship.mtl */; };
+		B98819F11AED48B2006536E8 /* ship.obj in Resources */ = {isa = PBXBuildFile; fileRef = B98819EF1AED48B2006536E8 /* ship.obj */; };
+		B98819F61AED4B84006536E8 /* s_1024_S.png in Resources */ = {isa = PBXBuildFile; fileRef = B98819F21AED4B84006536E8 /* s_1024_S.png */; };
+		B98819F71AED4B84006536E8 /* s_1024_N.png in Resources */ = {isa = PBXBuildFile; fileRef = B98819F31AED4B84006536E8 /* s_1024_N.png */; };
+		B98819F81AED4B84006536E8 /* s_1024_I.png in Resources */ = {isa = PBXBuildFile; fileRef = B98819F41AED4B84006536E8 /* s_1024_I.png */; };
+		B98819F91AED4B84006536E8 /* s_1024_C.png in Resources */ = {isa = PBXBuildFile; fileRef = B98819F51AED4B84006536E8 /* s_1024_C.png */; };
+		B98819FB1AED4D32006536E8 /* pipe.png in Resources */ = {isa = PBXBuildFile; fileRef = B98819FA1AED4D32006536E8 /* pipe.png */; };
+		B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B98819FC1AED5078006536E8 /* pampam.mp3 */; };
+		B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B138EA1AE78ACB00F3FFED /* Main.storyboard */; };
+		B9B138EE1AE78DC200F3FFED /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */; };
+		B9C677DA1AE6836300F895E2 /* pipe_model.vert in Resources */ = {isa = PBXBuildFile; fileRef = B9C677D91AE6836300F895E2 /* pipe_model.vert */; };
+		B9C677DC1AE6836D00F895E2 /* pipe_model.frag in Resources */ = {isa = PBXBuildFile; fileRef = B9C677DB1AE6836D00F895E2 /* pipe_model.frag */; };
 		F814A6161716A0E000A2A910 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F814A6121716A0E000A2A910 /* obj.cpp */; };
 		F814A6171716A0E000A2A910 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F814A6141716A0E000A2A910 /* obj_parser.cpp */; };
 		F81D4CAB16DABE50001FA5DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F81D4CAA16DABE50001FA5DD /* CoreGraphics.framework */; };
@@ -69,6 +91,30 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* Flamework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flamework_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Flamework-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Flamework-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B92F88531AEFD133005EDB9C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B92F88541AEFD133005EDB9C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		B98819811AED0A14006536E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3laserital.ttf; sourceTree = "<group>"; };
+		B98819901AED0B9C006536E8 /* alexisv3half.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3half.ttf; sourceTree = "<group>"; };
+		B98819961AED0B9C006536E8 /* alexisv3bulletital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3bulletital.ttf; sourceTree = "<group>"; };
+		B98819C91AED1954006536E8 /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
+		B98819CB1AED29C5006536E8 /* pipe_model.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe_model.obj; sourceTree = "<group>"; };
+		B98819CC1AED29C5006536E8 /* pipe_model.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pipe_model.mtl; sourceTree = "<group>"; };
+		B98819E61AED3FF5006536E8 /* ship.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship.frag; sourceTree = "<group>"; };
+		B98819E81AED3FFB006536E8 /* ship.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship.vert; sourceTree = "<group>"; };
+		B98819EE1AED48B2006536E8 /* ship.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ship.mtl; sourceTree = "<group>"; };
+		B98819EF1AED48B2006536E8 /* ship.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ship.obj; sourceTree = "<group>"; };
+		B98819F21AED4B84006536E8 /* s_1024_S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_1024_S.png; sourceTree = "<group>"; };
+		B98819F31AED4B84006536E8 /* s_1024_N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_1024_N.png; sourceTree = "<group>"; };
+		B98819F41AED4B84006536E8 /* s_1024_I.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_1024_I.png; sourceTree = "<group>"; };
+		B98819F51AED4B84006536E8 /* s_1024_C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_1024_C.png; sourceTree = "<group>"; };
+		B98819FA1AED4D32006536E8 /* pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe.png; sourceTree = "<group>"; };
+		B98819FC1AED5078006536E8 /* pampam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pampam.mp3; path = ../../pampam.mp3; sourceTree = "<group>"; };
+		B9B138EA1AE78ACB00F3FFED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B9B138EC1AE78DC200F3FFED /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
+		B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
+		B9C677D91AE6836300F895E2 /* pipe_model.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pipe_model.vert; sourceTree = "<group>"; };
+		B9C677DB1AE6836D00F895E2 /* pipe_model.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = pipe_model.frag; sourceTree = "<group>"; };
 		F814A6121716A0E000A2A910 /* obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj.cpp; sourceTree = "<group>"; };
 		F814A6131716A0E000A2A910 /* obj.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = obj.hpp; sourceTree = "<group>"; };
 		F814A6141716A0E000A2A910 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
@@ -226,6 +272,7 @@
 				F87C331E1910561A00E8A523 /* Base */,
 				F86CA081171FEB6200DD23CA /* boost */,
 				F814A6111716A0E000A2A910 /* obj */,
+				B98819C91AED1954006536E8 /* glm */,
 				F8ED69E716E64F7400E6D6CA /* Default-568h@2x.png */,
 				F8ED69E816E64F7400E6D6CA /* Default.png */,
 				F8ED69E916E64F7400E6D6CA /* Default@2x.png */,
@@ -252,9 +299,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B98819831AED0B90006536E8 /* Font */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				B9B138EA1AE78ACB00F3FFED /* Main.storyboard */,
 				283D33F212AEDA3D00C06CB4 /* FrameworkViewController.xib */,
 				8D1107310486CEB800E47090 /* Flamework-Info.plist */,
+				B98819811AED0A14006536E8 /* Assets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -275,6 +325,40 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B98819831AED0B90006536E8 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */,
+				B98819901AED0B9C006536E8 /* alexisv3half.ttf */,
+				B98819961AED0B9C006536E8 /* alexisv3bulletital.ttf */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		B98819E11AED3EA2006536E8 /* ship */ = {
+			isa = PBXGroup;
+			children = (
+				B98819F21AED4B84006536E8 /* s_1024_S.png */,
+				B98819F31AED4B84006536E8 /* s_1024_N.png */,
+				B98819F41AED4B84006536E8 /* s_1024_I.png */,
+				B98819F51AED4B84006536E8 /* s_1024_C.png */,
+				B98819EE1AED48B2006536E8 /* ship.mtl */,
+				B98819EF1AED48B2006536E8 /* ship.obj */,
+			);
+			name = ship;
+			path = guy;
+			sourceTree = "<group>";
+		};
+		B9CAE9871AE6A093003D394B /* pipe */ = {
+			isa = PBXGroup;
+			children = (
+				B98819CB1AED29C5006536E8 /* pipe_model.obj */,
+				B98819FA1AED4D32006536E8 /* pipe.png */,
+				B98819CC1AED29C5006536E8 /* pipe_model.mtl */,
+			);
+			name = pipe;
 			sourceTree = "<group>";
 		};
 		F814A6111716A0E000A2A910 /* obj */ = {
@@ -374,6 +458,10 @@
 				F87C32F81910554000E8A523 /* Sound.mm */,
 				F87C32F91910554000E8A523 /* TextureData.mm */,
 				F87C32FA1910554000E8A523 /* Util.mm */,
+				B9B138EC1AE78DC200F3FFED /* StartScreenViewController.h */,
+				B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */,
+				B92F88531AEFD133005EDB9C /* SettingsViewController.h */,
+				B92F88541AEFD133005EDB9C /* SettingsViewController.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -407,6 +495,8 @@
 		F87C331F1910561A00E8A523 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B98819E11AED3EA2006536E8 /* ship */,
+				B9CAE9871AE6A093003D394B /* pipe */,
 				F855EF2D1AC0D47400B32C23 /* guy */,
 				F87C33201910561A00E8A523 /* sphere.obj */,
 				F87C33271910561A00E8A523 /* quad.obj */,
@@ -419,6 +509,10 @@
 			children = (
 				F87C33311910561A00E8A523 /* guy.frag */,
 				F87C33321910561A00E8A523 /* guy.vert */,
+				B9C677D91AE6836300F895E2 /* pipe_model.vert */,
+				B9C677DB1AE6836D00F895E2 /* pipe_model.frag */,
+				B98819E61AED3FF5006536E8 /* ship.frag */,
+				B98819E81AED3FFB006536E8 /* ship.vert */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -427,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				F87C33361910561A00E8A523 /* test.mp3 */,
+				B98819FC1AED5078006536E8 /* pampam.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -559,9 +654,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98819F81AED4B84006536E8 /* s_1024_I.png in Resources */,
 				F8757CA119107FA000B62379 /* guy.vert in Resources */,
+				B98819F91AED4B84006536E8 /* s_1024_C.png in Resources */,
 				F8757CA019107F9800B62379 /* guy.frag in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				B98819CD1AED29C5006536E8 /* pipe_model.obj in Resources */,
+				B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */,
+				B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */,
+				B98819821AED0A14006536E8 /* Assets.xcassets in Resources */,
+				B98819A11AED0B9C006536E8 /* alexisv3laserital.ttf in Resources */,
+				B98819F11AED48B2006536E8 /* ship.obj in Resources */,
+				B98819E71AED3FF5006536E8 /* ship.frag in Resources */,
+				B98819CE1AED29C5006536E8 /* pipe_model.mtl in Resources */,
+				B98819F61AED4B84006536E8 /* s_1024_S.png in Resources */,
+				B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */,
 				F87C33491910561A00E8A523 /* test.mp3 in Resources */,
 				283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */,
 				F8ED69F316E64F7400E6D6CA /* Default-568h@2x.png in Resources */,
@@ -571,11 +678,19 @@
 				F87C333D1910561A00E8A523 /* quad.obj in Resources */,
 				F855EF351AC0D47400B32C23 /* guy.obj in Resources */,
 				F855EF341AC0D47400B32C23 /* guy.mtl in Resources */,
+				B98819CA1AED1954006536E8 /* glm in Resources */,
+				B98819E91AED3FFB006536E8 /* ship.vert in Resources */,
+				B98819F01AED48B2006536E8 /* ship.mtl in Resources */,
 				F8ED69F516E64F7400E6D6CA /* Default@2x.png in Resources */,
+				B9C677DA1AE6836300F895E2 /* pipe_model.vert in Resources */,
 				F855EF371AC0D47400B32C23 /* specular.png in Resources */,
+				B98819FB1AED4D32006536E8 /* pipe.png in Resources */,
 				F8ED6AD016E652B800E6D6CA /* ACKNOWLEDGEMENTS in Resources */,
+				B9C677DC1AE6836D00F895E2 /* pipe_model.frag in Resources */,
+				B98819F71AED4B84006536E8 /* s_1024_N.png in Resources */,
 				F87C33371910561A00E8A523 /* sphere.obj in Resources */,
 				F8ED6AD116E652B800E6D6CA /* LICENSE in Resources */,
+				B98819A91AED0B9C006536E8 /* alexisv3bulletital.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +704,7 @@
 				F87C33131910554000E8A523 /* PhysicalObject.cpp in Sources */,
 				F87C330B1910554000E8A523 /* main.m in Sources */,
 				F87C330F1910554000E8A523 /* Geometry.cpp in Sources */,
+				B92F88551AEFD133005EDB9C /* SettingsViewController.m in Sources */,
 				F87C330D1910554000E8A523 /* TextureData.mm in Sources */,
 				F87C330C1910554000E8A523 /* Sound.mm in Sources */,
 				F87C33181910554000E8A523 /* Texture.cpp in Sources */,
@@ -597,6 +713,7 @@
 				F87C33081910554000E8A523 /* FrameworkAppDelegate.m in Sources */,
 				F87C33141910554000E8A523 /* PhysicsManager.cpp in Sources */,
 				F87C33161910554000E8A523 /* Shader.cpp in Sources */,
+				B9B138EE1AE78DC200F3FFED /* StartScreenViewController.m in Sources */,
 				F87C33101910554000E8A523 /* Material.cpp in Sources */,
 				F87C33121910554000E8A523 /* ModelData.cpp in Sources */,
 				F87C33461910561A00E8A523 /* guy.vert in Sources */,
@@ -636,6 +753,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = $SRCROOT;
 				INFOPLIST_FILE = "Flamework-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = Flamework;
 			};
 			name = Debug;
@@ -657,6 +775,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = $SRCROOT;
 				INFOPLIST_FILE = "Flamework-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = Flamework;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -672,6 +791,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SRCROOT;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -689,6 +809,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SRCROOT;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;

@@ -33,6 +33,8 @@ varying mediump vec3 tangentVarying;    // tangent in world space
 
 void main()
 {
+    
+    //TEST COMMENT
     lowp vec4 ambientResult = vec4(Ka * Ia, 1.0);
     
     mediump vec4 pos = posVarying;
