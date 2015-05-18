@@ -35,6 +35,7 @@ enum
 }
 @property (nonatomic, strong) EAGLContext *context;
 @property (nonatomic, weak) CADisplayLink *displayLink;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
 
@@ -121,6 +122,10 @@ enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+        UIFont* buttonFont = [UIFont fontWithName:@"Alexis Laser Italic" size:50.0f];
+    [self.scoreLabel setFont:buttonFont];
+    [self.scoreLabel setText:@"0"];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     // resizeGesture.minimumNumberOfTouches = 2;
