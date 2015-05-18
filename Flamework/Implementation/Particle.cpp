@@ -22,6 +22,7 @@
 Particle::Particle()
 : _modelMatrix(vmml::mat4f::IDENTITY)
 , _translationVector(vmml::vec3f(0.f))
+, _rotationMatrix(vmml::mat4f::IDENTITY)
 , _currentPosistion(vmml::vec3f(0.f))
 , lifeTime(0.f)
 {
@@ -32,6 +33,10 @@ Particle::~Particle() {}
 
 void Particle::setTranslation( vmml::vec3f vector ) {
     _translationVector = vector;
+}
+void Particle::setRotation(vmml::mat4f rotation){
+    _rotationMatrix = rotation;
+    
 }
 
 void Particle::generateRandomParticle(double seed) {
@@ -44,17 +49,15 @@ void Particle::generateRandomParticle(double seed) {
     lifeTime = 0.f;
 }
 
-vmml::mat4f Particle::getModelMatrix( float deltaT, float scaling ) {
+vmml::mat4f Particle::getModelMatrix( float deltaT, float scaling) {
     vmml::mat4f translation_particle =
         vmml::create_translation(
-            vmml::vec3f(
-                _translationVector.x()*lifeTime,
-                _translationVector.y()*lifeTime,
-                _translationVector.z()*lifeTime
+            vmml::vec3f(_translationVector.x()*lifeTime, _translationVector.y()*lifeTime, _translationVector.z()*lifeTime
             )
         );
     lifeTime += deltaT;
     _modelMatrix = translation_particle * vmml::create_scaling(scaling);
+    _modelMatrix = _rotationMatrix*_modelMatrix;
     return _modelMatrix;
 }
 

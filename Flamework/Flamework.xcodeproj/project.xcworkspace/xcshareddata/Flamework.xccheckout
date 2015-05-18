@@ -11,8 +11,6 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>84D958366E330203814AFF2FF9CA01532CBCDF70</key>
-		<string>http://github.com/ErosFricker/cg_lab_team_blender</string>
-		<key>D819A923BF0F4D2E272D528C9F7689718C1DDE52</key>
 		<string>https://github.com/ErosFricker/cg_lab_team_blender</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
@@ -21,11 +19,9 @@
 	<dict>
 		<key>84D958366E330203814AFF2FF9CA01532CBCDF70</key>
 		<string>../../..</string>
-		<key>D819A923BF0F4D2E272D528C9F7689718C1DDE52</key>
-		<string>../../../../cg_lab_team_blender</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://github.com/ErosFricker/cg_lab_team_blender</string>
+	<string>https://github.com/ErosFricker/cg_lab_team_blender</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -36,17 +32,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D819A923BF0F4D2E272D528C9F7689718C1DDE52</string>
-			<key>IDESourceControlWCCName</key>
-			<string>cg_lab_team_blender</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>84D958366E330203814AFF2FF9CA01532CBCDF70</string>
 			<key>IDESourceControlWCCName</key>
-			<string>FINAL_PROJECT</string>
+			<string>cg_lab_team_blender</string>
 		</dict>
 	</array>
 </dict>

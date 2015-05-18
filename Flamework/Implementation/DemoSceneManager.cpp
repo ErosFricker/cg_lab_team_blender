@@ -27,7 +27,7 @@ using boost::lexical_cast;
 #define SCROLL_SPEED    0.002f
 #define SCALE_SPEED     0.008f
 #define WINDOW_WIDTH    1024.0f
-
+int steeringDirection = 0;
 
 DemoSceneManager::DemoSceneManager(Application *application)
     : SceneManager(application)
@@ -47,10 +47,14 @@ void DemoSceneManager::onTouchBegan(float x, float y)
     _lScrollPos = cScrollPos;
     
     if (cScrollPos.x() > (WINDOW_WIDTH/2.0f)){
+        
         util::log("RIGHT");
+        steeringDirection = 2;
+        
     }
     else{
         util::log("LEFT");
+        steeringDirection = 1;
     }
     
     
@@ -69,6 +73,7 @@ void DemoSceneManager::onTouchMoved(float x, float y)
 void DemoSceneManager::onTouchEnded(float x, float y, int tapCount)
 {
     util::log("onTouchEnded");
+    steeringDirection = 0;
 }
 
 void DemoSceneManager::onScaleBegan(float x, float y)
@@ -161,6 +166,7 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
 int firstTime = 1;
 std::list<Particle> activeParticles;
 Particle p;
+float rotationValue = 0.0f;
 
 void DemoSceneManager::draw(double deltaT)
 {
@@ -209,6 +215,8 @@ void DemoSceneManager::draw(double deltaT)
         // Set default color
         _color = vmml::vec4f(0,0,0,1);
         
+        
+        
         // Setup modelmatrices
         _modelMatrixAccelerator =
             vmml::create_rotation(-M_PI_F/2, vmml::vec3f(1,0,0))
@@ -220,14 +228,25 @@ void DemoSceneManager::draw(double deltaT)
             * vmml::create_scaling(.2f);
         
         
+        
     }
-    
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
+    
+    if (steeringDirection == 1) {
+        rotationValue +=0.1;
+    }else if (steeringDirection == 2){
+        rotationValue -=0.1;
+    }
+        _acceleratorRotation = (vmml::mat4f)vmml::create_rotation(rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z);
+        _modelMatrixAccelerator = _acceleratorRotation*_modelMatrixAccelerator;
+    
+    
+    
     
     /*
     // Userinput - tablet rotation
@@ -264,6 +283,7 @@ void DemoSceneManager::draw(double deltaT)
     // Draw active particles
     for (std::list<Particle>::iterator it=activeParticles.begin(); it != activeParticles.end(); ++it) {
         //if ((*it).passed()) continue;
+        (*it).setRotation(_acceleratorRotation);
         _modelMatrix = (*it).getModelMatrix(0.4f * deltaT, .2f);
         drawModel(0, "core");
     }
