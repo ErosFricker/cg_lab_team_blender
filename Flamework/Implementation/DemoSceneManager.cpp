@@ -237,13 +237,17 @@ void DemoSceneManager::draw(double deltaT)
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
     
+    float acceleratorRotation = 0;
+    
     if (steeringDirection == 1) {
         rotationValue +=0.1;
+        acceleratorRotation +=0.1;
     }else if (steeringDirection == 2){
         rotationValue -=0.1;
+        acceleratorRotation-=0.1;
     }
-        _acceleratorRotation = (vmml::mat4f)vmml::create_rotation(rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z);
-        _modelMatrixAccelerator = _acceleratorRotation*_modelMatrixAccelerator;
+    _acceleratorRotation = (vmml::mat4f)vmml::create_rotation(acceleratorRotation*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z);
+    _modelMatrixAccelerator = _acceleratorRotation*_modelMatrixAccelerator;
     
     
     
@@ -283,7 +287,7 @@ void DemoSceneManager::draw(double deltaT)
     // Draw active particles
     for (std::list<Particle>::iterator it=activeParticles.begin(); it != activeParticles.end(); ++it) {
         //if ((*it).passed()) continue;
-        (*it).setRotation(_acceleratorRotation);
+        (*it).setRotation((vmml::mat4f)vmml::create_rotation(rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z));
         _modelMatrix = (*it).getModelMatrix(0.4f * deltaT, .2f);
         drawModel(0, "core");
     }
