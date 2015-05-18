@@ -34,6 +34,9 @@ DemoSceneManager::DemoSceneManager(Application *application)
     , _time(0)
     , _scaling(1, 1)
     , _scrolling(0, 0.25)
+    , _color(vmml::vec4f(0,0,0,1))
+    , _rotationValue(0)
+    , _firstCall(true)
 {
     
 }
@@ -163,21 +166,45 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
     }
 }
 
-int firstTime = 1;
-std::list<Particle> activeParticles;
-Particle p;
-float rotationValue = 0.0f;
+void DemoSceneManager::createOrthonormalSystems()
+{
+    // Initialize a radom seed
+    srand((unsigned int) time(NULL));
+    
+    // Compute orthonormal systems
+    for (int i=0; i<NUMBER_OF_ORTHOGONALSYSTEMS; ++i) {
+        
+        // Create 3 random vectors
+        int random[9];
+        for (int i=0; i<9; ++i) random[i] = (int) pow(-1.f,rand()%2) * rand()%100;
+        vmml::vec3f v1(random[0], random[1], random[2]),
+        v2(random[3], random[4], random[5]),
+        v3(random[6], random[7], random[8]);
+        
+        // Orthonormalize this vectors by gram-schmidt
+        vmml::vec3f x = vmml::normalize(v1);
+        vmml::vec3f y = vmml::normalize(v2 - vmml::dot(v2, x) * x);
+        vmml::vec3f z = vmml::normalize(v3 - vmml::dot(v3, x) * x - vmml::dot(v3, y) * y);
+        
+        // Save the basis vectors as rowvectors of a a 3x3-Matrix
+        vmml::mat3f orthonormalMatrix;
+        orthonormalMatrix.set_row(0, x);
+        orthonormalMatrix.set_row(1, y);
+        orthonormalMatrix.set_row(2, z);
+        
+        // Save the computed orthogonalmatrix
+        _orthonormalBases[i] = orthonormalMatrix;
+    }
+}
 
 void DemoSceneManager::draw(double deltaT)
 {
-    
-    // Update timereference
-    _time += deltaT;
-    
     // Catch the first function call
-    if (firstTime==1){
+    if (_firstCall)
+    {
+        _firstCall = false;
         
-        // Random seed
+        // Set random seed
         srand((unsigned int) _time);
         
         // Define viewmatrix
@@ -209,15 +236,9 @@ void DemoSceneManager::draw(double deltaT)
         
         // Define timereferences
         deltaT = 0; // !!!
-        firstTime = 0;
         _time = 0;
         
-        // Set default color
-        _color = vmml::vec4f(0,0,0,1);
-        
-        
-        
-        // Setup modelmatrices
+        // Setup default modelmatrices
         _modelMatrixAccelerator =
             vmml::create_rotation(-M_PI_F/2, vmml::vec3f(1,0,0))
             * vmml::create_scaling(6.f);
@@ -226,10 +247,8 @@ void DemoSceneManager::draw(double deltaT)
             vmml::create_translation(vmml::vec3f(0, -2, 80))
             * vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0))
             * vmml::create_scaling(.2f);
-        
-        
-        
     }
+    
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
@@ -237,21 +256,24 @@ void DemoSceneManager::draw(double deltaT)
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
     
-    float acceleratorRotation = 0;
+    // Update timereference
+    _time += deltaT;
     
+    // Userinput (Steering onTouch): Update default accelerator-modelmatrix
+    float acceleratorRotation = 0;
     if (steeringDirection == 1) {
-        rotationValue +=0.1;
+        _rotationValue +=0.1;
         acceleratorRotation +=0.1;
-    }else if (steeringDirection == 2){
-        rotationValue -=0.1;
+    }
+    else if (steeringDirection == 2){
+        _rotationValue -=0.1;
         acceleratorRotation-=0.1;
     }
-    _acceleratorRotation = (vmml::mat4f)vmml::create_rotation(acceleratorRotation*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z);
+    _acceleratorRotation = (vmml::mat4f) vmml::create_rotation(
+                                acceleratorRotation*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z);
     _modelMatrixAccelerator = _acceleratorRotation*_modelMatrixAccelerator;
     
-    
-    
-    
+
     /*
     // Userinput - tablet rotation
     Gyro *gyro = Gyro::getInstance();
@@ -277,22 +299,21 @@ void DemoSceneManager::draw(double deltaT)
     
     // Generate new particles
     // If particlelist < x, generate new particle with probability p
-    if (rand()%101 < 5 && activeParticles.size() < 10) {
+    if (rand()%101 < 10 && _activeParticles.size() < 10) {
         // Generate new seed
         Particle p;
         p.generateRandomParticle(_time + (double) rand());
-        activeParticles.push_back(p);
+        _activeParticles.push_back(p);
     }
     
     // Draw active particles
-    for (std::list<Particle>::iterator it=activeParticles.begin(); it != activeParticles.end(); ++it) {
-        //if ((*it).passed()) continue;
-        (*it).setRotation((vmml::mat4f)vmml::create_rotation(rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z));
-        _modelMatrix = (*it).getModelMatrix(0.4f * deltaT, .2f);
+    for (std::list<Particle>::iterator it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
+        _modelMatrix = vmml::create_rotation(_rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z)
+                        * (*it).getModelMatrix(0.4f * deltaT, .2f);
         drawModel(0, "core");
     }
     
     // Remove inactive particles
-    while ((*activeParticles.begin()).passed()) activeParticles.pop_front();
+    while ((*_activeParticles.begin()).passed()) _activeParticles.pop_front();
     
 }

@@ -13,7 +13,21 @@
 #include "ITouchHandler.h"
 #include "IScaleHandler.h"
 
+#include "Particle.h"
+
 #include <stack>
+#include <list>
+
+const int NUMBER_OF_ORTHOGONALSYSTEMS = 100;
+
+const vmml::vec4f RED = vmml::vec4f(1,0,0,1);
+const vmml::vec4f YELLOW = vmml::vec4f(1,1,0,1);
+const vmml::vec4f GREEN = vmml::vec4f(0,1,0,1);
+const vmml::vec4f AZUR = vmml::vec4f(0,1,1,1);
+const vmml::vec4f BLUE = vmml::vec4f(0,0,1,1);
+
+const vmml::vec4f WHITE = vmml::vec4f(1,1,1,1);
+const vmml::vec4f BLACK = vmml::vec4f(0,0,0,1);
 
 class Application;
 
@@ -42,8 +56,14 @@ public:
     void popModelMatrix();
     void transformModelMatrix(const vmml::mat4f &t);
     
+    void createOrthonormalSystems();
+    
 private:
+    std::list<Particle> _activeParticles;
+    
     double _time;
+    float _rotationValue;
+    bool _firstCall;
 
     vmml::vec2f _scrolling;
     vmml::vec2f _lScrollPos;
@@ -61,6 +81,8 @@ private:
     
     vmml::vec4f _color;
     vmml::mat4f _acceleratorRotation;
+    
+    vmml::mat3f _orthonormalBases[NUMBER_OF_ORTHOGONALSYSTEMS];
 };
 
 
