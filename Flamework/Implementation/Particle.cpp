@@ -44,7 +44,11 @@ void Particle::generateRandomParticle(double seed) {
     srand((unsigned int) seed);
     // Random floats between -1 and 1
     float delta_x = (rand() % 101) / 100.f * pow(-1.f, rand()%2);
-    float delta_y = (rand() % 101) / 100.f * pow(-1.f, rand()%2);
+    float delta_y = sqrt(1-(delta_x*delta_x));
+    if(rand()%2 == 0){
+        delta_y = -delta_y;
+    }
+    //float delta_y = (rand() % 101) / 100.f * pow(-1.f, rand()%2);
     setTranslation(vmml::vec3f(delta_x, delta_y, 40.f));
     lifeTime = 0.f;
 }
