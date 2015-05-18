@@ -14,7 +14,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
-            endingLineNumber = "36">
+            endingLineNumber = "36"
+            landmarkName = "Particle::setTranslation( vmml::vec3f vector )"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -29,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "Particle::generateRandomParticle(double seed)"
+            landmarkName = "Particle::setRotation(vmml::mat4f rotation)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -45,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "Particle::generateRandomParticle(double seed)"
+            landmarkName = "Particle::setRotation(vmml::mat4f rotation)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
