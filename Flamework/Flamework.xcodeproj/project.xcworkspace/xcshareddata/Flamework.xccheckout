@@ -7,17 +7,17 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>9E186646-6F89-41FE-ABBD-40EFEFF2F072</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Flamework</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>84D958366E330203814AFF2FF9CA01532CBCDF70</key>
+		<key>D819A923BF0F4D2E272D528C9F7689718C1DDE52</key>
 		<string>https://github.com/ErosFricker/cg_lab_team_blender</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Flamework/Flamework.xcodeproj</string>
+	<string>Flamework/Flamework.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>84D958366E330203814AFF2FF9CA01532CBCDF70</key>
+		<key>D819A923BF0F4D2E272D528C9F7689718C1DDE52</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>84D958366E330203814AFF2FF9CA01532CBCDF70</string>
+	<string>D819A923BF0F4D2E272D528C9F7689718C1DDE52</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>84D958366E330203814AFF2FF9CA01532CBCDF70</string>
+			<string>D819A923BF0F4D2E272D528C9F7689718C1DDE52</string>
 			<key>IDESourceControlWCCName</key>
 			<string>cg_lab_team_blender</string>
 		</dict>

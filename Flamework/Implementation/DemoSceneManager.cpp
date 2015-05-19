@@ -383,4 +383,6 @@ void DemoSceneManager::draw(double deltaT)
         _color = vmml::vec4f(0,0,0.2,1);
         drawModel(0, "black_hole");
     }
+    
+    
 }

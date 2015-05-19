@@ -22,6 +22,12 @@
 		B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B98819FC1AED5078006536E8 /* pampam.mp3 */; };
 		B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B138EA1AE78ACB00F3FFED /* Main.storyboard */; };
 		B9B138EE1AE78DC200F3FFED /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */; };
+		B9D545C51B0B6FE800B9CC77 /* font.vert in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C41B0B6FE800B9CC77 /* font.vert */; };
+		B9D545C71B0B6FEE00B9CC77 /* font.frag in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C61B0B6FEE00B9CC77 /* font.frag */; };
+		B9D545CA1B0B6FFE00B9CC77 /* alexis_bitmap.fnt in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C81B0B6FFE00B9CC77 /* alexis_bitmap.fnt */; };
+		B9D545CB1B0B6FFE00B9CC77 /* alexis_bitmap.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */; };
+		B9D545CF1B0B792800B9CC77 /* auspuff.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CD1B0B792700B9CC77 /* auspuff.pex */; };
+		B9D545D01B0B792800B9CC77 /* black_hole.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CE1B0B792800B9CC77 /* black_hole.pex */; };
 		D5202FA51B03F609004F65B5 /* accelerator.vert in Resources */ = {isa = PBXBuildFile; fileRef = D5202FA41B03F609004F65B5 /* accelerator.vert */; };
 		D5202FA71B03F619004F65B5 /* accelerator.frag in Resources */ = {isa = PBXBuildFile; fileRef = D5202FA61B03F619004F65B5 /* accelerator.frag */; };
 		D5202FBA1B040F7C004F65B5 /* accelerator.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D5202FB81B040F7C004F65B5 /* accelerator.mtl */; };
@@ -110,6 +116,12 @@
 		B9B138EA1AE78ACB00F3FFED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B9B138EC1AE78DC200F3FFED /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
 		B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
+		B9D545C41B0B6FE800B9CC77 /* font.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = font.vert; sourceTree = "<group>"; };
+		B9D545C61B0B6FEE00B9CC77 /* font.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = font.frag; sourceTree = "<group>"; };
+		B9D545C81B0B6FFE00B9CC77 /* alexis_bitmap.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alexis_bitmap.fnt; sourceTree = "<group>"; };
+		B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alexis_bitmap.png; sourceTree = "<group>"; };
+		B9D545CD1B0B792700B9CC77 /* auspuff.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = auspuff.pex; sourceTree = "<group>"; };
+		B9D545CE1B0B792800B9CC77 /* black_hole.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = black_hole.pex; sourceTree = "<group>"; };
 		D5202FA41B03F609004F65B5 /* accelerator.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = accelerator.vert; sourceTree = "<group>"; };
 		D5202FA61B03F619004F65B5 /* accelerator.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = accelerator.frag; sourceTree = "<group>"; };
 		D5202FB81B040F7C004F65B5 /* accelerator.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = accelerator.mtl; sourceTree = "<group>"; };
@@ -314,6 +326,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B9D545CC1B0B791600B9CC77 /* Particles */,
 				B98819831AED0B90006536E8 /* Font */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				B9B138EA1AE78ACB00F3FFED /* Main.storyboard */,
@@ -345,6 +358,8 @@
 		B98819831AED0B90006536E8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				B9D545C81B0B6FFE00B9CC77 /* alexis_bitmap.fnt */,
+				B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */,
 				B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */,
 				B98819901AED0B9C006536E8 /* alexisv3half.ttf */,
 				B98819961AED0B9C006536E8 /* alexisv3bulletital.ttf */,
@@ -364,6 +379,15 @@
 			);
 			name = Ship;
 			path = guy;
+			sourceTree = "<group>";
+		};
+		B9D545CC1B0B791600B9CC77 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				B9D545CD1B0B792700B9CC77 /* auspuff.pex */,
+				B9D545CE1B0B792800B9CC77 /* black_hole.pex */,
+			);
+			name = Particles;
 			sourceTree = "<group>";
 		};
 		D5202F911B03983A004F65B5 /* Accelerator */ = {
@@ -553,6 +577,8 @@
 				D56387AF1B0AC14F00732BE5 /* electron.frag */,
 				D56387B81B0B45C900732BE5 /* black_hole.vert */,
 				D56387BA1B0B45D800732BE5 /* black_hole.frag */,
+				B9D545C41B0B6FE800B9CC77 /* font.vert */,
+				B9D545C61B0B6FEE00B9CC77 /* font.frag */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -694,9 +720,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9D545C71B0B6FEE00B9CC77 /* font.frag in Resources */,
 				D5202FD11B04D532004F65B5 /* core.vert in Resources */,
 				D5202FBB1B040F7C004F65B5 /* accelerator.obj in Resources */,
 				D56387AE1B0AC14500732BE5 /* electron.vert in Resources */,
+				B9D545CA1B0B6FFE00B9CC77 /* alexis_bitmap.fnt in Resources */,
+				B9D545C51B0B6FE800B9CC77 /* font.vert in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */,
 				B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */,
@@ -706,6 +735,7 @@
 				D5202FD81B04DDDF004F65B5 /* core.obj in Resources */,
 				D5202FCB1B041BF9004F65B5 /* ship.obj in Resources */,
 				D56387B91B0B45C900732BE5 /* black_hole.vert in Resources */,
+				B9D545D01B0B792800B9CC77 /* black_hole.pex in Resources */,
 				B98819E71AED3FF5006536E8 /* ship.frag in Resources */,
 				D5202FC71B041BF9004F65B5 /* s_1024_I.png in Resources */,
 				D56387B71B0B45B700732BE5 /* black_hole.obj in Resources */,
@@ -713,6 +743,7 @@
 				D5202FBF1B04143B004F65B5 /* accelerator_stars.jpg in Resources */,
 				B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */,
 				D5202FDA1B04DE5B004F65B5 /* water_texture.jpg in Resources */,
+				B9D545CB1B0B6FFE00B9CC77 /* alexis_bitmap.png in Resources */,
 				F87C33491910561A00E8A523 /* test.mp3 in Resources */,
 				D5202FC91B041BF9004F65B5 /* s_1024_S.png in Resources */,
 				D5202FD71B04DDDF004F65B5 /* core.mtl in Resources */,
@@ -720,6 +751,7 @@
 				D56387B51B0B45A700732BE5 /* black_hole.mtl in Resources */,
 				D5202FBD1B04121A004F65B5 /* accelerator_black.png in Resources */,
 				F8ED69F316E64F7400E6D6CA /* Default-568h@2x.png in Resources */,
+				B9D545CF1B0B792800B9CC77 /* auspuff.pex in Resources */,
 				F8ED69F416E64F7400E6D6CA /* Default.png in Resources */,
 				F87C333D1910561A00E8A523 /* quad.obj in Resources */,
 				D56387AA1B0AC12A00732BE5 /* electron.mtl in Resources */,
