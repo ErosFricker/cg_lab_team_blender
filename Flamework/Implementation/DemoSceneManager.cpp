@@ -115,6 +115,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("core.obj", true, true);
     loadModel("electron.obj", true, true);
     loadModel("black_hole.obj", true, true);
+    loadModel("halo.obj", true, true);
 }
 
 vmml::mat4f lookAt(vmml::vec3f eye, vmml::vec3f target, vmml::vec3f up)
@@ -198,6 +199,14 @@ void DemoSceneManager::createOrthonormalSystems()
         _orthonormalBases[i] = orthonormalMatrix;
     }
 }
+
+
+void DemoSceneManager::drawParticles(std::list<Particle> particleList, float particle_speed) {
+
+}
+
+
+
 
 vmml::vec3f position_ship(vmml::vec3f(0, -2, 80));
 
@@ -300,7 +309,7 @@ void DemoSceneManager::draw(double deltaT)
     // Accelerator
     _modelMatrix = _modelMatrixAccelerator;
     drawModel(accelerator_speed, "accelerator");
-
+    
     // Ship
     _modelMatrix =  vmml::create_translation(vmml::vec3f(0.015 * sin(240*time + M_PI_F/2.f), 0.03*sin(40*time), 0)) * _modelMatrixShip;
     drawModel(0, "ship");
@@ -312,8 +321,10 @@ void DemoSceneManager::draw(double deltaT)
     if (rand()%101 < 20 && _activeParticles.size() < 25) {
         Particle p;
         p.generateRandomParticle(_time + (double) rand());
-        _activeParticles.push_back(p);
+        _activeParticles.push_front(p);
     }
+    
+    std::list<Particle> tmp;
     
     // Draw active particles
     std::list<Particle>::iterator it;
@@ -334,8 +345,16 @@ void DemoSceneManager::draw(double deltaT)
             std::cout << "z = " << distance.z() << std::endl;
             _collision = true;
         }
+
+        else drawModel(0, "core");
         
-        drawModel(0, "core");
+        // draw halo effects
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        _modelMatrix *= vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))*vmml::create_scaling(3.5f);
+        drawModel(0, "halo");
+        glDisable(GL_BLEND);
+        
         // Draw electrons
         vmml::mat4f modelMatrix = _modelMatrix;
         vmml::mat4f _modelMatrixElectrons;
@@ -356,10 +375,11 @@ void DemoSceneManager::draw(double deltaT)
     }
     
     // Remove inactive particles
-    while ((*_activeParticles.begin()).passed()){
-       _activeParticles.pop_front();
+    while ((*(--_activeParticles.end())).passed()){
+       _activeParticles.pop_back();
         _particlesPassed++;
     }
+    
     
     // TEST, draw black hole
     if (_collision) {
@@ -372,5 +392,4 @@ void DemoSceneManager::draw(double deltaT)
         _speed = _speed + 0.1;
         _particlesPassed = 0;
     }
-    
 }
