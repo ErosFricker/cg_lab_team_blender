@@ -295,7 +295,7 @@ void DemoSceneManager::draw(double deltaT)
     // Define the "speed"
     float time = .05f * _time;
     float particle_speed = 0.3f*deltaT*_speed;
-    float accelerator_speed = 0.1*_time*_speed;
+    float accelerator_speed = fmodf((0.1*_time),0.496f);
     
     // Accelerator
     _modelMatrix = _modelMatrixAccelerator;
@@ -368,5 +368,9 @@ void DemoSceneManager::draw(double deltaT)
         drawModel(0, "black_hole");
     }
     
+    if(_particlesPassed >= 50){
+        _speed = _speed + 0.1;
+        _particlesPassed = 0;
+    }
     
 }
