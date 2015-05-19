@@ -114,6 +114,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("ship.obj", true, true);
     loadModel("core.obj", true, true);
     loadModel("electron.obj", true, true);
+    loadModel("black_hole.obj", true, true);
 }
 
 vmml::mat4f lookAt(vmml::vec3f eye, vmml::vec3f target, vmml::vec3f up)
@@ -198,6 +199,9 @@ void DemoSceneManager::createOrthonormalSystems()
     }
 }
 
+vmml::vec3f position_ship(vmml::vec3f(0, -2, 80));
+bool collision = false;
+
 void DemoSceneManager::draw(double deltaT)
 {
     // Catch the first function call
@@ -246,7 +250,7 @@ void DemoSceneManager::draw(double deltaT)
             * vmml::create_scaling(6.f);
         
         _modelMatrixShip =
-            vmml::create_translation(vmml::vec3f(0, -2, 80))
+            vmml::create_translation(position_ship)
             * vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0))
             * vmml::create_scaling(.2f);
     }
@@ -303,14 +307,15 @@ void DemoSceneManager::draw(double deltaT)
     
     // Generate new particles
     // If particlelist < x, generate new particle with probability p
-    if (rand()%101 < 10 && _activeParticles.size() < 10) {
+    if (rand()%101 < 20 && _activeParticles.size() < 50) {
         Particle p;
         p.generateRandomParticle(_time + (double) rand());
         _activeParticles.push_back(p);
     }
     
     // Draw active particles
-    for (std::list<Particle>::iterator it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
+    std::list<Particle>::iterator it;
+    for (it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
         // Draw the core
         _modelMatrix = vmml::create_rotation(_rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z)
                         * (*it).getModelMatrix(particle_speed, .2f);
@@ -337,4 +342,45 @@ void DemoSceneManager::draw(double deltaT)
     // Remove inactive particles
     while ((*_activeParticles.begin()).passed()) _activeParticles.pop_front();
     
+    // COLLISIONDETECTION
+    // For every particle in the list, determine its distance to the ship
+    for (it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
+        vmml::vec3f distance = (*it).getCurrentPosition() - position_ship;
+        float delta = sqrt( distance.x()*distance.x()
+                            + distance.y()*distance.y()
+                           + distance.z()*distance.z() );
+        /*
+        std::cout   << "Ship Position:"
+                    << " x="    <<  position_ship.x()
+                    << ", y=" << position_ship.y()
+                    << ", z=" << position_ship.z() << std::endl;
+        
+        std::cout   << "Particle Position:"
+        << " x="    <<  (*it).getCurrentPosition().x()
+        << ", y=" << (*it).getCurrentPosition().y()
+        << ", z=" << (*it).getCurrentPosition().z() << std::endl;
+        
+        std::cout << "Distance = " << delta << std::endl;
+        */
+        /*
+        std::cout   << "Distancevector: "
+                    << "x= " << distance.x()
+                    << ", y= " << distance.y()
+        << ", z= " << distance.z();
+        */
+        
+        std::cout << "Distance = " << delta << std::endl;
+        
+        if (-10.0<distance.z() && distance.z() < 10.0)
+            if (-0.3<distance.x() && distance.x() < 0.3)
+                collision = true;
+    }
+    
+    
+    // TEST, draw black hole
+    if (collision) {
+        _modelMatrix = _modelMatrixShip * vmml::create_scaling(5.f);
+        _color = vmml::vec4f(0,0,0.2,1);
+        drawModel(0, "black_hole");
+    }
 }
