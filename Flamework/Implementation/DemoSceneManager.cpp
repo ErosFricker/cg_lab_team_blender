@@ -113,6 +113,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("accelerator.obj", true, true);
     loadModel("ship.obj", true, true);
     loadModel("core.obj", true, true);
+    loadModel("electron.obj", true, true);
 }
 
 vmml::mat4f lookAt(vmml::vec3f eye, vmml::vec3f target, vmml::vec3f up)
@@ -206,6 +207,7 @@ void DemoSceneManager::draw(double deltaT)
         
         // Set random seed
         srand((unsigned int) _time);
+        createOrthonormalSystems();
         
         // Define viewmatrix
         _eyePos = vmml::vec3f(0, 0, 100);
@@ -286,13 +288,15 @@ void DemoSceneManager::draw(double deltaT)
     
     // Define the "speed"
     float time = .05f * _time;
+    float particle_speed = 0.3f*deltaT;
+    float accelerator_speed = 0.1*_time;
     
     // Accelerator
     _modelMatrix = _modelMatrixAccelerator;
-    drawModel(time, "accelerator");
+    drawModel(accelerator_speed, "accelerator");
 
     // Ship
-    _modelMatrix =  vmml::create_translation(vmml::vec3f(0.015 * sin(80*time + M_PI_F/2.f), 0.03*sin(40*time), 0)) * _modelMatrixShip;
+    _modelMatrix =  vmml::create_translation(vmml::vec3f(0.015 * sin(240*time + M_PI_F/2.f), 0.03*sin(40*time), 0)) * _modelMatrixShip;
     drawModel(0, "ship");
     
     // Particles
@@ -300,7 +304,6 @@ void DemoSceneManager::draw(double deltaT)
     // Generate new particles
     // If particlelist < x, generate new particle with probability p
     if (rand()%101 < 10 && _activeParticles.size() < 10) {
-        // Generate new seed
         Particle p;
         p.generateRandomParticle(_time + (double) rand());
         _activeParticles.push_back(p);
@@ -308,9 +311,27 @@ void DemoSceneManager::draw(double deltaT)
     
     // Draw active particles
     for (std::list<Particle>::iterator it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
+        // Draw the core
         _modelMatrix = vmml::create_rotation(_rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z)
-                        * (*it).getModelMatrix(0.4f * deltaT, .2f);
+                        * (*it).getModelMatrix(particle_speed, .2f);
         drawModel(0, "core");
+        // Draw electrons
+        vmml::mat4f modelMatrix = _modelMatrix;
+        vmml::mat4f _modelMatrixElectrons;
+        for (int i=0; i<(*it).getNumberOfElectrons(); ++i) {
+            float scal = (*it).getCurrentScalingFactor();
+            int sys = (*it).getOrthonormalSystem();
+            _modelMatrixElectrons =
+                vmml::create_rotation(_rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z)
+                * vmml::create_translation((*it).getCurrentPosition())
+                * vmml::create_translation(vmml::create_scaling(1.2f*scal)*vmml::create_rotation(30*time, _orthonormalBases[sys].get_row(i))
+                * _orthonormalBases[sys].get_row((i+1)%3))
+                * vmml::create_scaling(.5f*scal);
+            _modelMatrix = _modelMatrixElectrons;
+            _color = YELLOW;
+            drawModel(0, "electron");
+        }
+        _modelMatrix = modelMatrix;
     }
     
     // Remove inactive particles

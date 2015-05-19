@@ -44,18 +44,20 @@ void Particle::generateRandomParticle(double seed) {
     float delta_x = (rand() % 201) / 100.f * pow(-1.f, rand()%2);
     float delta_y = sqrt(4-(delta_x*delta_x)) * pow(-1.f, rand()%2);
     setTranslation(vmml::vec3f(delta_x, delta_y, 80.f));
+    _electrons = rand()%4;
+    _system = rand()%100;
     lifeTime = 0.f;
 }
 
 vmml::mat4f Particle::getModelMatrix( float deltaT, float scaling) {
     lifeTime += deltaT;
-    vmml::mat4f translation_particle =
-        vmml::create_translation(
-            vmml::vec3f(_translationVector.x()*lifeTime, _translationVector.y()*lifeTime, _translationVector.z()*lifeTime
-            )
-        );
-    float current_scaling = 1/100.f * _translationVector.z()*lifeTime*scaling;
-    _modelMatrix = translation_particle * vmml::create_scaling(current_scaling);
+    _currentPosistion = vmml::vec3f(
+                            _translationVector.x()*lifeTime,
+                            _translationVector.y()*lifeTime,
+                            _translationVector.z()*lifeTime);
+    vmml::mat4f translation_particle = vmml::create_translation(vmml::vec3f(_currentPosistion));
+    _scaling = 1/100.f * _translationVector.z()*lifeTime*scaling;
+    _modelMatrix = translation_particle * vmml::create_scaling(_scaling);
     _modelMatrix = _rotationMatrix*_modelMatrix;
     return _modelMatrix;
 }
@@ -66,4 +68,8 @@ bool Particle::passed() {
 }
 
 float Particle::getLifetime() { return lifeTime; }
+unsigned int Particle::getNumberOfElectrons() { return _electrons; }
+unsigned int Particle::getOrthonormalSystem() { return _system; }
+vmml::vec3f Particle::getCurrentPosition() { return _currentPosistion; }
+float Particle::getCurrentScalingFactor() { return _scaling; }
 

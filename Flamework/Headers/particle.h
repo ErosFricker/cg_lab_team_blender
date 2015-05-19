@@ -23,13 +23,21 @@ public:
     bool passed();
     
     float getLifetime();
+    unsigned int getNumberOfElectrons();
+    unsigned int getOrthonormalSystem();
+    vmml::vec3f getCurrentPosition();
+    float getCurrentScalingFactor();
     
 private:
     float lifeTime;
+    float _scaling;
     vmml::mat4f _modelMatrix;
     vmml::vec3f _translationVector;
     vmml::vec3f _currentPosistion;
     vmml::mat4f _rotationMatrix;
+    
+    unsigned int _electrons;
+    unsigned int _system;
 };
 
 #endif
