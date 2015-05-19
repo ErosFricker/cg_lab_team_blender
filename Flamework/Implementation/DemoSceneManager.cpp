@@ -200,7 +200,6 @@ void DemoSceneManager::createOrthonormalSystems()
 }
 
 vmml::vec3f position_ship(vmml::vec3f(0, -2, 80));
-bool collision = false;
 
 void DemoSceneManager::draw(double deltaT)
 {
@@ -208,6 +207,9 @@ void DemoSceneManager::draw(double deltaT)
     if (_firstCall)
     {
         _firstCall = false;
+        _particlesPassed = 0;
+        _collision = false;
+        _speed = 1;
         
         // Set random seed
         srand((unsigned int) _time);
@@ -268,12 +270,12 @@ void DemoSceneManager::draw(double deltaT)
     // Userinput (Steering onTouch): Update default accelerator-modelmatrix
     float acceleratorRotation = 0;
     if (steeringDirection == 1) {
-        _rotationValue +=0.1;
-        acceleratorRotation +=0.1;
+        _rotationValue +=0.02;
+        acceleratorRotation +=0.02;
     }
     else if (steeringDirection == 2){
-        _rotationValue -=0.1;
-        acceleratorRotation-=0.1;
+        _rotationValue -=0.02;
+        acceleratorRotation-=0.02;
     }
     _acceleratorRotation = (vmml::mat4f) vmml::create_rotation(
                                 acceleratorRotation*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z);
@@ -292,8 +294,8 @@ void DemoSceneManager::draw(double deltaT)
     
     // Define the "speed"
     float time = .05f * _time;
-    float particle_speed = 0.3f*deltaT;
-    float accelerator_speed = 0.1*_time;
+    float particle_speed = 0.3f*deltaT*_speed;
+    float accelerator_speed = 0.1*_time*_speed;
     
     // Accelerator
     _modelMatrix = _modelMatrixAccelerator;
@@ -307,7 +309,7 @@ void DemoSceneManager::draw(double deltaT)
     
     // Generate new particles
     // If particlelist < x, generate new particle with probability p
-    if (rand()%101 < 20 && _activeParticles.size() < 50) {
+    if (rand()%101 < 20 && _activeParticles.size() < 25) {
         Particle p;
         p.generateRandomParticle(_time + (double) rand());
         _activeParticles.push_back(p);
@@ -319,6 +321,20 @@ void DemoSceneManager::draw(double deltaT)
         // Draw the core
         _modelMatrix = vmml::create_rotation(_rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z)
                         * (*it).getModelMatrix(particle_speed, .2f);
+        
+        //COLLISION DETECTION
+        vmml::vec3f distance = vmml::vec3f(_modelMatrix.at(0,3),_modelMatrix.at(1,3),_modelMatrix.at(2,3)) - position_ship;
+        
+        if( -0.6 <= distance.x() && distance.x() <= 0.6 &&
+           -0.1 <= distance.y() && distance.y() <= 0.1 &&
+           0 <= distance.z() && distance.z() <= 0.3) {
+            //std::cout << "delta = " << delta << std::endl;
+            std::cout << "x = " << distance.x() << std::endl;
+            std::cout << "y = " << distance.y() << std::endl;
+            std::cout << "z = " << distance.z() << std::endl;
+            _collision = true;
+        }
+        
         drawModel(0, "core");
         // Draw electrons
         vmml::mat4f modelMatrix = _modelMatrix;
@@ -340,45 +356,13 @@ void DemoSceneManager::draw(double deltaT)
     }
     
     // Remove inactive particles
-    while ((*_activeParticles.begin()).passed()) _activeParticles.pop_front();
-    
-    // COLLISIONDETECTION
-    // For every particle in the list, determine its distance to the ship
-    for (it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
-        vmml::vec3f distance = (*it).getCurrentPosition() - position_ship;
-        float delta = sqrt( distance.x()*distance.x()
-                            + distance.y()*distance.y()
-                           + distance.z()*distance.z() );
-        /*
-        std::cout   << "Ship Position:"
-                    << " x="    <<  position_ship.x()
-                    << ", y=" << position_ship.y()
-                    << ", z=" << position_ship.z() << std::endl;
-        
-        std::cout   << "Particle Position:"
-        << " x="    <<  (*it).getCurrentPosition().x()
-        << ", y=" << (*it).getCurrentPosition().y()
-        << ", z=" << (*it).getCurrentPosition().z() << std::endl;
-        
-        std::cout << "Distance = " << delta << std::endl;
-        */
-        /*
-        std::cout   << "Distancevector: "
-                    << "x= " << distance.x()
-                    << ", y= " << distance.y()
-        << ", z= " << distance.z();
-        */
-        
-        std::cout << "Distance = " << delta << std::endl;
-        
-        if (-10.0<distance.z() && distance.z() < 10.0)
-            if (-0.3<distance.x() && distance.x() < 0.3)
-                collision = true;
+    while ((*_activeParticles.begin()).passed()){
+       _activeParticles.pop_front();
+        _particlesPassed++;
     }
     
-    
     // TEST, draw black hole
-    if (collision) {
+    if (_collision) {
         _modelMatrix = _modelMatrixShip * vmml::create_scaling(5.f);
         _color = vmml::vec4f(0,0,0.2,1);
         drawModel(0, "black_hole");

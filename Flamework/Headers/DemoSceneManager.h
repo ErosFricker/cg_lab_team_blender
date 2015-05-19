@@ -64,6 +64,9 @@ private:
     double _time;
     float _rotationValue;
     bool _firstCall;
+    bool _collision;
+    int _particlesPassed;
+    float _speed;
 
     vmml::vec2f _scrolling;
     vmml::vec2f _lScrollPos;
