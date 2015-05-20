@@ -53,6 +53,7 @@
 		D5202FD81B04DDDF004F65B5 /* core.obj in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD61B04DDDF004F65B5 /* core.obj */; };
 		D5202FDA1B04DE5B004F65B5 /* water_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD91B04DE5B004F65B5 /* water_texture.jpg */; };
 		D5202FDE1B060017004F65B5 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5202FDC1B060017004F65B5 /* Particle.cpp */; };
+		D53C05111B0D1BD60023A96C /* nm1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D53C05101B0D1BD60023A96C /* nm1.jpg */; };
 		D56387AA1B0AC12A00732BE5 /* electron.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D56387A91B0AC12A00732BE5 /* electron.mtl */; };
 		D56387AC1B0AC13800732BE5 /* electron.obj in Resources */ = {isa = PBXBuildFile; fileRef = D56387AB1B0AC13800732BE5 /* electron.obj */; };
 		D56387AE1B0AC14500732BE5 /* electron.vert in Resources */ = {isa = PBXBuildFile; fileRef = D56387AD1B0AC14500732BE5 /* electron.vert */; };
@@ -158,6 +159,7 @@
 		D5202FD91B04DE5B004F65B5 /* water_texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = water_texture.jpg; sourceTree = "<group>"; };
 		D5202FDB1B05FDA3004F65B5 /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		D5202FDC1B060017004F65B5 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
+		D53C05101B0D1BD60023A96C /* nm1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nm1.jpg; sourceTree = "<group>"; };
 		D56387A91B0AC12A00732BE5 /* electron.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = electron.mtl; sourceTree = "<group>"; };
 		D56387AB1B0AC13800732BE5 /* electron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = electron.obj; sourceTree = "<group>"; };
 		D56387AD1B0AC14500732BE5 /* electron.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = electron.vert; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		D5202FD41B04DDCB004F65B5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D53C05101B0D1BD60023A96C /* nm1.jpg */,
 				D5202FD91B04DE5B004F65B5 /* water_texture.jpg */,
 				D5202FD51B04DDDF004F65B5 /* core.mtl */,
 				D5202FD61B04DDDF004F65B5 /* core.obj */,
@@ -765,6 +768,7 @@
 				B9D545CA1B0B6FFE00B9CC77 /* alexis_bitmap.fnt in Resources */,
 				B9D545C51B0B6FE800B9CC77 /* font.vert in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				D53C05111B0D1BD60023A96C /* nm1.jpg in Resources */,
 				B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */,
 				B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */,
 				D5202FA51B03F609004F65B5 /* accelerator.vert in Resources */,
