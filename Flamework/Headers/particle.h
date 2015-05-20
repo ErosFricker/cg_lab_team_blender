@@ -28,6 +28,8 @@ public:
     unsigned int getOrthonormalSystem();
     vmml::vec3f getCurrentPosition();
     float getCurrentScalingFactor();
+    float getRandom1();
+    float getRandom2();
     
 private:
     float lifeTime;
@@ -39,6 +41,9 @@ private:
     
     unsigned int _electrons;
     unsigned int _system;
+    
+    float _random1;
+    float _random2;
 };
 
 #endif

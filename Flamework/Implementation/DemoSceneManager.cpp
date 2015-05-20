@@ -591,7 +591,8 @@ void DemoSceneManager::draw(double deltaT)
         // draw halo effects
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        _modelMatrix *= vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))*vmml::create_scaling(3.5f);
+        float halo_scal = sin(it->getRandom1()*25.f*_time + it->getRandom2());
+        _modelMatrix *= vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))*vmml::create_scaling(2.f+0.25f*halo_scal);
         drawModel(0, "halo");
         glDisable(GL_BLEND);
         
@@ -607,6 +608,7 @@ void DemoSceneManager::draw(double deltaT)
             * vmml::create_translation(vmml::create_scaling(1.2f*scal)*vmml::create_rotation(30*time, _orthonormalBases[sys].get_row(i))
                                        * _orthonormalBases[sys].get_row((i+1)%3))
             * vmml::create_scaling(.5f*scal);
+            std::cout << "SCALING " << 20*time << std::endl << std::endl;
             _modelMatrix = _modelMatrixElectrons;
             _color = YELLOW;
             drawModel(0, "electron");

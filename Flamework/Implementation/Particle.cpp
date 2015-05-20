@@ -47,6 +47,8 @@ void Particle::generateRandomParticle(double seed) {
     _electrons = rand()%4;
     _system = rand()%100;
     lifeTime = 0.f;
+    _random1 = rand() %101 / 101.f;
+    _random2 = rand() %101 / 101.f;
 }
 
 vmml::mat4f Particle::getModelMatrix( float deltaT, float scaling) {
@@ -72,4 +74,6 @@ unsigned int Particle::getNumberOfElectrons() { return _electrons; }
 unsigned int Particle::getOrthonormalSystem() { return _system; }
 vmml::vec3f Particle::getCurrentPosition() { return _currentPosistion; }
 float Particle::getCurrentScalingFactor() { return _scaling; }
+float Particle::getRandom1() { return _random1; }
+float Particle::getRandom2() { return _random2; }
 
