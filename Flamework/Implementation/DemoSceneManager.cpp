@@ -20,14 +20,13 @@
 #include <list>
 
 #include <boost/lexical_cast.hpp>
-#include <glm/glm/gtc/matrix_transform.hpp>
 
 using boost::lexical_cast;
 
 #define SCROLL_SPEED    0.002f
 #define SCALE_SPEED     0.008f
 #define WINDOW_WIDTH    1024.0f
-int steeringDirection = 0;
+float steeringDirection = 0.0f;
 
 DemoSceneManager::DemoSceneManager(Application *application)
     : SceneManager(application)
@@ -37,28 +36,35 @@ DemoSceneManager::DemoSceneManager(Application *application)
     , _color(vmml::vec4f(0,0,0,1))
     , _rotationValue(0)
     , _firstCall(true)
+    , score(0)
 {
     
 }
 
-DemoSceneManager::~DemoSceneManager() {}
+DemoSceneManager::~DemoSceneManager() {
+}
 
 void DemoSceneManager::onTouchBegan(float x, float y)
 {
     util::log("onTouchBegan");
     vmml::vec2f cScrollPos(x, y);
     _lScrollPos = cScrollPos;
+    float scrolling = cScrollPos.x() - (WINDOW_WIDTH/2.0f);
     
-    if (cScrollPos.x() > (WINDOW_WIDTH/2.0f)){
+    if (scrolling > 0.0f){
         
         util::log("RIGHT");
-        steeringDirection = 2;
+        
+        
+        
+        steeringDirection = scrolling;
         
     }
     else{
         util::log("LEFT");
-        steeringDirection = 1;
+        steeringDirection = scrolling;
     }
+    steeringDirection = -steeringDirection;
     
     
 //    getSound("test")->play();*/
@@ -71,12 +77,14 @@ void DemoSceneManager::onTouchMoved(float x, float y)
     vmml::vec2f scrollDelta(cScrollPos - _lScrollPos);
     _scrolling += scrollDelta * SCROLL_SPEED;
     _lScrollPos = cScrollPos;
+    
+    steeringDirection = -(cScrollPos.x() - (WINDOW_WIDTH/2.0f));
 }
 
 void DemoSceneManager::onTouchEnded(float x, float y, int tapCount)
 {
     util::log("onTouchEnded");
-    steeringDirection = 0;
+    steeringDirection = 0.0;
 }
 
 void DemoSceneManager::onScaleBegan(float x, float y)
@@ -209,7 +217,7 @@ void DemoSceneManager::drawParticles(std::list<Particle> particleList, float par
 
 
 vmml::vec3f position_ship(vmml::vec3f(0, -2, 80));
-
+float steeringSpeed = -0.00009f;
 void DemoSceneManager::draw(double deltaT)
 {
     // Catch the first function call
@@ -278,16 +286,16 @@ void DemoSceneManager::draw(double deltaT)
     
     // Userinput (Steering onTouch): Update default accelerator-modelmatrix
     float acceleratorRotation = 0;
-    if (steeringDirection == 1) {
-        _rotationValue +=0.02;
-        acceleratorRotation +=0.02;
+    if (steeringDirection < 0.0) {
+        _rotationValue += steeringDirection;
+        acceleratorRotation +=steeringDirection;
     }
-    else if (steeringDirection == 2){
-        _rotationValue -=0.02;
-        acceleratorRotation-=0.02;
+    else if (steeringDirection > 0.0){
+        _rotationValue += steeringDirection;
+        acceleratorRotation += steeringDirection;
     }
     _acceleratorRotation = (vmml::mat4f) vmml::create_rotation(
-                                acceleratorRotation*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z);
+                                acceleratorRotation*-M_PI_F*steeringSpeed, vmml::vec3f::UNIT_Z);
     _modelMatrixAccelerator = _acceleratorRotation*_modelMatrixAccelerator;
     
 
@@ -330,7 +338,7 @@ void DemoSceneManager::draw(double deltaT)
     std::list<Particle>::iterator it;
     for (it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
         // Draw the core
-        _modelMatrix = vmml::create_rotation(_rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z)
+        _modelMatrix = vmml::create_rotation(_rotationValue*-M_PI_F*steeringSpeed, vmml::vec3f::UNIT_Z)
                         * (*it).getModelMatrix(particle_speed, .2f);
         
         //COLLISION DETECTION
@@ -362,7 +370,7 @@ void DemoSceneManager::draw(double deltaT)
             float scal = (*it).getCurrentScalingFactor();
             int sys = (*it).getOrthonormalSystem();
             _modelMatrixElectrons =
-                vmml::create_rotation(_rotationValue*-M_PI_F*-.5f, vmml::vec3f::UNIT_Z)
+                vmml::create_rotation(_rotationValue*-M_PI_F*steeringSpeed, vmml::vec3f::UNIT_Z)
                 * vmml::create_translation((*it).getCurrentPosition())
                 * vmml::create_translation(vmml::create_scaling(1.2f*scal)*vmml::create_rotation(30*time, _orthonormalBases[sys].get_row(i))
                 * _orthonormalBases[sys].get_row((i+1)%3))
@@ -392,4 +400,7 @@ void DemoSceneManager::draw(double deltaT)
         _speed = _speed + 0.1;
         _particlesPassed = 0;
     }
+
+    
+    score += 1;
 }

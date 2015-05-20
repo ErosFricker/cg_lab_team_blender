@@ -16,7 +16,6 @@
 		B98819A11AED0B9C006536E8 /* alexisv3laserital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */; };
 		B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B98819901AED0B9C006536E8 /* alexisv3half.ttf */; };
 		B98819A91AED0B9C006536E8 /* alexisv3bulletital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B98819961AED0B9C006536E8 /* alexisv3bulletital.ttf */; };
-		B98819CA1AED1954006536E8 /* glm in Resources */ = {isa = PBXBuildFile; fileRef = B98819C91AED1954006536E8 /* glm */; };
 		B98819E71AED3FF5006536E8 /* ship.frag in Resources */ = {isa = PBXBuildFile; fileRef = B98819E61AED3FF5006536E8 /* ship.frag */; };
 		B98819E91AED3FFB006536E8 /* ship.vert in Resources */ = {isa = PBXBuildFile; fileRef = B98819E81AED3FFB006536E8 /* ship.vert */; };
 		B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B98819FC1AED5078006536E8 /* pampam.mp3 */; };
@@ -115,7 +114,6 @@
 		B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3laserital.ttf; sourceTree = "<group>"; };
 		B98819901AED0B9C006536E8 /* alexisv3half.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3half.ttf; sourceTree = "<group>"; };
 		B98819961AED0B9C006536E8 /* alexisv3bulletital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3bulletital.ttf; sourceTree = "<group>"; };
-		B98819C91AED1954006536E8 /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
 		B98819E61AED3FF5006536E8 /* ship.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship.frag; sourceTree = "<group>"; };
 		B98819E81AED3FFB006536E8 /* ship.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ship.vert; sourceTree = "<group>"; };
 		B98819FC1AED5078006536E8 /* pampam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pampam.mp3; path = ../../pampam.mp3; sourceTree = "<group>"; };
@@ -311,7 +309,6 @@
 				F87C331E1910561A00E8A523 /* Base */,
 				F86CA081171FEB6200DD23CA /* boost */,
 				F814A6111716A0E000A2A910 /* obj */,
-				B98819C91AED1954006536E8 /* glm */,
 				F8ED69E716E64F7400E6D6CA /* Default-568h@2x.png */,
 				F8ED69E816E64F7400E6D6CA /* Default.png */,
 				F8ED69E916E64F7400E6D6CA /* Default@2x.png */,
@@ -530,8 +527,8 @@
 				F87C32F01910554000E8A523 /* EAGLView.h */,
 				F87C32F11910554000E8A523 /* EAGLView.m */,
 				F87C32F21910554000E8A523 /* FrameworkAppDelegate.h */,
-				F87C32F31910554000E8A523 /* FrameworkAppDelegate.m */,
 				F87C32F41910554000E8A523 /* FrameworkViewController.h */,
+				F87C32F31910554000E8A523 /* FrameworkAppDelegate.m */,
 				F87C32F51910554000E8A523 /* FrameworkViewController.mm */,
 				F87C32F61910554000E8A523 /* Gyro.mm */,
 				F87C32F71910554000E8A523 /* main.m */,
@@ -791,7 +788,6 @@
 				D5202FD31B04D541004F65B5 /* core.frag in Resources */,
 				D5202FBA1B040F7C004F65B5 /* accelerator.mtl in Resources */,
 				D5202FA71B03F619004F65B5 /* accelerator.frag in Resources */,
-				B98819CA1AED1954006536E8 /* glm in Resources */,
 				D5202FCA1B041BF9004F65B5 /* ship.mtl in Resources */,
 				B98819E91AED3FFB006536E8 /* ship.vert in Resources */,
 				D5202FC81B041BF9004F65B5 /* s_1024_N.png in Resources */,

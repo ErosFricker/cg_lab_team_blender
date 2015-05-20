@@ -59,7 +59,7 @@ public:
     void createOrthonormalSystems();
     
     void drawParticles(std::list<Particle> particleList, float particle_speed);
-    
+    int score;
 private:
     std::list<Particle> _activeParticles;
     
