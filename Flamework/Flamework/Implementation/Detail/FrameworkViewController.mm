@@ -13,6 +13,7 @@
 #include "Framework_GL.h"
 #include "Util.h"
 #include "DemoSceneManager.h"
+#include "globals.h"
 
 // Uniform index.
 enum
@@ -205,11 +206,10 @@ enum
 }
 
 -(void)startUpdatingScore{
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateScoreLabel) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateScoreLabel) userInfo:nil repeats:YES];
 }
 -(void)updateScoreLabel{
-    int score = ((DemoSceneManager*)_application.getSceneManager())->score;
-    [self.scoreLabel setText:[NSString stringWithFormat:@"%i", score]];
+    [self.scoreLabel setText:[NSString stringWithFormat:@"%i", overallGameScore]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

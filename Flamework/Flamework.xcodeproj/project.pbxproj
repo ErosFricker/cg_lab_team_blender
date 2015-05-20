@@ -27,6 +27,8 @@
 		B9D545CB1B0B6FFE00B9CC77 /* alexis_bitmap.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */; };
 		B9D545CF1B0B792800B9CC77 /* auspuff.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CD1B0B792700B9CC77 /* auspuff.pex */; };
 		B9D545D01B0B792800B9CC77 /* black_hole.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CE1B0B792800B9CC77 /* black_hole.pex */; };
+		B9FD35CE1B0CE4B3005F9D0D /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9FD35CD1B0CE4B3005F9D0D /* globals.cpp */; };
+		B9FD35D21B0CE8FE005F9D0D /* ParticleEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9FD35D01B0CE8FE005F9D0D /* ParticleEngine.cpp */; };
 		C3CA766E1B0B80DE00AD1D00 /* accelerator_black_new.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CA766D1B0B80DE00AD1D00 /* accelerator_black_new.png */; };
 		D51142351B0BB131001A6B98 /* halo.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D51142331B0BB131001A6B98 /* halo.mtl */; };
 		D51142361B0BB131001A6B98 /* halo.obj in Resources */ = {isa = PBXBuildFile; fileRef = D51142341B0BB131001A6B98 /* halo.obj */; };
@@ -126,6 +128,11 @@
 		B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alexis_bitmap.png; sourceTree = "<group>"; };
 		B9D545CD1B0B792700B9CC77 /* auspuff.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = auspuff.pex; sourceTree = "<group>"; };
 		B9D545CE1B0B792800B9CC77 /* black_hole.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = black_hole.pex; sourceTree = "<group>"; };
+		B9FD35CC1B0CE485005F9D0D /* globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
+		B9FD35CD1B0CE4B3005F9D0D /* globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globals.cpp; sourceTree = "<group>"; };
+		B9FD35CF1B0CE8DB005F9D0D /* EmitterParticle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmitterParticle.h; sourceTree = "<group>"; };
+		B9FD35D01B0CE8FE005F9D0D /* ParticleEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleEngine.cpp; sourceTree = "<group>"; };
+		B9FD35D11B0CE8FE005F9D0D /* ParticleEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEngine.h; sourceTree = "<group>"; };
 		C3CA766D1B0B80DE00AD1D00 /* accelerator_black_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accelerator_black_new.png; sourceTree = "<group>"; };
 		D51142331B0BB131001A6B98 /* halo.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = halo.mtl; sourceTree = "<group>"; };
 		D51142341B0BB131001A6B98 /* halo.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = halo.obj; sourceTree = "<group>"; };
@@ -548,6 +555,8 @@
 			children = (
 				D5202FDB1B05FDA3004F65B5 /* Particle.h */,
 				F87C331A1910557D00E8A523 /* DemoSceneManager.h */,
+				B9FD35CC1B0CE485005F9D0D /* globals.h */,
+				B9FD35CF1B0CE8DB005F9D0D /* EmitterParticle.h */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -556,6 +565,9 @@
 			isa = PBXGroup;
 			children = (
 				F87C331C1910557D00E8A523 /* DemoSceneManager.cpp */,
+				B9FD35D01B0CE8FE005F9D0D /* ParticleEngine.cpp */,
+				B9FD35D11B0CE8FE005F9D0D /* ParticleEngine.h */,
+				B9FD35CD1B0CE4B3005F9D0D /* globals.cpp */,
 				D5202FDC1B060017004F65B5 /* Particle.cpp */,
 			);
 			path = Implementation;
@@ -832,6 +844,8 @@
 				F87C33171910554000E8A523 /* ShaderData.cpp in Sources */,
 				F87C33071910554000E8A523 /* EAGLView.m in Sources */,
 				F87C330E1910554000E8A523 /* Util.mm in Sources */,
+				B9FD35CE1B0CE4B3005F9D0D /* globals.cpp in Sources */,
+				B9FD35D21B0CE8FE005F9D0D /* ParticleEngine.cpp in Sources */,
 				F814A6171716A0E000A2A910 /* obj_parser.cpp in Sources */,
 				F87C33051910554000E8A523 /* Application.cpp in Sources */,
 			);
