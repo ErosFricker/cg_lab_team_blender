@@ -206,7 +206,7 @@ enum
 }
 
 -(void)startUpdatingScore{
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateScoreLabel) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.9 target:self selector:@selector(updateScoreLabel) userInfo:nil repeats:YES];
 }
 -(void)updateScoreLabel{
     [self.scoreLabel setText:[NSString stringWithFormat:@"%i", overallGameScore]];

@@ -44,7 +44,6 @@ void main()
     mediump vec3 t = normalize(tangentVarying - dot(tangentVarying, n));
     mediump vec3 b = cross(n, t);
     mediump mat3 tbn = mat3(t, b, n);
-    
     // Bumpy normal
     mediump vec3 bumpNormal = texture2D(NormalMap, texCoordVarying.xy).xyz;
     bumpNormal = 2.0*bumpNormal - vec3(1.0);

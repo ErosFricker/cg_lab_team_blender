@@ -21,6 +21,7 @@
 #include "globals.h"
 #include "ParticleEngine.h"
 
+
 #include <boost/lexical_cast.hpp>
 
 using boost::lexical_cast;
@@ -28,6 +29,7 @@ using boost::lexical_cast;
 #define SCROLL_SPEED    0.002f
 #define SCALE_SPEED     0.008f
 #define WINDOW_WIDTH    1024.0f
+
 float steeringDirection = 0.0f;
 
 const float GRAVITY = 3.0f;
@@ -548,7 +550,9 @@ void DemoSceneManager::draw(double deltaT)
     
     // Accelerator
     _modelMatrix = _modelMatrixAccelerator;
-    drawModel(accelerator_speed, "accelerator");
+    drawModel(_time*0.1, "accelerator");
+    std::cout << "DeltaT " << _time << std::endl;
+
     
     // Ship
     _modelMatrix =  vmml::create_translation(vmml::vec3f(0.015 * sin(240*time + M_PI_F/2.f), 0.03*sin(40*time), 0)) * _modelMatrixShip;
@@ -608,7 +612,7 @@ void DemoSceneManager::draw(double deltaT)
             * vmml::create_translation(vmml::create_scaling(1.2f*scal)*vmml::create_rotation(30*time, _orthonormalBases[sys].get_row(i))
                                        * _orthonormalBases[sys].get_row((i+1)%3))
             * vmml::create_scaling(.5f*scal);
-            std::cout << "SCALING " << 20*time << std::endl << std::endl;
+           // std::cout << "SCALING " << 20*time << std::endl << std::endl;
             _modelMatrix = _modelMatrixElectrons;
             _color = YELLOW;
             drawModel(0, "electron");
@@ -635,6 +639,79 @@ void DemoSceneManager::draw(double deltaT)
         _particlesPassed = 0;
     }
     
-    engine->draw();
+    //engine->draw();
+
+    
+    /*
+    //Preparing Frame BUffer
+    GLuint fbo = 0;
+    glGenFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    GLuint colorTexture = 0;
+    glGenTextures(1, &colorTexture);
+    glBindTexture(GL_TEXTURE_2D, colorTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    GLsizei fboWidth = 768.0;
+    GLsizei fboHeight = 1024.0;
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fboWidth, fboHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+    
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTexture, 0);
+    
+    GLuint depthRBO = 0;
+    glGenRenderbuffers(1, &depthRBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, depthRBO);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24_OES, fboWidth, fboHeight);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRBO);
+    
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if (GL_FRAMEBUFFER_COMPLETE != status) {
+        std::fprintf(stderr, "INCOMPLETE FRAMEBUFFER");
+        std::abort();
+        
+    }
+    
+    /*
+    ShaderPtr vertexShader = loadShader("blur.vert");
+    ShaderPtr fragmentShader = loadShader("blur.frag");
+    */
+    
+    
+    /*
+    //Binding framebuffer
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    glViewport(0, 0, fboWidth, fboHeight);
+    
+    GLuint program;
+    //ATTACHING SHADERS
+    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &blurVS, 0);
+    glCompileShader(vertexShader);
+    glAttachShader(program, vertexShader);
+    
+    
+    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &blurFS, 0);
+    glCompileShader(fragmentShader);
+    glAttachShader(program, vertexShader);
+    glLinkProgram(program);
+    
+   //SET UNIFORMS:  glUniform4fv(<#GLint location#>, <#GLsizei count#>, <#const GLfloat *v#>)
+    
+    glUseProgram(program);
+    
+    
+    
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_WIDTH/2.0f);
+    
+    //RENDER HERE AGAIN FOR AFFECTING THE SCREEN
+    */
+    
     overallGameScore += 1;
 }

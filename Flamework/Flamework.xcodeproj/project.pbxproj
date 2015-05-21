@@ -21,14 +21,14 @@
 		B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B98819FC1AED5078006536E8 /* pampam.mp3 */; };
 		B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B138EA1AE78ACB00F3FFED /* Main.storyboard */; };
 		B9B138EE1AE78DC200F3FFED /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */; };
-		B9D545C51B0B6FE800B9CC77 /* font.vert in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C41B0B6FE800B9CC77 /* font.vert */; };
-		B9D545C71B0B6FEE00B9CC77 /* font.frag in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C61B0B6FEE00B9CC77 /* font.frag */; };
 		B9D545CA1B0B6FFE00B9CC77 /* alexis_bitmap.fnt in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C81B0B6FFE00B9CC77 /* alexis_bitmap.fnt */; };
 		B9D545CB1B0B6FFE00B9CC77 /* alexis_bitmap.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */; };
 		B9D545CF1B0B792800B9CC77 /* auspuff.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CD1B0B792700B9CC77 /* auspuff.pex */; };
 		B9D545D01B0B792800B9CC77 /* black_hole.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CE1B0B792800B9CC77 /* black_hole.pex */; };
 		B9FD35CE1B0CE4B3005F9D0D /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9FD35CD1B0CE4B3005F9D0D /* globals.cpp */; };
 		B9FD35D21B0CE8FE005F9D0D /* ParticleEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9FD35D01B0CE8FE005F9D0D /* ParticleEngine.cpp */; };
+		B9FDAF381B0E511F00BAE6BD /* rustypipe.png in Resources */ = {isa = PBXBuildFile; fileRef = B9FDAF371B0E511F00BAE6BD /* rustypipe.png */; };
+		B9FDAF3C1B0E532F00BAE6BD /* points.png in Resources */ = {isa = PBXBuildFile; fileRef = B9FDAF3B1B0E532F00BAE6BD /* points.png */; };
 		C3CA766E1B0B80DE00AD1D00 /* accelerator_black_new.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CA766D1B0B80DE00AD1D00 /* accelerator_black_new.png */; };
 		D51142351B0BB131001A6B98 /* halo.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D51142331B0BB131001A6B98 /* halo.mtl */; };
 		D51142361B0BB131001A6B98 /* halo.obj in Resources */ = {isa = PBXBuildFile; fileRef = D51142341B0BB131001A6B98 /* halo.obj */; };
@@ -123,8 +123,6 @@
 		B9B138EA1AE78ACB00F3FFED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B9B138EC1AE78DC200F3FFED /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
 		B9B138ED1AE78DC200F3FFED /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
-		B9D545C41B0B6FE800B9CC77 /* font.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = font.vert; sourceTree = "<group>"; };
-		B9D545C61B0B6FEE00B9CC77 /* font.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = font.frag; sourceTree = "<group>"; };
 		B9D545C81B0B6FFE00B9CC77 /* alexis_bitmap.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alexis_bitmap.fnt; sourceTree = "<group>"; };
 		B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alexis_bitmap.png; sourceTree = "<group>"; };
 		B9D545CD1B0B792700B9CC77 /* auspuff.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = auspuff.pex; sourceTree = "<group>"; };
@@ -134,6 +132,8 @@
 		B9FD35CF1B0CE8DB005F9D0D /* EmitterParticle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmitterParticle.h; sourceTree = "<group>"; };
 		B9FD35D01B0CE8FE005F9D0D /* ParticleEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleEngine.cpp; sourceTree = "<group>"; };
 		B9FD35D11B0CE8FE005F9D0D /* ParticleEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEngine.h; sourceTree = "<group>"; };
+		B9FDAF371B0E511F00BAE6BD /* rustypipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rustypipe.png; sourceTree = "<group>"; };
+		B9FDAF3B1B0E532F00BAE6BD /* points.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = points.png; sourceTree = "<group>"; };
 		C3CA766D1B0B80DE00AD1D00 /* accelerator_black_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accelerator_black_new.png; sourceTree = "<group>"; };
 		D51142331B0BB131001A6B98 /* halo.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = halo.mtl; sourceTree = "<group>"; };
 		D51142341B0BB131001A6B98 /* halo.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = halo.obj; sourceTree = "<group>"; };
@@ -424,6 +424,8 @@
 				C3CA766D1B0B80DE00AD1D00 /* accelerator_black_new.png */,
 				D5202FBE1B04143B004F65B5 /* accelerator_stars.jpg */,
 				D5202FBC1B04121A004F65B5 /* accelerator_black.png */,
+				B9FDAF371B0E511F00BAE6BD /* rustypipe.png */,
+				B9FDAF3B1B0E532F00BAE6BD /* points.png */,
 				D5202FB81B040F7C004F65B5 /* accelerator.mtl */,
 				D5202FB91B040F7C004F65B5 /* accelerator.obj */,
 			);
@@ -613,8 +615,6 @@
 				D56387AF1B0AC14F00732BE5 /* electron.frag */,
 				D56387B81B0B45C900732BE5 /* black_hole.vert */,
 				D56387BA1B0B45D800732BE5 /* black_hole.frag */,
-				B9D545C41B0B6FE800B9CC77 /* font.vert */,
-				B9D545C61B0B6FEE00B9CC77 /* font.frag */,
 				D51142391B0BB183001A6B98 /* halo.vert */,
 				D511423B1B0BB18E001A6B98 /* halo.frag */,
 			);
@@ -760,13 +760,12 @@
 			files = (
 				D511423C1B0BB18E001A6B98 /* halo.frag in Resources */,
 				D51142351B0BB131001A6B98 /* halo.mtl in Resources */,
+				B9FDAF3C1B0E532F00BAE6BD /* points.png in Resources */,
 				D511423A1B0BB183001A6B98 /* halo.vert in Resources */,
-				B9D545C71B0B6FEE00B9CC77 /* font.frag in Resources */,
 				D5202FD11B04D532004F65B5 /* core.vert in Resources */,
 				D5202FBB1B040F7C004F65B5 /* accelerator.obj in Resources */,
 				D56387AE1B0AC14500732BE5 /* electron.vert in Resources */,
 				B9D545CA1B0B6FFE00B9CC77 /* alexis_bitmap.fnt in Resources */,
-				B9D545C51B0B6FE800B9CC77 /* font.vert in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				D53C05111B0D1BD60023A96C /* nm1.jpg in Resources */,
 				B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */,
@@ -790,6 +789,7 @@
 				D51142361B0BB131001A6B98 /* halo.obj in Resources */,
 				F87C33491910561A00E8A523 /* test.mp3 in Resources */,
 				D5202FC91B041BF9004F65B5 /* s_1024_S.png in Resources */,
+				B9FDAF381B0E511F00BAE6BD /* rustypipe.png in Resources */,
 				D5202FD71B04DDDF004F65B5 /* core.mtl in Resources */,
 				283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */,
 				D56387B51B0B45A700732BE5 /* black_hole.mtl in Resources */,
@@ -861,7 +861,7 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -885,7 +885,7 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
