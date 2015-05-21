@@ -27,7 +27,7 @@ using boost::lexical_cast;
 
 #define SCROLL_SPEED    0.002f
 #define SCALE_SPEED     0.008f
-#define WINDOW_WIDTH    1024.0f
+#define WINDOW_WIDTH   1024.0f
 float steeringDirection = 0.0f;
 
 const float GRAVITY = 3.0f;
@@ -393,7 +393,7 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
             
             shader->setUniform("EyePos", _eyePos);
             
-            shader->setUniform("LightPos", vmml::vec4f(0.01, 0.01, -4, 1.f));
+            shader->setUniform("LightPos", vmml::vec4f(0.01, 2.01, 75., 1.f));
             shader->setUniform("Ia", vmml::vec3f(1.f));
             shader->setUniform("Id", vmml::vec3f(1.f));
             shader->setUniform("Is", vmml::vec3f(1.f));
@@ -502,7 +502,7 @@ void DemoSceneManager::draw(double deltaT)
         
         _modelMatrixShip =
         vmml::create_translation(position_ship)
-        * vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0))
+        * vmml::create_rotation(M_PI_F, vmml::vec3f(0.,1.,0.2))
         * vmml::create_scaling(.2f);
     }
     
@@ -578,11 +578,11 @@ void DemoSceneManager::draw(double deltaT)
         
         if( -0.6 <= distance.x() && distance.x() <= 0.6 &&
            -0.1 <= distance.y() && distance.y() <= 0.1 &&
-           0 <= distance.z() && distance.z() <= 0.3) {
-            //std::cout << "delta = " << delta << std::endl;
+           -0.3 <= distance.z() && distance.z() <= 0.1) {
+            /*std::cout << "delta = " << delta << std::endl;
             std::cout << "x = " << distance.x() << std::endl;
             std::cout << "y = " << distance.y() << std::endl;
-            std::cout << "z = " << distance.z() << std::endl;
+            std::cout << "z = " << distance.z() << std::endl;*/
             _collision = true;
         }
         

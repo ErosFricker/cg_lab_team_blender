@@ -200,7 +200,7 @@ enum
 - (void)viewWillAppear:(BOOL)animated
 {
     [self startAnimation];
-    [self startUpdatingScore];
+    //[self startUpdatingScore];
     
     [super viewWillAppear:animated];
 }
