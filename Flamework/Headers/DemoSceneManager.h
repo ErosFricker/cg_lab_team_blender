@@ -14,7 +14,7 @@
 #include "IScaleHandler.h"
 
 #include "Particle.h"
-
+#include "CoreParticle.h"
 
 #include <stack>
 #include <list>
@@ -59,16 +59,49 @@ public:
     
     void createOrthonormalSystems();
     
-    void drawParticles(std::list<Particle> particleList, float particle_speed);
+    void createModelmatrixShip(vmml::vec3f position, float scaling);
+    vmml::mat4f getShipShakingMatrix(float time, float amplitudeLeft, float amplituderight, float shakingfactorLeft, float shakingfactorRight);
+    void createModelmatrixAccelerator(float scaling);
+    void createProjectionMatrix();
+    void createViewMatrix();
+
+    vmml::vec3f distanceBetween(vmml::vec3f vec1, vmml::vec3f vec2);
+    vmml::mat4f orientToViewer(vmml::vec3f eye, vmml::vec3f lookAt, vmml::vec3f point);
+    vmml::mat4f haloMatrix(vmml::vec3f eye, vmml::vec3f lookAt, vmml::vec3f point, float originalSize);
+    vmml::mat4f fakeScaling(vmml::vec3f position, float originalSize);
+    bool hasCollided(vmml::vec3f vec1, vmml::vec3f vec2);
+    
 private:
     std::list<Particle> _activeParticles;
+    std::list<CoreParticle> _particleList;
     
     double _time;
     float _rotationValue;
     bool _firstCall;
     bool _collision;
     int _particlesPassed;
-    float _speed;
+    //float _speed;
+    
+    float _steeringSpeed;
+    float _textureSpeed;
+    float _textureSpeedExp;
+    float _textureSpeedFac;
+    
+    vmml::mat4f _steeringRotation;
+    vmml::mat4f _shipModifierMatrix;
+    vmml::mat4f _gyroRotationMatrix;
+    
+    float _gyroSpeed;
+    float _amplitudeVertical;
+    float _amplitudeHorizontal;
+    float _shakingfactorLeft;
+    float _shakingfactorRight;
+    
+    float _particleSpeed;
+    float _particleSize;
+    float _particleSpawnProbability;
+    float _maxParticleNumber;
+    float _particleSpeedIncrement;
 
     vmml::vec2f _scrolling;
     vmml::vec2f _lScrollPos;
@@ -76,17 +109,18 @@ private:
     vmml::vec2f _lScale;
     vmml::vec4f _eyePos;
     
-    MatrixStack _modelMatrixStack;
     vmml::mat4f _modelMatrix;
     vmml::mat4f _viewMatrix;
     vmml::mat4f _projectionMatrix;
     
     vmml::mat4f _modelMatrixAccelerator;
     vmml::mat4f _modelMatrixShip;
+    vmml::vec3f _positionShip;
     
     vmml::vec4f _color;
     vmml::mat4f _acceleratorRotation;
     
+    MatrixStack _modelMatrixStack;
     vmml::mat3f _orthonormalBases[NUMBER_OF_ORTHOGONALSYSTEMS];
 };
 

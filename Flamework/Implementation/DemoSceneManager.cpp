@@ -14,13 +14,15 @@
 #include "ModelData.h"
 #include "ShaderData.h"
 #include "Framework_GL.h"
-#include "Util.h"
+
 #include "Particle.h"
-#include <cmath>
-#include <list>
+#include "CoreParticle.h"
 #include "globals.h"
 #include "ParticleEngine.h"
 
+#include "Util.h"
+#include <cmath>
+#include <list>
 
 #include <boost/lexical_cast.hpp>
 
@@ -28,11 +30,10 @@ using boost::lexical_cast;
 
 #define SCROLL_SPEED    0.002f
 #define SCALE_SPEED     0.008f
-#define WINDOW_WIDTH    1024.0f
+#define WINDOW_WIDTH    1024.0f // 768.f for iPad2
 float steeringDirection = 0.0f;
 
-
-
+ParticleEngine* engine;
 
 
 DemoSceneManager::DemoSceneManager(Application *application)
@@ -58,22 +59,16 @@ void DemoSceneManager::onTouchBegan(float x, float y)
     float scrolling = cScrollPos.x() - (WINDOW_WIDTH/2.0f);
     
     if (scrolling > 0.0f){
-        
         util::log("RIGHT");
-        
-        
-        
         steeringDirection = scrolling;
-        
     }
-    else{
+    else {
         util::log("LEFT");
         steeringDirection = scrolling;
     }
+    
     steeringDirection = -steeringDirection;
-    
-    
-    //    getSound("test")->play();*/
+    // getSound("test")->play();*/
 }
 
 void DemoSceneManager::onTouchMoved(float x, float y)
@@ -117,7 +112,8 @@ void DemoSceneManager::onScaleEnded(float x, float y)
     _lScale = cScale;
 }
 
-ParticleEngine* engine;
+
+
 void DemoSceneManager::initialize(size_t width, size_t height)
 {
     getApplication()->addTouchHandler(this);
@@ -131,8 +127,6 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("electron.obj", true, true);
     loadModel("black_hole.obj", true, true);
     loadModel("halo.obj", true, true);
-    
-    
 }
 
 vmml::mat4f lookAt(vmml::vec3f eye, vmml::vec3f target, vmml::vec3f up)
@@ -192,8 +186,8 @@ void DemoSceneManager::createOrthonormalSystems()
     srand((unsigned int) time(NULL));
     
     // Compute orthonormal systems
-    for (int i=0; i<NUMBER_OF_ORTHOGONALSYSTEMS; ++i) {
-        
+    for (int i=0; i<NUMBER_OF_ORTHOGONALSYSTEMS; ++i)
+    {
         // Create 3 random vectors
         int random[9];
         for (int i=0; i<9; ++i) random[i] = (int) pow(-1.f,rand()%2) * rand()%100;
@@ -217,70 +211,150 @@ void DemoSceneManager::createOrthonormalSystems()
     }
 }
 
-
-void DemoSceneManager::drawParticles(std::list<Particle> particleList, float particle_speed) {
+void DemoSceneManager::createModelmatrixShip(vmml::vec3f position, float scaling)
+{
+    _modelMatrixShip = vmml::create_translation(position)
+                        * vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0))
+                        * vmml::create_scaling(scaling);
     
+    _positionShip = position;
+}
+
+void DemoSceneManager::createModelmatrixAccelerator(float scaling)
+{
+    _modelMatrixAccelerator = vmml::create_rotation(-M_PI_F/2, vmml::vec3f(1,0,0))
+                                * vmml::create_scaling(scaling);
+}
+
+void DemoSceneManager::createProjectionMatrix()
+{
+    _projectionMatrix = vmml::mat4f::ZERO;
+    
+    float fieldOfViewDegrees = 33.0f;
+    const float aspect = 3.0f/4.0f;
+    const float zNear = 0.1f;
+    const float zFar = 1000.0f;
+    const float minimumFOV = 33.0f;
+    const float maximumFOV = 360.0f;
+    
+    if (fieldOfViewDegrees < minimumFOV) fieldOfViewDegrees = minimumFOV;
+    if (fieldOfViewDegrees > maximumFOV) fieldOfViewDegrees = maximumFOV;
+    
+    const float fieldOfView = fieldOfViewDegrees*(M_PI_F/360);
+    const float f = 1 / tanf(fieldOfView/2.0f);
+    
+    _projectionMatrix[0][0] = f / aspect;
+    _projectionMatrix[1][1] = f;
+    _projectionMatrix[2][2] = (zFar + zNear)/(zNear - zFar);
+    _projectionMatrix[2][3] = (2*zFar*zNear)/(zNear - zFar);
+    _projectionMatrix[3][2] = -1.0f;
+}
+
+void DemoSceneManager::createViewMatrix()
+{
+    _eyePos = vmml::vec3f(0, 0, 100);
+    _viewMatrix = lookAt(_eyePos, vmml::vec3f::ZERO, vmml::vec3f::UP);
+}
+
+vmml::mat4f DemoSceneManager::getShipShakingMatrix(float time, float amplitudeLeft, float amplituderight,float shakingfactorLeft, float shakingfactorRight)
+{
+    return  vmml::create_translation
+            (
+                vmml::vec3f
+                (
+                    amplituderight * sin(shakingfactorRight*time + M_PI_F/2.f),
+                    amplitudeLeft*sin(shakingfactorLeft*time),
+                    0
+                )
+            );
+}
+
+bool DemoSceneManager::hasCollided(vmml::vec3f vec1, vmml::vec3f vec2) {
+    
+    vmml::vec3f distanceVector = -vec1 + vec2;
+    
+    if (-0.6 <= distanceVector.x() && distanceVector.x() <= 0.6 &&
+        -0.1 <= distanceVector.y() && distanceVector.y() <= 0.1 &&
+        -0.0 <= distanceVector.z() && distanceVector.z() <= 0.3)
+    {
+        return true;
+    }
+    
+    else return false;
+}
+
+vmml::mat4f DemoSceneManager::orientToViewer(vmml::vec3f eye, vmml::vec3f lookAt, vmml::vec3f point)
+{
+    vmml::vec3f v1 = -eye+lookAt;
+    vmml::vec3f v2 = -eye+point;
+    
+    float alpha = std::acos(vmml::dot(v1,v2)/sqrt(vmml::dot(v1,v1))/sqrt(vmml::dot(v2,v2)));
+    
+    return vmml::create_rotation(alpha, v1.cross(v2));
+}
+
+vmml::mat4f DemoSceneManager::fakeScaling(vmml::vec3f position, float originalSize)
+{
+    return vmml::create_scaling(1/100.f * position.z() * originalSize);
+}
+
+vmml::mat4f DemoSceneManager::haloMatrix(vmml::vec3f eye, vmml::vec3f lookAt, vmml::vec3f point, float originalSize) {
+    
+    return vmml::create_translation(point)
+            * orientToViewer(eye, lookAt, point)
+            * fakeScaling(point, originalSize);
 }
 
 
 
-
-vmml::vec3f position_ship(vmml::vec3f(0, -2, 80));
-float steeringSpeed = -0.00009f;
 void DemoSceneManager::draw(double deltaT)
 {
-    // Catch the first function call
-    if (_firstCall)
-    {
-        _firstCall = false;
-        _particlesPassed = 0;
-        _collision = false;
-        _speed = 1;
+    _time += deltaT;
+    
+    // GAME CONFIGURATION
+    if (_firstCall) {
         
-        // Set random seed
+        // Time
         srand((unsigned int) _time);
-        createOrthonormalSystems();
-        
-        // Define viewmatrix
-        _eyePos = vmml::vec3f(0, 0, 100);
-        vmml::vec3f eyeUp = vmml::vec3f::UP;
-        _viewMatrix = lookAt(_eyePos, vmml::vec3f::ZERO, eyeUp);
-        
-        // Define projectionmatrix
-        _projectionMatrix = vmml::mat4f::ZERO;
-        
-        float fieldOfViewDegrees = 33.0f;
-        const float aspect = 3.0f/4.0f;
-        const float zNear = 0.1f;
-        const float zFar = 1000.0f;
-        const float minimumFOV = 33.0f;
-        const float maximumFOV = 360.0f;
-        
-        if (fieldOfViewDegrees < minimumFOV) fieldOfViewDegrees = minimumFOV;
-        if (fieldOfViewDegrees > maximumFOV) fieldOfViewDegrees = maximumFOV;
-        
-        const float fieldOfView = fieldOfViewDegrees*(M_PI_F/360);
-        const float f = 1 / tanf(fieldOfView/2.0f);
-        
-        _projectionMatrix[0][0] = f / aspect;
-        _projectionMatrix[1][1] = f;
-        _projectionMatrix[2][2] = (zFar + zNear)/(zNear - zFar);
-        _projectionMatrix[2][3] = (2*zFar*zNear)/(zNear - zFar);
-        _projectionMatrix[3][2] = -1.0f;
-        
-        // Define timereferences
-        deltaT = 0; // !!!
+        _firstCall = false;
+        deltaT = 0;
         _time = 0;
         
-        // Setup default modelmatrices
-        _modelMatrixAccelerator =
-        vmml::create_rotation(-M_PI_F/2, vmml::vec3f(1,0,0))
-        * vmml::create_scaling(6.f);
+        // Particles
+        _collision = false;
+        _particleSpeed = 30.f;
+        _particleSize = 0.4f;           // 0.2
+        _particleSpawnProbability = 5;  // 20
+        _maxParticleNumber = 15;        // 25
+        _particleSpeedIncrement = 15;
         
-        _modelMatrixShip =
-        vmml::create_translation(position_ship)
-        * vmml::create_rotation(M_PI_F, vmml::vec3f(0.,1.,0.2))
-        * vmml::create_scaling(.2f);
+        // Navigation
+        steeringDirection = 0;
+        _steeringSpeed = .0003f;
+        _rotationValue = 0;
+        _steeringRotation = 0.f;
+        _gyroSpeed = 0.1;
+        
+        // Accelerator
+        _textureSpeed = 0;
+        _textureSpeedExp = 1.5f;
+        _textureSpeedFac = 0.2f;
+        
+        // Ship
+        _amplitudeVertical = 0.03f;
+        _amplitudeHorizontal = 0.015f;
+        _shakingfactorLeft = 24.f;
+        _shakingfactorRight = 4.f;
+        
+        // Matrices
+        createViewMatrix();
+        createProjectionMatrix();
+        createModelmatrixAccelerator(6.f); // scalingfactor
+        createModelmatrixShip(vmml::vec3f(0, -2, 80), 0.2f); // position, scaling
+        _gyroRotationMatrix = vmml::mat4f::IDENTITY;
+        
+        // Others
+        createOrthonormalSystems();
     }
     
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
@@ -290,129 +364,91 @@ void DemoSceneManager::draw(double deltaT)
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
     
-    // Update timereference
-    _time += deltaT;
+    // UPDATE PARAMETERS
     
-    // Userinput (Steering onTouch): Update default accelerator-modelmatrix
-    float acceleratorRotation = 0;
-    if (steeringDirection < 0.0) {
-        _rotationValue += steeringDirection;
-        acceleratorRotation +=steeringDirection;
-    }
-    else if (steeringDirection > 0.0){
-        _rotationValue += steeringDirection;
-        acceleratorRotation += steeringDirection;
-    }
-    _acceleratorRotation = (vmml::mat4f) vmml::create_rotation(
-                                                               acceleratorRotation*-M_PI_F*steeringSpeed, vmml::vec3f::UNIT_Z);
-    _modelMatrixAccelerator = _acceleratorRotation*_modelMatrixAccelerator;
+    // Tabletrotation (works but sucks)
+    Gyro *gyro = Gyro::getInstance();
+    gyro->read();
+    _gyroRotationMatrix *= vmml::create_rotation(_gyroSpeed*gyro->getRoll(), vmml::vec3f::UNIT_Z);
     
+    // Touch/Scroll
+    _rotationValue += steeringDirection;
     
-    /*
-     // Userinput - tablet rotation
-     Gyro *gyro = Gyro::getInstance();
-     gyro->read();
-     
-     vmml::mat3f rotation =
-     vmml::create_rotation(gyro->getRoll() * -M_PI_F - .3f, vmml::vec3f::UNIT_Y)
-     * vmml::create_rotation(gyro->getPitch() * -M_PI_F + .3f, vmml::vec3f::UNIT_X);
-     */
+    // Current systemrotation
+    _steeringRotation = /*_gyroRotationMatrix*/vmml::create_rotation(_rotationValue*_steeringSpeed,vmml::vec3f::UNIT_Z);
     
-    // Define the "speed"
-    float time = .05f * _time;
-    float particle_speed = 0.3f*deltaT*_speed;
-    float accelerator_speed = fmodf((0.1*_time),0.496f);
+    // Other Parameters
     
     // Accelerator
-    _modelMatrix = _modelMatrixAccelerator;
-    drawModel(_time*0.1, "accelerator");
-    std::cout << "DeltaT " << _time << std::endl;
-
+    
+    float eros_acceleration = 0.1f * _time;
+    float accelerator_speed = fmodf((0.1*_time),0.496f);
+    
+    _modelMatrix = _steeringRotation * _modelMatrixAccelerator;
+    _textureSpeed = fmodf(_textureSpeedFac*pow(_time,_textureSpeedExp),0.496f);
+    drawModel(eros_acceleration, "accelerator");
     
     // Ship
-    _modelMatrix =  vmml::create_translation(vmml::vec3f(0.015 * sin(240*time + M_PI_F/2.f), 0.03*sin(40*time), 0)) * _modelMatrixShip;
+    _shipModifierMatrix = getShipShakingMatrix(_time, _amplitudeVertical, _amplitudeHorizontal, _shakingfactorLeft, _shakingfactorRight);
+    _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
     drawModel(0, "ship");
     
-    // Particles
     
-    // Generate new particles
-    // If particlelist < x, generate new particle with probability p
-    if (rand()%101 < 20 && _activeParticles.size() < 25) {
-        Particle p;
-        p.generateRandomParticle(_time + (double) rand());
-        _activeParticles.push_front(p);
+    // Generate new coreparticles
+    if (rand()%101<_particleSpawnProbability && _particleList.size()<_maxParticleNumber)
+    {
+        CoreParticle p;
+        p.create(_time, _particleSpeed, _particleSize, rand());
+        _particleList.push_front(p);
     }
     
-    std::list<Particle> tmp;
-    
-    // Draw active particles
-    std::list<Particle>::iterator it;
-    for (it=_activeParticles.begin(); it != _activeParticles.end(); ++it) {
-        // Draw the core
-        _modelMatrix = vmml::create_rotation(_rotationValue*-M_PI_F*steeringSpeed, vmml::vec3f::UNIT_Z)
-        * (*it).getModelMatrix(particle_speed, .2f);
+    // Draw Particles
+    std::list<CoreParticle>::iterator it;
+    for (it = _particleList.begin(); it != _particleList.end(); ++it)
+    {
+        _modelMatrix = _steeringRotation * (*it).getModelMatrix(_time);
+        drawModel(0, "core");
         
-        //COLLISION DETECTION
-        vmml::vec3f distance = vmml::vec3f(_modelMatrix.at(0,3),_modelMatrix.at(1,3),_modelMatrix.at(2,3)) - position_ship;
+        // Collisiondetection
+        vmml::vec3f absolutePosition = _steeringRotation*(it->getPosition(_time)).getPosition();
+        if(hasCollided(absolutePosition, _positionShip)) _collision = true;
         
-        if( -0.6 <= distance.x() && distance.x() <= 0.6 &&
-           -0.1 <= distance.y() && distance.y() <= 0.1 &&
-           -0.3 <= distance.z() && distance.z() <= 0.1) {
-            /*std::cout << "delta = " << delta << std::endl;
-            std::cout << "x = " << distance.x() << std::endl;
-            std::cout << "y = " << distance.y() << std::endl;
-            std::cout << "z = " << distance.z() << std::endl;*/
-            _collision = true;
-        }
-        
-        else drawModel(0, "core");
-        
-        // draw halo effects
+        // Draw Halo
+        vmml::mat4f tmp = _modelMatrix;
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        float halo_scal = sin(it->getRandom1()*25.f*_time + it->getRandom2());
-        _modelMatrix *= vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))*vmml::create_scaling(2.f+0.25f*halo_scal);
+        float halo_scal = fabs(sin(it->getRandom1()*25.f*_time + it->getRandom2()));
+        _modelMatrix *= vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))
+                        * vmml::create_scaling(1.3f+halo_scal);
         drawModel(0, "halo");
         glDisable(GL_BLEND);
-        
-        // Draw electrons
-        vmml::mat4f modelMatrix = _modelMatrix;
-        vmml::mat4f _modelMatrixElectrons;
-        for (int i=0; i<(*it).getNumberOfElectrons(); ++i) {
-            float scal = (*it).getCurrentScalingFactor();
-            int sys = (*it).getOrthonormalSystem();
-            _modelMatrixElectrons =
-            vmml::create_rotation(_rotationValue*-M_PI_F*steeringSpeed, vmml::vec3f::UNIT_Z)
-            * vmml::create_translation((*it).getCurrentPosition())
-            * vmml::create_translation(vmml::create_scaling(1.2f*scal)*vmml::create_rotation(30*time, _orthonormalBases[sys].get_row(i))
-                                       * _orthonormalBases[sys].get_row((i+1)%3))
-            * vmml::create_scaling(.5f*scal);
-           // std::cout << "SCALING " << 20*time << std::endl << std::endl;
-            _modelMatrix = _modelMatrixElectrons;
-            _color = YELLOW;
-            drawModel(0, "electron");
-        }
-        _modelMatrix = modelMatrix;
+        _modelMatrix = tmp;
     }
     
-    // Remove inactive particles
-    while ((*(--_activeParticles.end())).passed()){
-        _activeParticles.pop_back();
-        _particlesPassed++;
+    // Remove passed particles
+    std::list<CoreParticle>::const_iterator iterator;
+    while (!(*(--_particleList.end())).getPosition(_time).isValid())
+    {
+        _particleList.pop_back();
+        ++_particlesPassed;
     }
     
-    
-    // TEST, draw black hole
-    if (_collision) {
-        _modelMatrix = _modelMatrixShip * vmml::create_scaling(5.f);
+    // TEST, draw black hole (blue sphere)
+    if (_collision)
+    {
+        _modelMatrix = _modelMatrixShip * vmml::create_scaling(3.f);
         _color = vmml::vec4f(0,0,0.2,1);
         drawModel(0, "black_hole");
     }
     
-    if(_particlesPassed >= 50){
-        _speed = _speed + 0.1;
+    if(_particlesPassed >= 50)
+    {
+        _particleSpeedIncrement += _particleSpeedIncrement;
         _particlesPassed = 0;
+        _particleSpawnProbability += 0;
+        _maxParticleNumber += 0;
     }
+    
     
     //engine->draw();
 

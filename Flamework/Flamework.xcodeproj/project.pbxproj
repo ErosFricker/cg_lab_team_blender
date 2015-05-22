@@ -54,6 +54,8 @@
 		D5202FDA1B04DE5B004F65B5 /* water_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD91B04DE5B004F65B5 /* water_texture.jpg */; };
 		D5202FDE1B060017004F65B5 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5202FDC1B060017004F65B5 /* Particle.cpp */; };
 		D53C05111B0D1BD60023A96C /* nm1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D53C05101B0D1BD60023A96C /* nm1.jpg */; };
+		D54C07FD1B0E908E0028372D /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54C07FB1B0E908E0028372D /* Position.cpp */; };
+		D54C08001B0E91560028372D /* CoreParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54C07FE1B0E91560028372D /* CoreParticle.cpp */; };
 		D56387AA1B0AC12A00732BE5 /* electron.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D56387A91B0AC12A00732BE5 /* electron.mtl */; };
 		D56387AC1B0AC13800732BE5 /* electron.obj in Resources */ = {isa = PBXBuildFile; fileRef = D56387AB1B0AC13800732BE5 /* electron.obj */; };
 		D56387AE1B0AC14500732BE5 /* electron.vert in Resources */ = {isa = PBXBuildFile; fileRef = D56387AD1B0AC14500732BE5 /* electron.vert */; };
@@ -63,6 +65,7 @@
 		D56387B71B0B45B700732BE5 /* black_hole.obj in Resources */ = {isa = PBXBuildFile; fileRef = D56387B61B0B45B700732BE5 /* black_hole.obj */; };
 		D56387B91B0B45C900732BE5 /* black_hole.vert in Resources */ = {isa = PBXBuildFile; fileRef = D56387B81B0B45C900732BE5 /* black_hole.vert */; };
 		D56387BB1B0B45D800732BE5 /* black_hole.frag in Resources */ = {isa = PBXBuildFile; fileRef = D56387BA1B0B45D800732BE5 /* black_hole.frag */; };
+		D5B102111B0EA970005FB9BE /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5B102101B0EA970005FB9BE /* fire.jpg */; };
 		F814A6161716A0E000A2A910 /* obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F814A6121716A0E000A2A910 /* obj.cpp */; };
 		F814A6171716A0E000A2A910 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F814A6141716A0E000A2A910 /* obj_parser.cpp */; };
 		F81D4CAB16DABE50001FA5DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F81D4CAA16DABE50001FA5DD /* CoreGraphics.framework */; };
@@ -160,6 +163,10 @@
 		D5202FDB1B05FDA3004F65B5 /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		D5202FDC1B060017004F65B5 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		D53C05101B0D1BD60023A96C /* nm1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nm1.jpg; sourceTree = "<group>"; };
+		D54C07FB1B0E908E0028372D /* Position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Position.cpp; sourceTree = "<group>"; };
+		D54C07FC1B0E908E0028372D /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Position.h; path = ../Implementation/Position.h; sourceTree = "<group>"; };
+		D54C07FE1B0E91560028372D /* CoreParticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoreParticle.cpp; sourceTree = "<group>"; };
+		D54C07FF1B0E91560028372D /* CoreParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreParticle.h; sourceTree = "<group>"; };
 		D56387A91B0AC12A00732BE5 /* electron.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = electron.mtl; sourceTree = "<group>"; };
 		D56387AB1B0AC13800732BE5 /* electron.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = electron.obj; sourceTree = "<group>"; };
 		D56387AD1B0AC14500732BE5 /* electron.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = electron.vert; sourceTree = "<group>"; };
@@ -169,6 +176,7 @@
 		D56387B61B0B45B700732BE5 /* black_hole.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = black_hole.obj; sourceTree = "<group>"; };
 		D56387B81B0B45C900732BE5 /* black_hole.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = black_hole.vert; sourceTree = "<group>"; };
 		D56387BA1B0B45D800732BE5 /* black_hole.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = black_hole.frag; sourceTree = "<group>"; };
+		D5B102101B0EA970005FB9BE /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fire.jpg; sourceTree = "<group>"; };
 		F814A6121716A0E000A2A910 /* obj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj.cpp; sourceTree = "<group>"; };
 		F814A6131716A0E000A2A910 /* obj.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = obj.hpp; sourceTree = "<group>"; };
 		F814A6141716A0E000A2A910 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
@@ -435,6 +443,7 @@
 		D5202FD41B04DDCB004F65B5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D5B102101B0EA970005FB9BE /* fire.jpg */,
 				D53C05101B0D1BD60023A96C /* nm1.jpg */,
 				D5202FD91B04DE5B004F65B5 /* water_texture.jpg */,
 				D5202FD51B04DDDF004F65B5 /* core.mtl */,
@@ -559,6 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				D5202FDB1B05FDA3004F65B5 /* Particle.h */,
+				D54C07FC1B0E908E0028372D /* Position.h */,
 				F87C331A1910557D00E8A523 /* DemoSceneManager.h */,
 				B9FD35CC1B0CE485005F9D0D /* globals.h */,
 				B9FD35CF1B0CE8DB005F9D0D /* EmitterParticle.h */,
@@ -574,6 +584,9 @@
 				B9FD35D11B0CE8FE005F9D0D /* ParticleEngine.h */,
 				B9FD35CD1B0CE4B3005F9D0D /* globals.cpp */,
 				D5202FDC1B060017004F65B5 /* Particle.cpp */,
+				D54C07FB1B0E908E0028372D /* Position.cpp */,
+				D54C07FE1B0E91560028372D /* CoreParticle.cpp */,
+				D54C07FF1B0E91560028372D /* CoreParticle.h */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -765,6 +778,7 @@
 				D5202FD11B04D532004F65B5 /* core.vert in Resources */,
 				D5202FBB1B040F7C004F65B5 /* accelerator.obj in Resources */,
 				D56387AE1B0AC14500732BE5 /* electron.vert in Resources */,
+				D5B102111B0EA970005FB9BE /* fire.jpg in Resources */,
 				B9D545CA1B0B6FFE00B9CC77 /* alexis_bitmap.fnt in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				D53C05111B0D1BD60023A96C /* nm1.jpg in Resources */,
@@ -830,6 +844,7 @@
 				B92F88551AEFD133005EDB9C /* SettingsViewController.m in Sources */,
 				F87C330D1910554000E8A523 /* TextureData.mm in Sources */,
 				F87C330C1910554000E8A523 /* Sound.mm in Sources */,
+				D54C08001B0E91560028372D /* CoreParticle.cpp in Sources */,
 				F87C33181910554000E8A523 /* Texture.cpp in Sources */,
 				F87C330A1910554000E8A523 /* Gyro.mm in Sources */,
 				F87C33091910554000E8A523 /* FrameworkViewController.mm in Sources */,
@@ -837,6 +852,7 @@
 				F87C33141910554000E8A523 /* PhysicsManager.cpp in Sources */,
 				F87C33161910554000E8A523 /* Shader.cpp in Sources */,
 				B9B138EE1AE78DC200F3FFED /* StartScreenViewController.m in Sources */,
+				D54C07FD1B0E908E0028372D /* Position.cpp in Sources */,
 				D5202FDE1B060017004F65B5 /* Particle.cpp in Sources */,
 				F87C33101910554000E8A523 /* Material.cpp in Sources */,
 				F87C33121910554000E8A523 /* ModelData.cpp in Sources */,
