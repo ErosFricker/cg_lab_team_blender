@@ -1,4 +1,4 @@
-newmtl accelerator
+newmtl four
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -6,5 +6,4 @@ Ks 0.500000 0.500000 0.500000
 # Ni 1.000000
 d 1.000000
 # illum 2
-map_Kd accelerator_stars.jpg
-map_Bump polygon.jpg
+map_Kd 4.png

@@ -21,6 +21,7 @@
 #include "ParticleEngine.h"
 
 #include "Util.h"
+#include <string>
 #include <cmath>
 #include <list>
 
@@ -127,6 +128,17 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("electron.obj", true, true);
     loadModel("black_hole.obj", true, true);
     loadModel("halo.obj", true, true);
+    
+    loadModel("zero.obj", true, true);
+    loadModel("one.obj", true, true);
+    loadModel("two.obj", true, true);
+    loadModel("three.obj", true, true);
+    loadModel("four.obj", true, true);
+    loadModel("five.obj", true, true);
+    loadModel("six.obj", true, true);
+    loadModel("seven.obj", true, true);
+    loadModel("eight.obj", true, true);
+    loadModel("nine.obj", true, true);
 }
 
 vmml::mat4f lookAt(vmml::vec3f eye, vmml::vec3f target, vmml::vec3f up)
@@ -305,7 +317,15 @@ vmml::mat4f DemoSceneManager::haloMatrix(vmml::vec3f eye, vmml::vec3f lookAt, vm
             * fakeScaling(point, originalSize);
 }
 
+vmml::mat4f DemoSceneManager::getScoreModelMatrix(vmml::vec4f position, int place, float scale) {
+    return  vmml::create_translation(
+                vmml::vec3f(position.x()-place*position.w(),position.y(),position.z())
+            )
+            * vmml::create_rotation(-M_PI_F/2.f, vmml::vec3f(1,0,0))
+            * vmml::create_scaling(scale);
+}
 
+int _points;
 
 void DemoSceneManager::draw(double deltaT)
 {
@@ -319,6 +339,8 @@ void DemoSceneManager::draw(double deltaT)
         _firstCall = false;
         deltaT = 0;
         _time = 0;
+        
+        _points = 0;
         
         // Particles
         _collision = false;
@@ -431,6 +453,7 @@ void DemoSceneManager::draw(double deltaT)
     {
         _particleList.pop_back();
         ++_particlesPassed;
+        ++_points;
     }
     
     // TEST, draw black hole (blue sphere)
@@ -448,6 +471,41 @@ void DemoSceneManager::draw(double deltaT)
         _particleSpawnProbability += 0;
         _maxParticleNumber += 0;
     }
+    
+    // Draw Points
+    // Analize points
+    /*
+    std::string str = std::to_string(_points);
+    std::string::iterator iter = str.begin();
+    while (iter!=str.end()) {
+        std::cout << (int) *(iter++);
+    }std::cout << std::endl << _points << std::endl;
+    */
+    
+    float x0(4.8), y0(6.f), z(50), s(.3f), d(.6);
+    
+    int i = _points;
+    int length = std::to_string(i).length();
+    for ( int j=0; j<length; ++j) {
+        int digit = (int) (i % (unsigned int) pow(10, j+1) / pow(10, j));
+        _modelMatrix = getScoreModelMatrix(vmml::vec4f(x0,y0,z,d), j, s);
+        switch (digit) {
+            case 0: drawModel(0, "zero"); break;
+            case 1: drawModel(0, "one"); break;
+            case 2: drawModel(0, "two"); break;
+            case 3: drawModel(0, "three"); break;
+            case 4: drawModel(0, "four"); break;
+            case 5: drawModel(0, "five"); break;
+            case 6: drawModel(0, "six"); break;
+            case 7: drawModel(0, "seven"); break;
+            case 8: drawModel(0, "eight"); break;
+            case 9: drawModel(0, "nine"); break;
+            default: break;
+        }
+        std::cout << digit;
+    } std::cout << std::endl;
+    
+    
     
     
     //engine->draw();
