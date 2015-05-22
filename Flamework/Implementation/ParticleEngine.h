@@ -22,7 +22,6 @@
 #include "Particle.h"
 #include <cmath>
 #include <list>
-#include "globals.h"
 #include "EmitterParticle.h"
 
 class ParticleEngine : public Model {

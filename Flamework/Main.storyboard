@@ -89,23 +89,9 @@
                     <view key="view" contentMode="scaleToFill" id="LOI-zE-cFU" customClass="EAGLView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K82-Sc-JQ6">
-                                <rect key="frame" x="20" y="40" width="560" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="K82-Sc-JQ6" firstAttribute="top" secondItem="FZS-DS-OSk" secondAttribute="bottom" constant="20" id="HT6-jM-DhO"/>
-                            <constraint firstAttribute="trailing" secondItem="K82-Sc-JQ6" secondAttribute="trailing" constant="20" id="lAK-5G-U8B"/>
-                            <constraint firstItem="K82-Sc-JQ6" firstAttribute="leading" secondItem="LOI-zE-cFU" secondAttribute="leading" constant="20" id="sfW-nM-Npw"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="scoreLabel" destination="K82-Sc-JQ6" id="Pfq-ti-yzM"/>
                         <outlet property="view" destination="LOI-zE-cFU" id="Ais-69-Tbj"/>
                     </connections>
                 </viewController>

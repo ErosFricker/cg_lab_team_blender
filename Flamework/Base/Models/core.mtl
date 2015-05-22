@@ -6,5 +6,5 @@ Ks 0.500000 0.500000 0.500000
 # Ni 1.000000
 d 1.000000
 # illum 2
-map_Kd fire.jpg
+map_Kd water_texture.jpg
 map_Bump nm1.jpg

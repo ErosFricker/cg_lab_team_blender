@@ -13,7 +13,6 @@
 #include "Framework_GL.h"
 #include "Util.h"
 #include "DemoSceneManager.h"
-#include "globals.h"
 
 // Uniform index.
 enum
@@ -37,8 +36,6 @@ enum
 }
 @property (nonatomic, strong) EAGLContext *context;
 @property (nonatomic, weak) CADisplayLink *displayLink;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property(nonatomic, strong) NSTimer* timer;
 
 @end
 
@@ -126,11 +123,6 @@ enum
 {
     [super viewDidLoad];
     
-    UIFont* buttonFont = [UIFont fontWithName:@"Alexis Laser Italic" size:50.0f];
-    [self.scoreLabel setFont:buttonFont];
-
-    [self.scoreLabel setText:@"0"];
-    
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     // resizeGesture.minimumNumberOfTouches = 2;
     panGesture.delaysTouchesEnded = FALSE;
@@ -200,16 +192,8 @@ enum
 - (void)viewWillAppear:(BOOL)animated
 {
     [self startAnimation];
-    //[self startUpdatingScore];
     
     [super viewWillAppear:animated];
-}
-
--(void)startUpdatingScore{
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.9 target:self selector:@selector(updateScoreLabel) userInfo:nil repeats:YES];
-}
--(void)updateScoreLabel{
-    [self.scoreLabel setText:[NSString stringWithFormat:@"%i", overallGameScore]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

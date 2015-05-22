@@ -17,7 +17,6 @@
 
 #include "Particle.h"
 #include "CoreParticle.h"
-#include "globals.h"
 #include "ParticleEngine.h"
 
 #include "Util.h"
@@ -31,7 +30,7 @@ using boost::lexical_cast;
 
 #define SCROLL_SPEED    0.002f
 #define SCALE_SPEED     0.008f
-#define WINDOW_WIDTH    1024.0f // 768.f for iPad2
+#define WINDOW_WIDTH    768.0f // 768.f for iPad2, 1024. f for normal
 float steeringDirection = 0.0f;
 
 ParticleEngine* engine;
@@ -226,7 +225,7 @@ void DemoSceneManager::createOrthonormalSystems()
 void DemoSceneManager::createModelmatrixShip(vmml::vec3f position, float scaling)
 {
     _modelMatrixShip = vmml::create_translation(position)
-                        * vmml::create_rotation(M_PI_F, vmml::vec3f(0,1,0))
+                        * vmml::create_rotation(M_PI_F, vmml::vec3f(0.,1.,0.2))
                         * vmml::create_scaling(scaling);
     
     _positionShip = position;
@@ -355,10 +354,10 @@ void DemoSceneManager::draw(double deltaT)
         // Particles
         _collision = false;
         _particleSpeed = 30.f;
-        _particleSize = 0.4f;           // 0.2
-        _particleSpawnProbability = 5;  // 20
-        _maxParticleNumber = 15;        // 25
-        _particleSpeedIncrement = 15;
+        _particleSize = 0.3f;           // 0.2
+        _particleSpawnProbability = 10;  // 20
+        _maxParticleNumber = 20;        // 25
+        _particleSpeedIncrement = 10;
         
         // Navigation
         steeringDirection = 0;
