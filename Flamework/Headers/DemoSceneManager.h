@@ -65,6 +65,7 @@ public:
     void createProjectionMatrix();
     void createViewMatrix();
 
+    vmml::mat4f getHaloModelMatrix(float size, float scaling);
     vmml::mat4f getScoreModelMatrix(vmml::vec4f position, int place, float scale);
     
     vmml::vec3f distanceBetween(vmml::vec3f vec1, vmml::vec3f vec2);

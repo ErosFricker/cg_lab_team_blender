@@ -317,6 +317,12 @@ vmml::mat4f DemoSceneManager::haloMatrix(vmml::vec3f eye, vmml::vec3f lookAt, vm
             * fakeScaling(point, originalSize);
 }
 
+vmml::mat4f DemoSceneManager::getHaloModelMatrix(float size, float scaling) {
+    float s = 3.25*size + scaling;
+    return vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))
+            * vmml::create_scaling(s);
+}
+
 vmml::mat4f DemoSceneManager::getScoreModelMatrix(vmml::vec4f position, int place, float scale) {
     return  vmml::create_translation(
                 vmml::vec3f(position.x()-place*position.w(),position.y(),position.z())
@@ -444,14 +450,13 @@ void DemoSceneManager::draw(double deltaT)
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         float halo_scal = fabs(sin(it->getRandom1()*25.f*_time + it->getRandom2()));
-        _modelMatrix *= vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))
-                        * vmml::create_scaling(1.3f+halo_scal);
+        _modelMatrix *= getHaloModelMatrix(_particleSize, halo_scal);
         drawModel(0, "halo");
         glDisable(GL_BLEND);
         _modelMatrix = tmp;
     }
     
-    // Remove passed particles
+    // Remove passed particles, increase the speed where appropriate, and update the score
     std::list<CoreParticle>::const_iterator iterator;
     while (!(*(--_particleList.end())).getPosition(_time).isValid())
     {
@@ -460,34 +465,22 @@ void DemoSceneManager::draw(double deltaT)
         ++_score;
     }
     
-    // TEST, draw black hole (blue sphere)
+    // BLACKHOLE (TEST, blue sphere)
+    // -----------------------------------------------------------------------
+    glDisable(GL_DEPTH_TEST);
     if (_collision)
     {
         _modelMatrix = _modelMatrixShip * vmml::create_scaling(3.f);
         _color = vmml::vec4f(0,0,0.2,1);
         drawModel(0, "black_hole");
     }
+    glEnable(GL_DEPTH_TEST);
     
-    if(_particlesPassed >= 50)
-    {
-        _particleSpeedIncrement += _particleSpeedIncrement;
-        _particlesPassed = 0;
-        _particleSpawnProbability += 0;
-        _maxParticleNumber += 0;
-    }
     
-    // Draw Points
-    // Analize points
-    /*
-    std::string str = std::to_string(_points);
-    std::string::iterator iter = str.begin();
-    while (iter!=str.end()) {
-        std::cout << (int) *(iter++);
-    }std::cout << std::endl << _points << std::endl;
-    */
-    
-    glDisable(GL_DEPTH_TEST);
-    glEnable(GL_BLEND);
+    // DRAW THE SCORE
+    // -----------------------------------------------------------------------
+    glDisable(GL_DEPTH_TEST); // Score is always in front of everything else
+    glEnable(GL_BLEND); // Transparency
     glBlendFunc(GL_ONE, GL_ONE);
     int length = std::to_string(_score).length();
     for ( int j=0; j<length; ++j) {
@@ -510,6 +503,18 @@ void DemoSceneManager::draw(double deltaT)
     } std::cout << std::endl;
     glDisable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
+    
+    
+    // UPDATE PARAMETERS
+    // -----------------------------------------------------------------------
+    if(_particlesPassed >= 50)
+    {
+        _particleSpeed += _particleSpeedIncrement;
+        _particlesPassed = 0;
+        _particleSpawnProbability += 0;
+        _maxParticleNumber += 0;
+    }
+    
     
     
     
@@ -579,14 +584,10 @@ void DemoSceneManager::draw(double deltaT)
     
     glUseProgram(program);
     
-    
-    
-    
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_WIDTH/2.0f);
     
     //RENDER HERE AGAIN FOR AFFECTING THE SCREEN
     */
     
-    overallGameScore += 1;
 }
