@@ -83,6 +83,8 @@ private:
     bool _collision;
     int _particlesPassed;
     //float _speed;
+    int _score;
+    float _x, _y, _z, _s, _d;
     
     float _steeringSpeed;
     float _textureSpeed;

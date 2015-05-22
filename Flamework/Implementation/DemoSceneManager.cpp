@@ -325,8 +325,6 @@ vmml::mat4f DemoSceneManager::getScoreModelMatrix(vmml::vec4f position, int plac
             * vmml::create_scaling(scale);
 }
 
-int _points;
-
 void DemoSceneManager::draw(double deltaT)
 {
     _time += deltaT;
@@ -340,7 +338,13 @@ void DemoSceneManager::draw(double deltaT)
         deltaT = 0;
         _time = 0;
         
-        _points = 0;
+        // Score
+        _score = 0;
+        _x = 5.f;  // (x,y,z): position of the first digit (lowerleft)
+        _y = 6.4f;
+        _z = 50.f;
+        _s = .3f;   // scale for digits
+        _d = .6f;   // distance between digits
         
         // Particles
         _collision = false;
@@ -453,7 +457,7 @@ void DemoSceneManager::draw(double deltaT)
     {
         _particleList.pop_back();
         ++_particlesPassed;
-        ++_points;
+        ++_score;
     }
     
     // TEST, draw black hole (blue sphere)
@@ -482,13 +486,11 @@ void DemoSceneManager::draw(double deltaT)
     }std::cout << std::endl << _points << std::endl;
     */
     
-    float x0(4.8), y0(6.f), z(50), s(.3f), d(.6);
-    
-    int i = _points;
-    int length = std::to_string(i).length();
+    glDisable(GL_DEPTH_TEST);
+    int length = std::to_string(_score).length();
     for ( int j=0; j<length; ++j) {
-        int digit = (int) (i % (unsigned int) pow(10, j+1) / pow(10, j));
-        _modelMatrix = getScoreModelMatrix(vmml::vec4f(x0,y0,z,d), j, s);
+        int digit = (int) (_score % (unsigned int) pow(10, j+1) / pow(10, j));
+        _modelMatrix = getScoreModelMatrix(vmml::vec4f(_x,_y,_z,_d), j, _s);
         switch (digit) {
             case 0: drawModel(0, "zero"); break;
             case 1: drawModel(0, "one"); break;
@@ -504,6 +506,7 @@ void DemoSceneManager::draw(double deltaT)
         }
         std::cout << digit;
     } std::cout << std::endl;
+    glEnable(GL_DEPTH_TEST);
     
     
     
