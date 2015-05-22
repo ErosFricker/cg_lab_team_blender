@@ -487,6 +487,8 @@ void DemoSceneManager::draw(double deltaT)
     */
     
     glDisable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE);
     int length = std::to_string(_score).length();
     for ( int j=0; j<length; ++j) {
         int digit = (int) (_score % (unsigned int) pow(10, j+1) / pow(10, j));
@@ -506,6 +508,7 @@ void DemoSceneManager::draw(double deltaT)
         }
         std::cout << digit;
     } std::cout << std::endl;
+    glDisable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
     
     
