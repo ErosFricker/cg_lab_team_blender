@@ -127,6 +127,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("electron.obj", true, true);
     loadModel("black_hole.obj", true, true);
     loadModel("halo.obj", true, true);
+    loadModel("fire_particle.obj", true, true);
     
     loadModel("zero.obj", true, true);
     loadModel("one.obj", true, true);
@@ -317,7 +318,7 @@ vmml::mat4f DemoSceneManager::haloMatrix(vmml::vec3f eye, vmml::vec3f lookAt, vm
 }
 
 vmml::mat4f DemoSceneManager::getHaloModelMatrix(float size, float scaling) {
-    float s = 3.25*size + scaling;
+    float s = 3.5*size + scaling;
     return vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))
             * vmml::create_scaling(s);
 }
@@ -335,6 +336,7 @@ void DemoSceneManager::draw(double deltaT)
     _time += deltaT;
     
     // GAME CONFIGURATION
+    // -----------------------------------------------------------------------
     if (_firstCall) {
         
         // Time
@@ -363,7 +365,6 @@ void DemoSceneManager::draw(double deltaT)
         steeringDirection = 0;
         _steeringSpeed = .0003f;
         _rotationValue = 0;
-        _steeringRotation = 0.f;
         _gyroSpeed = 0.1;
         
         // Accelerator
@@ -374,15 +375,15 @@ void DemoSceneManager::draw(double deltaT)
         // Ship
         _amplitudeVertical = 0.03f;
         _amplitudeHorizontal = 0.015f;
-        _shakingfactorLeft = 24.f;
-        _shakingfactorRight = 4.f;
+        _shakingVertical = 24.f;
+        _shakingHorizontal = 4.f;
         
         // Matrices
         createViewMatrix();
         createProjectionMatrix();
         createModelmatrixAccelerator(6.f); // scalingfactor
         createModelmatrixShip(vmml::vec3f(0, -2, 80), 0.2f); // position, scaling
-        _gyroRotationMatrix = vmml::mat4f::IDENTITY;
+        _gyroMatrix = vmml::mat4f::IDENTITY;
         
         // Others
         createOrthonormalSystems();
@@ -395,37 +396,36 @@ void DemoSceneManager::draw(double deltaT)
     glCullFace(GL_BACK);
     glDisable(GL_CULL_FACE);
     
-    // UPDATE PARAMETERS
+    // STEERING
     
-    // Tabletrotation (works but sucks)
+    /* Gyro, sucks
     Gyro *gyro = Gyro::getInstance();
     gyro->read();
-    _gyroRotationMatrix *= vmml::create_rotation(_gyroSpeed*gyro->getRoll(), vmml::vec3f::UNIT_Z);
+    _gyroMatrix *= vmml::create_rotation(_gyroSpeed*gyro->getRoll(), vmml::vec3f::UNIT_Z);
+    */
     
     // Touch/Scroll
     _rotationValue += steeringDirection;
-    
     // Current systemrotation
-    _steeringRotation = /*_gyroRotationMatrix*/vmml::create_rotation(_rotationValue*_steeringSpeed,vmml::vec3f::UNIT_Z);
     
-    // Other Parameters
-    
-    // Accelerator
-    
-    float eros_acceleration = 0.1f * _time;
-    float accelerator_speed = fmodf((0.1*_time),0.496f);
-    
-    _modelMatrix = _steeringRotation * _modelMatrixAccelerator;
-    _textureSpeed = fmodf(_textureSpeedFac*pow(_time,_textureSpeedExp),0.496f);
-    drawModel(eros_acceleration, "accelerator");
-    
-    // Ship
-    _shipModifierMatrix = getShipShakingMatrix(_time, _amplitudeVertical, _amplitudeHorizontal, _shakingfactorLeft, _shakingfactorRight);
-    _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
-    drawModel(0, "ship");
+    // Steering
+    _steeringMatrix = vmml::create_rotation(_rotationValue*_steeringSpeed,vmml::vec3f::UNIT_Z);
+                        /*_gyroRotationMatrix;*/
     
     
-    // Generate new coreparticles
+    // ACCELERATOR
+
+    // Texturespeed
+    // float epileptically = 0.1f * _time;
+    // float constant = fmodf((0.1*_time),0.496f);
+    // float accelerated = fmodf(_textureSpeedFac*pow(_time,_textureSpeedExp),0.496f);
+    
+    _modelMatrix = _steeringMatrix * _modelMatrixAccelerator;
+    drawModel(0.1f*_time, "accelerator");
+    
+    // PARTICLES
+    
+    // Particle generator
     if (rand()%101<_particleSpawnProbability && _particleList.size()<_maxParticleNumber)
     {
         CoreParticle p;
@@ -437,17 +437,18 @@ void DemoSceneManager::draw(double deltaT)
     std::list<CoreParticle>::iterator it;
     for (it = _particleList.begin(); it != _particleList.end(); ++it)
     {
-        _modelMatrix = _steeringRotation * (*it).getModelMatrix(_time);
+        // Draw Core
+        _modelMatrix = _steeringMatrix * (*it).getModelMatrix(_time);
         drawModel(0, "core");
         
         // Collisiondetection
-        vmml::vec3f absolutePosition = _steeringRotation*(it->getPosition(_time)).getPosition();
+        vmml::vec3f absolutePosition = _steeringMatrix*(it->getPosition(_time)).getPosition();
         if(hasCollided(absolutePosition, _positionShip)) _collision = true;
         
         // Draw Halo
         vmml::mat4f tmp = _modelMatrix;
         glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparancy
         float halo_scal = fabs(sin(it->getRandom1()*25.f*_time + it->getRandom2()));
         _modelMatrix *= getHaloModelMatrix(_particleSize, halo_scal);
         drawModel(0, "halo");
@@ -463,6 +464,47 @@ void DemoSceneManager::draw(double deltaT)
         ++_particlesPassed;
         ++_score;
     }
+    
+    // SHIP
+    
+    // The Ship
+    _shipModifierMatrix = getShipShakingMatrix(_time, _amplitudeVertical, _amplitudeHorizontal, _shakingVertical, _shakingHorizontal);
+    
+    _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
+    drawModel(0, "ship");
+    
+    // Motion Fire
+    vmml::mat4f tmp;
+    vmml::mat4f fireparticleMatrix = vmml::create_rotation(-M_PI_F/2.f, vmml::vec3f(1,0,0))
+                                        * vmml::create_scaling(0.1f);
+    
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE); // transparancy
+    int j;
+    float sign;
+    for (int g=0; g<2; ++g)
+    {
+        if (g==0) sign = 1.f;
+        else sign = -1.f;
+        _modelMatrix = vmml::create_translation(vmml::vec3f(sign*.56f,-2.4f,81.f)) * fireparticleMatrix;
+        tmp = _modelMatrix;
+        
+        for (int h=0; h<10; ++h)
+        {
+            for (int i=0; i<10; ++i)
+            {
+                int j = 0;
+                float x = pow(-1.f, rand()%2) * (rand()%(50+h*10)) /100.f;
+                float y = pow(-1.f, rand()%2) * (rand()%(50+h*10)) /100.f;
+                _modelMatrix *= vmml::create_translation(vmml::vec3f(x+sign*0.1*h,j,y-0.4*h));;
+                drawModel(0, "fire_particle");
+                j += 0.01;
+                _modelMatrix = tmp;
+            }
+        }
+    }
+    glDisable(GL_BLEND);
+    
     
     // BLACKHOLE (TEST, blue sphere)
     // -----------------------------------------------------------------------
@@ -481,11 +523,12 @@ void DemoSceneManager::draw(double deltaT)
     glDisable(GL_DEPTH_TEST); // Score is always in front of everything else
     glEnable(GL_BLEND); // Transparency
     glBlendFunc(GL_ONE, GL_ONE);
-    int length = std::to_string(_score).length();
-    for ( int j=0; j<length; ++j) {
+    for (int j=0; j<std::to_string(_score).length(); ++j)
+    {
         int digit = (int) (_score % (unsigned int) pow(10, j+1) / pow(10, j));
         _modelMatrix = getScoreModelMatrix(vmml::vec4f(_x,_y,_z,_d), j, _s);
-        switch (digit) {
+        switch (digit)
+        {
             case 0: drawModel(0, "zero"); break;
             case 1: drawModel(0, "one"); break;
             case 2: drawModel(0, "two"); break;
@@ -498,8 +541,7 @@ void DemoSceneManager::draw(double deltaT)
             case 9: drawModel(0, "nine"); break;
             default: break;
         }
-        std::cout << digit;
-    } std::cout << std::endl;
+    }
     glDisable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
     

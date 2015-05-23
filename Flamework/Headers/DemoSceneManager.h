@@ -92,15 +92,15 @@ private:
     float _textureSpeedExp;
     float _textureSpeedFac;
     
-    vmml::mat4f _steeringRotation;
+    vmml::mat4f _steeringMatrix;
     vmml::mat4f _shipModifierMatrix;
-    vmml::mat4f _gyroRotationMatrix;
+    vmml::mat4f _gyroMatrix;
     
     float _gyroSpeed;
     float _amplitudeVertical;
     float _amplitudeHorizontal;
-    float _shakingfactorLeft;
-    float _shakingfactorRight;
+    float _shakingVertical;
+    float _shakingHorizontal;
     
     float _particleSpeed;
     float _particleSize;
