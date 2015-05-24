@@ -6,7 +6,6 @@
 //
 //
 
-#import <AVFoundation/AVFoundation.h>
 #import "StartScreenViewController.h"
 #import "SettingsViewController.h"
 
@@ -34,13 +33,17 @@
     [_settingsButton.titleLabel setFont:buttonFont];
     [_settingsButton.titleLabel setTextColor:[UIColor whiteColor]];
     
-    NSString* pathToSoundFile = [[NSBundle mainBundle] pathForResource:@"pampam" ofType:@"mp3"];
-    NSError* error;
-    NSData* data = [[NSData alloc] initWithContentsOfFile:pathToSoundFile];
-    _backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
-    _backgroundMusicPlayer.numberOfLoops = -1;
-    _backgroundMusicPlayer.delegate = self;
-    [_backgroundMusicPlayer play];
+    if (!self.userReturnedToView) {
+        
+        
+        NSString* pathToSoundFile = [[NSBundle mainBundle] pathForResource:@"pampam" ofType:@"mp3"];
+        NSError* error;
+        NSData* data = [[NSData alloc] initWithContentsOfFile:pathToSoundFile];
+        _backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
+        _backgroundMusicPlayer.numberOfLoops = -1;
+        _backgroundMusicPlayer.delegate = self;
+        [_backgroundMusicPlayer play];
+    }
     
     // Do any additional setup after loading the view.
 }
@@ -69,13 +72,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

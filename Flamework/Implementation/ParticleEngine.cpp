@@ -48,7 +48,7 @@ float angle;
 
 const float STEP_TIME = 0.01f;
 //The length of the sides of the quadrilateral drawn for each particle.
-const float PARTICLE_SIZE = 300;
+const float PARTICLE_SIZE = 0.1;
 
 const float GRAVITY = 3.0f;
 
@@ -143,62 +143,44 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
     //TODO: Change vertices for quads!
     GeometryData::VboVertices vertices;
     GeometryData::VboIndices indices;
-    /*v -1.000000 0.000000 1.000000
-     v 1.000000 0.000000 1.000000
-     v -1.000000 0.000000 -1.000000
-     v 1.000000 0.000000 -1.000000
-     vt 0.999900 0.000100
-     vt 0.999900 0.999900
-     vt 0.000100 0.999900
-     vt 0.000100 0.000100*/
     
     for (int i = 0; i < NUM_PARTICLES; i++) {
         createParticle(particles + i);
     }
-    
+   /* for (int i = 0; i < 5/STEP_TIME; i++) {
+        step();
+    }*/
     //TODO: Add particles to array and to geometry
     for (int i = 0; i < NUM_PARTICLES; i++) {
         EmitterParticle p = particles[i];
-        float zPos = 99;
-        Point3 pos = {PARTICLE_SIZE*(0.0+i), PARTICLE_SIZE*(0.0+i), zPos};
-        Vector3 normal = {0.0, 0.0, 1.0};
-        Vector3 tangent = {1.0, 1.0, 1.0};
-        Vector3 bitangent = {1.0, 1.0, 1.0};
+        float zPos = 0;
+        float size = PARTICLE_SIZE / 2.0f;
+        Point3 pos = {p.pos[0]-size, p.pos[1]-size, zPos};
+        Vector3 normal = {0.0, 0.0, fmodf(i, 2.0)-1.0};
+        Vector3 tangent = {.0, 1.0, 0.0};
+        Vector3 bitangent = {1.0, 0.0, 0.0};
         TexCoord coord = {0.0, 0.0};
         Vertex v1 = {pos, normal, tangent, bitangent, coord};
         vertices.push_back(v1);
         
-        Point3 pos2 = {PARTICLE_SIZE*(1.0+i), PARTICLE_SIZE*(0.0+i), zPos};
+        Point3 pos2 = {p.pos[0], p.pos[1]+size, zPos};
         TexCoord coord2 = {1.0, 0.0};
         Vertex v2 = {pos2, normal, tangent, bitangent, coord2};
         vertices.push_back(v2);
         
-        Point3 pos3 = {PARTICLE_SIZE*(1.0+i), PARTICLE_SIZE*(1.0+i), zPos};
+        Point3 pos3 = {p.pos[0]+size, p.pos[1]-size, zPos};
         TexCoord coord3 = {1.0, 1.0};
         Vertex v3 = {pos3, normal, tangent, bitangent, coord3};
         vertices.push_back(v3);
         
-        
-        Point3 pos4 = {PARTICLE_SIZE*(0.0+i), PARTICLE_SIZE*(1.0+i), zPos};
-        TexCoord coord4 = {0.0, 1.0};
-        Vertex v4 = {pos4, normal, tangent, bitangent, coord4};
-        vertices.push_back(v4);
-        
-        
         indices.push_back(i);
         indices.push_back(i+1);
+        indices.push_back(i+1);
         indices.push_back(i+2);
-        indices.push_back(i+3);
+        indices.push_back(i+2);
+        indices.push_back(i);
     }
-    
-    
-  
-        
-        
-        
 
-
-    
     geometry.copyVertexData(vertices);
     geometry.copyIndexData(indices);
     
@@ -216,95 +198,16 @@ ParticleEngine::~ParticleEngine(){}
 
 
 void ParticleEngine::draw(GLenum mode, float deltaT) {
-    /*std::vector<EmitterParticle*> ps;
-     for(int i = 0; i < NUM_PARTICLES; i++) {
-     ps.push_back(particles + i);
-     }
-     sort(ps.begin(), ps.end(), compareParticles);
-     
-     */
      Geometry &geom = getGroups()["geom"];
-    
-    /*
-     Geometry::VertexDataPtr vertexData = geom.getVertexData();
-    
-     vertexData->position.x -= 0.1;
-     vertexData->position.z -= 0.1;
-    geom.setVertexData(vertexData);
-     */
-    
-    
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    std::vector<EmitterParticle*> ps;
+    for (int i = 0;  i< NUM_PARTICLES; i++) {
+        ps.push_back(particles+i);
+    }
+    glBlendFunc(GL_ONE, GL_ONE);
     glEnable(GL_BLEND);
     Model::draw(mode);
     glDisable(GL_BLEND);
     
     //TODO: Change drawing code (see WiggleCube)
     
-    /* GLfloat vertices[ps.size()*3*3];
-     for(unsigned int i = 0; i < ps.size(); i++) {
-     EmitterParticle* p = ps[i];
-     glColorMask(p->color[0], p->color[1], p->color[2],
-     (1 - p->timeAlive / p->lifespan));
-     float size = PARTICLE_SIZE / 2;
-     
-     vmml::vec3f pos = adjParticlePos(p->pos);
-     vertices[i] = pos[0]-size;
-     vertices[i+1] = pos[1] - size;
-     vertices[i+2] = pos[2];
-     vertices[i+3] = pos[0]-size;
-     vertices[i+4] = pos[1] +size;
-     vertices[i+5] = pos[2];
-     vertices[i+6] = pos[0]+size;
-     vertices[i+7] = pos[1]+size;
-     vertices[i+8] = pos[2];
-     GLuint vertexBuffer;
-     glGenBuffers(1, &vertexBuffer);
-     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-     
-     
-     
-     }*/
-    /*   GLfloat vertices[9];
-     vertices[0] = 20;
-     vertices[1] = 0;
-     vertices[2] = 90;
-     vertices[3] = 0;
-     vertices[4] = 20;
-     vertices[5] = 90;
-     vertices[6] = 20;
-     vertices[7] = 20;
-     vertices[8] = 90;
-     GLuint vertexBuffer;
-     glGenBuffers(1, &vertexBuffer);
-     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-     glDrawArrays(GL_TRIANGLES, 0, 9);
-     
-     */
-    
-    
-    
-    //DRAWING CODE!!!
-    
-    /*glBegin(GL_QUADS);
-     for(unsigned int i = 0; i < ps.size(); i++) {
-     Particle* p = ps[i];
-     glColor4f(p->color[0], p->color[1], p->color[2],
-     (1 - p->timeAlive / p->lifespan));
-     float size = PARTICLE_SIZE / 2;
-     
-     vmml::vec3f pos = adjParticlePos(p->pos);
-     
-     glTexCoord2f(0, 0);
-     glVertex3f(pos[0] - size, pos[1] - size, pos[2]);
-     glTexCoord2f(0, 1);
-     glVertex3f(pos[0] - size, pos[1] + size, pos[2]);
-     glTexCoord2f(1, 1);
-     glVertex3f(pos[0] + size, pos[1] + size, pos[2]);
-     glTexCoord2f(1, 0);
-     glVertex3f(pos[0] + size, pos[1] - size, pos[2]);
-     }
-     glEnd();*/
-}
+ }

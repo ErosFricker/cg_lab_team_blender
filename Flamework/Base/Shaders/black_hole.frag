@@ -71,9 +71,9 @@ void main()
         mediump vec3 spec = texture2D(SpecularMap, texCoordVarying.st).rgb;
         mediump vec3 specular = Ks * spec * clamp(specIntensity, 0.0, 1.0) * Is;
         specularResult = vec4(clamp(specular, 0.0, 1.0), 1.0);
-    }
+    }*/
     
     lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
-    */
-    gl_FragColor = (ambientResult + diffuseResult)*ColorVector;// + specularResult;
+    
+    gl_FragColor = color;// + specularResult;
 }

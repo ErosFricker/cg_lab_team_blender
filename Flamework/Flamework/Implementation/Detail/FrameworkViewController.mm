@@ -13,7 +13,7 @@
 #include "Framework_GL.h"
 #include "Util.h"
 #include "DemoSceneManager.h"
-
+#include "RankingViewController.h"
 // Uniform index.
 enum
 {
@@ -269,6 +269,10 @@ enum
     
     _application.update(deltaT);
     _application.draw(deltaT);
+    if (((DemoSceneManager*)_application.getSceneManager())->shouldStop) {
+        RankingViewController* ranking = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ranking"];
+        [self showViewController:ranking sender:self];
+    }
     
     [(EAGLView *)self.view presentFramebuffer];
 }

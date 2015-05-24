@@ -71,6 +71,5 @@ void main()
     
     // Make the texture move
     lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
-    gl_FragColor = color;
-    //vec4(0.96, 0.78, 0.0, 0.6);
+    gl_FragColor =color;
 }

@@ -35,6 +35,7 @@ class Application;
 class DemoSceneManager: public SceneManager, public ITouchHandler, public IScaleHandler
 {
 public:
+    bool shouldStop=false;
     typedef std::stack< vmml::mat4f >   MatrixStack;
 
     DemoSceneManager(Application *application);

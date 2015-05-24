@@ -1,3 +1,6 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
 newmtl black_hole
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
@@ -6,4 +9,4 @@ Ks 0.500000 0.500000 0.500000
 # Ni 1.000000
 d 1.000000
 # illum 2
-# map_Kd water_texture.jpg
+map_Kd blackhole.jpg

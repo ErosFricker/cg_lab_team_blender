@@ -137,6 +137,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("seven.obj", true, true);
     loadModel("eight.obj", true, true);
     loadModel("nine.obj", true, true);
+    loadModel("black_hole.obj", true, true);
     
     //CREATE PARTICLE ENGINE
     ModelPtr model = getModel("fire_particle");
@@ -145,7 +146,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
         std::make_shared<ParticleEngine>(sm);
     }
     particleEngine = new ParticleEngine(this);
-
+    
     
     
     
@@ -342,157 +343,292 @@ vmml::mat4f DemoSceneManager::getScoreModelMatrix(vmml::vec4f position, int plac
 }
 
 
+float _explosionAnimationTimer;
+vmml::mat4f _explosionmatrix;
 
-
-
+float _particleAnimationTimer = 0.0f;
 
 void DemoSceneManager::draw(double deltaT)
 {
     _time += deltaT;
     
-        // GAME CONFIGURATION
-        // -----------------------------------------------------------------------
-        if (_firstCall) {
     
-            // Time
-            srand((unsigned int) _time);
-            _firstCall = false;
-            deltaT = 0;
-            _time = 0;
     
-            // Score
-            _score = 0;
-            _x = 5.f;  // (x,y,z): position of the first digit (lowerleft)
-            _y = 6.4f;
-            _z = 50.f;
-            _s = .3f;   // scale for digits
-            _d = .6f;   // distance between digits
     
-            // Particles
-            _collision = false;
-            _particleSpeed = 30.f;
-            _particleSize = 0.3f;           // 0.2
-            _particleSpawnProbability = 10;  // 20
-            _maxParticleNumber = 20;        // 25
-            _particleSpeedIncrement = 10;
+    // GAME CONFIGURATION
+    // -----------------------------------------------------------------------
+    if (_firstCall) {
+        _explosionAnimationTimer = 1.0f;
+        _particleAnimationTimer = 0.0f;
+        // Time
+        srand((unsigned int) _time);
+        _firstCall = false;
+        deltaT = 0;
+        _time = 0;
+        
+        // Score
+        _score = 0;
+        _x = 5.f;  // (x,y,z): position of the first digit (lowerleft)
+        _y = 6.4f;
+        _z = 50.f;
+        _s = .3f;   // scale for digits
+        _d = .6f;   // distance between digits
+        
+        // Particles
+        _collision = false;
+        _particleSpeed = 30.f;
+        _particleSize = 0.3f;           // 0.2
+        _particleSpawnProbability = 10;  // 20
+        _maxParticleNumber = 20;        // 25
+        _particleSpeedIncrement = 10;
+        
+        // Navigation
+        steeringDirection = 0;
+        _steeringSpeed = .0003f;
+        _rotationValue = 0;
+        _gyroSpeed = 0.1;
+        
+        // Accelerator
+        _textureSpeed = 0;
+        _textureSpeedExp = 1.5f;
+        _textureSpeedFac = 0.2f;
+        
+        // Ship
+        _amplitudeVertical = 0.03f;
+        _amplitudeHorizontal = 0.015f;
+        _shakingVertical = 24.f;
+        _shakingHorizontal = 4.f;
+        
+        // Matrices
+        createViewMatrix();
+        createProjectionMatrix();
+        createModelmatrixAccelerator(6.f); // scalingfactor
+        createModelmatrixShip(vmml::vec3f(0, -2, 80), 0.2f); // position, scaling
+        _gyroMatrix = vmml::mat4f::IDENTITY;
+        _explosionmatrix = vmml::mat4f::IDENTITY;
+        // Others
+        createOrthonormalSystems();
+    }
     
-            // Navigation
-            steeringDirection = 0;
-            _steeringSpeed = .0003f;
-            _rotationValue = 0;
-            _gyroSpeed = 0.1;
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glCullFace(GL_BACK);
+    glDisable(GL_CULL_FACE);
     
-            // Accelerator
-            _textureSpeed = 0;
-            _textureSpeedExp = 1.5f;
-            _textureSpeedFac = 0.2f;
     
-            // Ship
-            _amplitudeVertical = 0.03f;
-            _amplitudeHorizontal = 0.015f;
-            _shakingVertical = 24.f;
-            _shakingHorizontal = 4.f;
     
-            // Matrices
-            createViewMatrix();
-            createProjectionMatrix();
-            createModelmatrixAccelerator(6.f); // scalingfactor
-            createModelmatrixShip(vmml::vec3f(0, -2, 80), 0.2f); // position, scaling
-            _gyroMatrix = vmml::mat4f::IDENTITY;
     
-            // Others
-            createOrthonormalSystems();
+    
+    
+    // STEERING
+    
+    /* Gyro, sucks
+     Gyro *gyro = Gyro::getInstance();
+     gyro->read();
+     _gyroMatrix *= vmml::create_rotation(_gyroSpeed*gyro->getRoll(), vmml::vec3f::UNIT_Z);
+     */
+    
+    
+
+    
+    
+    // Touch/Scroll
+    _rotationValue += steeringDirection;
+    // Current systemrotation
+    
+    // Steering
+    _steeringMatrix = vmml::create_rotation(_rotationValue*_steeringSpeed,vmml::vec3f::UNIT_Z);
+    /*_gyroRotationMatrix;*/
+    
+    
+    // ACCELERATOR
+    
+    // Texturespeed
+    // float epileptically = 0.1f * _time;
+    // float constant = fmodf((0.1*_time),0.496f);
+    // float accelerated = fmodf(_textureSpeedFac*pow(_time,_textureSpeedExp),0.496f);
+    
+    _modelMatrix = _steeringMatrix * _modelMatrixAccelerator;
+    if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
+        
+        
+        _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
+        float rotationValue = (-M_PI)*_explosionAnimationTimer;
+        _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
+        _modelMatrix = _modelMatrix*vmml::create_translation(vmml::vec3f(0.0, 0.0, _explosionAnimationTimer));
+        _explosionmatrix = _modelMatrix;
+        
+        _explosionAnimationTimer -=0.1;
+        
+        
+    }
+    if (_collision && _explosionAnimationTimer < 0.0001) {
+        
+        loadSound("you_lose.mp3")->play();
+        shouldStop = true;
+        
+    }
+    drawModel(0.1f*_time, "accelerator");
+    
+    // PARTICLES
+    
+    // Particle generator
+    if (rand()%101<_particleSpawnProbability && _particleList.size()<_maxParticleNumber)
+    {
+        CoreParticle p;
+        p.create(_time, _particleSpeed, _particleSize, rand());
+        _particleList.push_front(p);
+    }
+    
+    // Draw Particles
+    std::list<CoreParticle>::iterator it;
+    for (it = _particleList.begin(); it != _particleList.end(); ++it)
+    {
+        // Draw Core
+        _modelMatrix = _steeringMatrix * (*it).getModelMatrix(_time);
+        if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
+            
+            _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
+            float rotationValue = (-M_PI)*_explosionAnimationTimer;
+            _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
+            _explosionmatrix = _modelMatrix;
+            
+            _explosionAnimationTimer -=0.001;
+            
+            
         }
+        if (_collision && _explosionAnimationTimer < 0.0001) {
+            shouldStop = true;
+        }
+        drawModel(0, "core");
+        
+        // Collisiondetection
+        vmml::vec3f absolutePosition = _steeringMatrix*(it->getPosition(_time)).getPosition();
+        if(hasCollided(absolutePosition, _positionShip)) _collision = true;
+        
+        // Draw Halo
+        vmml::mat4f tmp = _modelMatrix;
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparancy
+        float halo_scal = fabs(sin(it->getRandom1()*25.f*_time + it->getRandom2()));
+        _modelMatrix *= getHaloModelMatrix(_particleSize, halo_scal);
+        drawModel(0, "halo");
+        glDisable(GL_BLEND);
+        _modelMatrix = tmp;
+    }
     
-        glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LEQUAL);
-        glCullFace(GL_BACK);
-        glDisable(GL_CULL_FACE);
+    // Remove passed particles, increase the speed where appropriate, and update the score
+    std::list<CoreParticle>::const_iterator iterator;
+    while (!(*(--_particleList.end())).getPosition(_time).isValid())
+    {
+        _particleList.pop_back();
+        ++_particlesPassed;
+        ++_score;
+    }
     
-        // STEERING
+    // SHIP
     
-        /* Gyro, sucks
-        Gyro *gyro = Gyro::getInstance();
-        gyro->read();
-        _gyroMatrix *= vmml::create_rotation(_gyroSpeed*gyro->getRoll(), vmml::vec3f::UNIT_Z);
-        */
+    // The Ship
+    _shipModifierMatrix = getShipShakingMatrix(_time, _amplitudeVertical, _amplitudeHorizontal, _shakingVertical, _shakingHorizontal);
     
-        // Touch/Scroll
-        _rotationValue += steeringDirection;
-        // Current systemrotation
+    _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
     
-        // Steering
-        _steeringMatrix = vmml::create_rotation(_rotationValue*_steeringSpeed,vmml::vec3f::UNIT_Z);
-                            /*_gyroRotationMatrix;*/
+    if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
+        
+        _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
+        float rotationValue = (-M_PI)*_explosionAnimationTimer;
+        _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
+        _explosionmatrix = _modelMatrix;
+        
+        _explosionAnimationTimer -=0.001;
+        
+        
+    }
+    if (_collision && _explosionAnimationTimer < 0.0001) {
+        shouldStop = true;
+    }
     
     
-        // ACCELERATOR
+    if (steeringDirection<0.0f) {
+        _modelMatrix*=vmml::create_rotation(0.4f, vmml::vec3f::UNIT_Z);
+    }else if (steeringDirection > 0.0f){
+        _modelMatrix*=vmml::create_rotation(-0.4f, vmml::vec3f::UNIT_Z);
+    }
     
-        // Texturespeed
-        // float epileptically = 0.1f * _time;
-        // float constant = fmodf((0.1*_time),0.496f);
-        // float accelerated = fmodf(_textureSpeedFac*pow(_time,_textureSpeedExp),0.496f);
+    drawModel(0, "ship");
+
     
-        _modelMatrix = _steeringMatrix * _modelMatrixAccelerator;
-        drawModel(0.1f*_time, "accelerator");
     
-        // PARTICLES
     
-        // Particle generator
-        if (rand()%101<_particleSpawnProbability && _particleList.size()<_maxParticleNumber)
+    
+    // BLACKHOLE (TEST, blue sphere)
+    // -----------------------------------------------------------------------
+    glDisable(GL_DEPTH_TEST);
+    if (_collision)
+    {
+        loadSound("explosion.mp3")->play();
+        //_modelMatrix = _modelMatrixShip * vmml::create_scaling(3.f);
+        if(_explosionAnimationTimer ==1.0f){
+            _explosionAnimationTimer = 0.95;
+        }
+        _color = vmml::vec4f(0,0,0.2,1);
+        drawModel(0, "black_hole");
+        _time = 1000.0f;
+    }
+    glEnable(GL_DEPTH_TEST);
+    
+    
+    // DRAW THE SCORE
+    // -----------------------------------------------------------------------
+    glDisable(GL_DEPTH_TEST); // Score is always in front of everything else
+    glEnable(GL_BLEND); // Transparency
+    glBlendFunc(GL_ONE, GL_ONE);
+    for (int j=0; j<std::to_string(_score).length(); ++j)
+    {
+        int digit = (int) (_score % (unsigned int) pow(10, j+1) / pow(10, j));
+        _modelMatrix = getScoreModelMatrix(vmml::vec4f(_x,_y,_z,_d), j, _s);
+        switch (digit)
         {
-            CoreParticle p;
-            p.create(_time, _particleSpeed, _particleSize, rand());
-            _particleList.push_front(p);
+            case 0: drawModel(0, "zero"); break;
+            case 1: drawModel(0, "one"); break;
+            case 2: drawModel(0, "two"); break;
+            case 3: drawModel(0, "three"); break;
+            case 4: drawModel(0, "four"); break;
+            case 5: drawModel(0, "five"); break;
+            case 6: drawModel(0, "six"); break;
+            case 7: drawModel(0, "seven"); break;
+            case 8: drawModel(0, "eight"); break;
+            case 9: drawModel(0, "nine"); break;
+            default: break;
         }
+    }
+    glDisable(GL_BLEND);
+    glEnable(GL_DEPTH_TEST);
     
-        // Draw Particles
-        std::list<CoreParticle>::iterator it;
-        for (it = _particleList.begin(); it != _particleList.end(); ++it)
-        {
-            // Draw Core
-            _modelMatrix = _steeringMatrix * (*it).getModelMatrix(_time);
-            drawModel(0, "core");
     
-            // Collisiondetection
-            vmml::vec3f absolutePosition = _steeringMatrix*(it->getPosition(_time)).getPosition();
-            if(hasCollided(absolutePosition, _positionShip)) _collision = true;
+    // UPDATE PARAMETERS
+    // -----------------------------------------------------------------------
+    if(_particlesPassed >= 50)
+    {
+        loadSound("swoosh.mp3")->play();
+        _particleAnimationTimer = 10.0f;
+
+        _particleSpeed += _particleSpeedIncrement;
+        _particlesPassed = 0;
+        _particleSpawnProbability += 0;
+        _maxParticleNumber += 0;
+    }
     
-            // Draw Halo
-            vmml::mat4f tmp = _modelMatrix;
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparancy
-            float halo_scal = fabs(sin(it->getRandom1()*25.f*_time + it->getRandom2()));
-            _modelMatrix *= getHaloModelMatrix(_particleSize, halo_scal);
-            drawModel(0, "halo");
-            glDisable(GL_BLEND);
-            _modelMatrix = tmp;
-        }
-    
-        // Remove passed particles, increase the speed where appropriate, and update the score
-        std::list<CoreParticle>::const_iterator iterator;
-        while (!(*(--_particleList.end())).getPosition(_time).isValid())
-        {
-            _particleList.pop_back();
-            ++_particlesPassed;
-            ++_score;
-        }
-    
-        // SHIP
-    
-        // The Ship
-        _shipModifierMatrix = getShipShakingMatrix(_time, _amplitudeVertical, _amplitudeHorizontal, _shakingVertical, _shakingHorizontal);
-    
-        _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
-        drawModel(0, "ship");
-    
+    if (_particleAnimationTimer >0.0f) {
+        
+        
         // Motion Fire
         vmml::mat4f tmp;
         vmml::mat4f fireparticleMatrix = vmml::create_rotation(-M_PI_F/2.f, vmml::vec3f(1,0,0))
-                                            * vmml::create_scaling(0.1f);
-    
+        * vmml::create_scaling(0.1f);
+        
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE); // transparancy
         int j;
@@ -503,7 +639,7 @@ void DemoSceneManager::draw(double deltaT)
             else sign = -1.f;
             _modelMatrix = vmml::create_translation(vmml::vec3f(sign*.56f,-2.4f,81.f)) * fireparticleMatrix;
             tmp = _modelMatrix;
-    
+            
             for (int h=0; h<10; ++h)
             {
                 for (int i=0; i<10; ++i)
@@ -519,155 +655,44 @@ void DemoSceneManager::draw(double deltaT)
             }
         }
         glDisable(GL_BLEND);
-    
-    
-        // BLACKHOLE (TEST, blue sphere)
-        // -----------------------------------------------------------------------
-        glDisable(GL_DEPTH_TEST);
-        if (_collision)
-        {
-            _modelMatrix = _modelMatrixShip * vmml::create_scaling(3.f);
-            _color = vmml::vec4f(0,0,0.2,1);
-            drawModel(0, "black_hole");
-        }
-        glEnable(GL_DEPTH_TEST);
-    
-    
-        // DRAW THE SCORE
-        // -----------------------------------------------------------------------
-        glDisable(GL_DEPTH_TEST); // Score is always in front of everything else
-        glEnable(GL_BLEND); // Transparency
-        glBlendFunc(GL_ONE, GL_ONE);
-        for (int j=0; j<std::to_string(_score).length(); ++j)
-        {
-            int digit = (int) (_score % (unsigned int) pow(10, j+1) / pow(10, j));
-            _modelMatrix = getScoreModelMatrix(vmml::vec4f(_x,_y,_z,_d), j, _s);
-            switch (digit)
-            {
-                case 0: drawModel(0, "zero"); break;
-                case 1: drawModel(0, "one"); break;
-                case 2: drawModel(0, "two"); break;
-                case 3: drawModel(0, "three"); break;
-                case 4: drawModel(0, "four"); break;
-                case 5: drawModel(0, "five"); break;
-                case 6: drawModel(0, "six"); break;
-                case 7: drawModel(0, "seven"); break;
-                case 8: drawModel(0, "eight"); break;
-                case 9: drawModel(0, "nine"); break;
-                default: break;
-            }
-        }
-        glDisable(GL_BLEND);
-        glEnable(GL_DEPTH_TEST);
-    
-    
-        // UPDATE PARAMETERS
-        // -----------------------------------------------------------------------
-        if(_particlesPassed >= 50)
-        {
-            _particleSpeed += _particleSpeedIncrement;
-            _particlesPassed = 0;
-            _particleSpawnProbability += 0;
-            _maxParticleNumber += 0;
-        }
+        _particleAnimationTimer -=.5f;
+    }
     
     
     
     
-    
-        //engine->draw();
-    
-    
-        /*
-        //Preparing Frame BUffer
-        GLuint fbo = 0;
-        glGenFramebuffers(1, &fbo);
-        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-        GLuint colorTexture = 0;
-        glGenTextures(1, &colorTexture);
-        glBindTexture(GL_TEXTURE_2D, colorTexture);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    
-        GLsizei fboWidth = 768.0;
-        GLsizei fboHeight = 1024.0;
-    
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fboWidth, fboHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-    
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTexture, 0);
-    
-        GLuint depthRBO = 0;
-        glGenRenderbuffers(1, &depthRBO);
-        glBindRenderbuffer(GL_RENDERBUFFER, depthRBO);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24_OES, fboWidth, fboHeight);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRBO);
-    
-        GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-        if (GL_FRAMEBUFFER_COMPLETE != status) {
-            std::fprintf(stderr, "INCOMPLETE FRAMEBUFFER");
-            std::abort();
-    
-        }
-    
-        /*
-        ShaderPtr vertexShader = loadShader("blur.vert");
-        ShaderPtr fragmentShader = loadShader("blur.frag");
-        */
-    
-    
-        /*
-        //Binding framebuffer
-        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-        glViewport(0, 0, fboWidth, fboHeight);
-    
-        GLuint program;
-        //ATTACHING SHADERS
-        GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShader, 1, &blurVS, 0);
-        glCompileShader(vertexShader);
-        glAttachShader(program, vertexShader);
-    
-    
-        GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShader, 1, &blurFS, 0);
-        glCompileShader(fragmentShader);
-        glAttachShader(program, vertexShader);
-        glLinkProgram(program);
-    
-       //SET UNIFORMS:  glUniform4fv(<#GLint location#>, <#GLsizei count#>, <#const GLfloat *v#>)
-    
-        glUseProgram(program);
-    
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        glViewport(0, 0, WINDOW_WIDTH, WINDOW_WIDTH/2.0f);
-    
-        //RENDER HERE AGAIN FOR AFFECTING THE SCREEN
-        */
-    
-//    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  /*  glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
-    //glCullFace(GL_BACK);
-    //glEnable(GL_CULL_FACE);
-    glDisable(GL_CULL_FACE);
-    ShaderPtr shader = particleEngine->getMaterial()->getShader();
-    shader->setUniform("ProjectionMatrix", vmml::mat4f::IDENTITY);
-    shader->setUniform("ViewMatrix", _viewMatrix);
-    shader->setUniform("ModelMatrix", _modelMatrix);
-    vmml::mat3f normalMatrix;
-    vmml::compute_inverse(vmml::transpose(vmml::mat3f(_modelMatrix)),
-                          normalMatrix);
-    shader->setUniform("NormalMatrix", normalMatrix);
-    shader->setUniform("EyePos", _eyePos);
-    shader->setUniform("LightPos", vmml::vec4f(0.f, 3.f, 1.f, 1.f));
-    shader->setUniform("Ia", vmml::vec3f(1.f));
-    shader->setUniform("Id", vmml::vec3f(1.f));
-    shader->setUniform("Is", vmml::vec3f(1.f));
-    particleEngine->draw(GL_TRIANGLES);
-    glEnable(GL_CULL_FACE);*/
-    
+    /* //particle engine drawing code...doesn't show up in view !!!!!
+     glEnable(GL_DEPTH_TEST);
+     glDisable(GL_CULL_FACE);
+     //glCullFace(GL_BACK);
+     //glEnable(GL_CULL_FACE);
+     //glDisable(GL_CULL_FACE);
+     Gyro *gyro = Gyro::getInstance();
+     gyro->read();
+     vmml::mat4f translation = vmml::create_translation(vmml::vec3f(_scrolling.x()
+     , -_scrolling.y(), 0));
+     vmml::mat4f scaling = vmml::create_scaling(vmml::vec3f(.2f));
+     vmml::mat3f rotation = vmml::create_rotation(gyro->getRoll() * -M_PI_F - .3f,
+     vmml::vec3f::UNIT_Y) *
+     vmml::create_rotation(gyro->getPitch() * -M_PI_F + .3f, vmml::vec3f::UNIT_X);
+     _eyePos = rotation * vmml::vec3f(0, 0, 0.25);
+     vmml::vec3f eyeUp = vmml::vec3f::UP;
+     _viewMatrix = lookAt(_eyePos, vmml::vec3f::ZERO, rotation * eyeUp);
+     _modelMatrix = translation * scaling;
+     ShaderPtr shader = particleEngine->getMaterial()->getShader();
+     shader->setUniform("ProjectionMatrix", vmml::mat4f::IDENTITY);
+     shader->setUniform("ViewMatrix", _viewMatrix);
+     shader->setUniform("ModelMatrix", _modelMatrix);
+     vmml::mat3f normalMatrix;
+     vmml::compute_inverse(vmml::transpose(vmml::mat3f(_modelMatrix)),
+     normalMatrix);
+     shader->setUniform("NormalMatrix", normalMatrix);
+     shader->setUniform("EyePos", _eyePos);
+     shader->setUniform("LightPos", vmml::vec4f(0.f, 0.f, 90.f, 1.f));
+     shader->setUniform("Ia", vmml::vec3f(1.f));
+     shader->setUniform("Id", vmml::vec3f(1.f));
+     shader->setUniform("Is", vmml::vec3f(1.f));
+     particleEngine->draw(GL_TRIANGLE_STRIP);
+     // glEnable(GL_CULL_FACE);*/
     
 }
