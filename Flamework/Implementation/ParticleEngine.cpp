@@ -11,8 +11,8 @@
 #include "TextureData.h"
 #include "SceneManager.h"
 #include "Util.h"
-
 #define NUM_PARTICLES 1000
+
 
 vmml::vec3f rotateParticle(vmml::vec3f v, vmml::vec3f axis, float degrees) {
     axis = axis.normalize();
@@ -34,46 +34,6 @@ bool compareParticles(EmitterParticle* particle1, EmitterParticle* particle2) {
     return adjParticlePos(particle1->pos)[2] <
     adjParticlePos(particle2->pos)[2];
 }
-
-ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager, ModelData()) {
-    
-    Model::GroupMap &groups = getGroups();
-    Geometry &geometry = groups["geom"];
-    //TODO: Change vertices for quads!
-    
-    Point3 pos = {1.0, 1.0, 1.0};
-    Vector3 normal = {1.0, 1.0, 1.0};
-    Vector3 tangent = {1.0, 1.0, 1.0};
-    Vector3 bitangent = {1.0, 1.0, 1.0};
-    TexCoord coord = {1.0, 0.0};
-    
-    GeometryData::VboVertices vertices;
-    Vertex v1 = {pos, normal, tangent, bitangent, coord};
-    Vertex v2 = {pos, normal, tangent, bitangent, coord};
-    Vertex v3 = {pos, normal, tangent, bitangent, coord};
-    vertices.push_back(v1);
-    vertices.push_back(v2);
-    vertices.push_back(v3);
-    geometry.copyVertexData(vertices);
-    
-    GeometryData::VboIndices indices;
-    indices.push_back(0);
-    indices.push_back(1);
-    indices.push_back(2);
-    indices.push_back(2);
-    indices.push_back(3);
-    indices.push_back(0);
-    
-    
-    geometry.copyIndexData(indices);
-    geometry.initializeVertexBuffer();
-    MaterialData md;
-    md.textures["DiffuseMap"] = "rustypipe.png";
-    MaterialPtr material = sceneManager->createMaterial("emitter", md);
-    setMaterial(material);
-    
-    
-}
 EmitterParticle particles[NUM_PARTICLES];
 GLuint textureId;
 //The amount of time until the next call to step().
@@ -88,11 +48,11 @@ float angle;
 
 const float STEP_TIME = 0.01f;
 //The length of the sides of the quadrilateral drawn for each particle.
-const float PARTICLE_SIZE = 0.05f;
+const float PARTICLE_SIZE = 300;
 
 const float GRAVITY = 3.0f;
 
-vmml::vec3f curColor() {
+vmml::vec3f ParticleEngine::curColor() {
     vmml::vec3f color;
     if (colorTime < 0.166667f) {
         color = vmml::vec3f(1.0f, colorTime * 6, 0.0f);
@@ -125,11 +85,12 @@ vmml::vec3f curColor() {
     return color;
 }
 
-vmml::vec3f curVelocity() {
+vmml::vec3f ParticleEngine::curVelocity() {
     return vmml::vec3f(2 * cos(angle), 2.0f, 2 * sin(angle));
 }
 
-void createParticle(EmitterParticle* p) {
+
+void ParticleEngine::createParticle(EmitterParticle* p) {
     p->pos = vmml::vec3f(0, 0, 0);
     p->velocity = curVelocity() + vmml::vec3f(0.5f * randomFloat() - 0.25f,
                                               0.5f * randomFloat() - 0.25f,
@@ -138,8 +99,7 @@ void createParticle(EmitterParticle* p) {
     p->timeAlive = 0;
     p->lifespan = randomFloat() + 1;
 }
-
-void step() {
+void ParticleEngine::step() {
     colorTime += STEP_TIME / 10;
     while (colorTime >= 1) {
         colorTime -= 1;
@@ -162,7 +122,7 @@ void step() {
 }
 
 
-void advance(float dt) {
+void ParticleEngine::advance(float dt) {
     while (dt > 0) {
         if (timeUntilNextStep < dt) {
             dt -= timeUntilNextStep;
@@ -176,21 +136,107 @@ void advance(float dt) {
     }
 }
 
-void ParticleEngine::draw() {
-    /*std::vector<EmitterParticle*> ps;
-    for(int i = 0; i < NUM_PARTICLES; i++) {
-        ps.push_back(particles + i);
+ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager, ModelData()) {
+    
+    Model::GroupMap &groups = getGroups();
+    Geometry &geometry = groups["geom"];
+    //TODO: Change vertices for quads!
+    GeometryData::VboVertices vertices;
+    GeometryData::VboIndices indices;
+    /*v -1.000000 0.000000 1.000000
+     v 1.000000 0.000000 1.000000
+     v -1.000000 0.000000 -1.000000
+     v 1.000000 0.000000 -1.000000
+     vt 0.999900 0.000100
+     vt 0.999900 0.999900
+     vt 0.000100 0.999900
+     vt 0.000100 0.000100*/
+    
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        createParticle(particles + i);
     }
-    sort(ps.begin(), ps.end(), compareParticles);
     
-    */
-    Geometry &geom = getGroups()["geom"];
+    //TODO: Add particles to array and to geometry
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        EmitterParticle p = particles[i];
+        float zPos = 99;
+        Point3 pos = {PARTICLE_SIZE*(0.0+i), PARTICLE_SIZE*(0.0+i), zPos};
+        Vector3 normal = {0.0, 0.0, 1.0};
+        Vector3 tangent = {1.0, 1.0, 1.0};
+        Vector3 bitangent = {1.0, 1.0, 1.0};
+        TexCoord coord = {0.0, 0.0};
+        Vertex v1 = {pos, normal, tangent, bitangent, coord};
+        vertices.push_back(v1);
+        
+        Point3 pos2 = {PARTICLE_SIZE*(1.0+i), PARTICLE_SIZE*(0.0+i), zPos};
+        TexCoord coord2 = {1.0, 0.0};
+        Vertex v2 = {pos2, normal, tangent, bitangent, coord2};
+        vertices.push_back(v2);
+        
+        Point3 pos3 = {PARTICLE_SIZE*(1.0+i), PARTICLE_SIZE*(1.0+i), zPos};
+        TexCoord coord3 = {1.0, 1.0};
+        Vertex v3 = {pos3, normal, tangent, bitangent, coord3};
+        vertices.push_back(v3);
+        
+        
+        Point3 pos4 = {PARTICLE_SIZE*(0.0+i), PARTICLE_SIZE*(1.0+i), zPos};
+        TexCoord coord4 = {0.0, 1.0};
+        Vertex v4 = {pos4, normal, tangent, bitangent, coord4};
+        vertices.push_back(v4);
+        
+        
+        indices.push_back(i);
+        indices.push_back(i+1);
+        indices.push_back(i+2);
+        indices.push_back(i+3);
+    }
     
-    Geometry::VertexDataPtr vertexData = geom.getVertexData();
+    
+  
+        
+        
+        
+
+
+    
+    geometry.copyVertexData(vertices);
+    geometry.copyIndexData(indices);
+    
+    geometry.initializeVertexBuffer();
+    MaterialData md;
+    md.textures["DiffuseMap"] = "fire_particle.png";
+    MaterialPtr material = sceneManager->createMaterial("fire_particle", md);
+    setMaterial(material);
+    //sceneManager->createModel("fire_particle", ModelData("fire_particle.obj"));
+    
+}
+
+ParticleEngine::~ParticleEngine(){}
+
+
+
+void ParticleEngine::draw(GLenum mode, float deltaT) {
+    /*std::vector<EmitterParticle*> ps;
+     for(int i = 0; i < NUM_PARTICLES; i++) {
+     ps.push_back(particles + i);
+     }
+     sort(ps.begin(), ps.end(), compareParticles);
+     
+     */
+     Geometry &geom = getGroups()["geom"];
+    
+    /*
+     Geometry::VertexDataPtr vertexData = geom.getVertexData();
+    
+     vertexData->position.x -= 0.1;
+     vertexData->position.z -= 0.1;
+    geom.setVertexData(vertexData);
+     */
+    
     
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-    Model::draw(GL_TRIANGLES);
+    Model::draw(mode);
     glDisable(GL_BLEND);
     
     //TODO: Change drawing code (see WiggleCube)

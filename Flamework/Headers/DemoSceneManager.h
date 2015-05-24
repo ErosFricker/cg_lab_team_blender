@@ -75,6 +75,8 @@ public:
     bool hasCollided(vmml::vec3f vec1, vmml::vec3f vec2);
     
 private:
+    
+    
     std::list<Particle> _activeParticles;
     std::list<CoreParticle> _particleList;
     

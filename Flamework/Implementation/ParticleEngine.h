@@ -25,15 +25,10 @@
 #include "EmitterParticle.h"
 
 class ParticleEngine : public Model {
-    
+
     
 private:
 
-
-    explicit ParticleEngine(SceneManager *sceneManager);
-
-    
-    
     //Returns the current color of particles produced by the fountain.
     vmml::vec3f curColor();
     //Returns the average velocity of particles produced by the fountain.
@@ -47,24 +42,12 @@ private:
     
     
 public:
-  /*  ParticleEngine(GLuint textureId1) {
-        textureId = textureId1;
-        timeUntilNextStep = 0;
-        colorTime = 0;
-        angle = 0;
-        for(int i = 0; i < NUM_PARTICLES; i++) {
-            createParticle(particles + i);
-        }
-        for(int i = 0; i < 5 / STEP_TIME; i++) {
-            step();
-        }
-    }*/
+    explicit ParticleEngine(SceneManager *sceneManager);
+    ~ParticleEngine();
     
-    //Advances the particle fountain by the specified amount of time.
     void advance(float dt);
     
-    //Draws the particle fountain.
-    void draw();
+    virtual void draw(GLenum mode = GL_TRIANGLES, float deltaT = 0.0);
 };
 
 typedef std::shared_ptr<ParticleEngine> ParticleEnginePtr;

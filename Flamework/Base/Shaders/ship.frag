@@ -36,9 +36,9 @@ varying mediump vec4 posVarying;        // pos in world space
 varying mediump vec3 normalVarying;     // normal in world space
 varying mediump vec3 tangentVarying;    // tangent in world space
 varying lowp vec4 colorVarying;
-
+#define shininess 20.0
 void main()
-{
+{/*
     // TBN-Matrix
     mediump vec3 n = normalize(normalVarying);
     mediump vec3 t = normalize(tangentVarying - dot(tangentVarying, n));
@@ -71,5 +71,46 @@ void main()
     }
     
     lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
-    gl_FragColor = (ambientResult + diffuseResult)*color + specularResult;
+    gl_FragColor = (ambientResult + diffuseResult)*color + specularResult;*/
+    
+    // TBN-Matrix
+    mediump vec3 n = normalize(normalVarying);
+    mediump vec3 t = normalize(tangentVarying - dot(tangentVarying, n));
+    mediump vec3 b = cross(n, t);
+    mediump mat3 tbn = mat3(t, b, n);
+    // Bumpy normal
+    mediump vec3 bumpNormal = texture2D(NormalMap, texCoordVarying.xy).xyz;
+    bumpNormal = 2.0*bumpNormal - vec3(1.0);
+    n = normalize(tbn*bumpNormal);
+    
+    // Material Color:
+    vec4 color0 =  texture2D(DiffuseMap, texCoordVarying.xy);
+    lowp vec4 ambientResult = vec4(Ka * Ia, 1.0);
+
+    // Silhouette Color:
+    vec4 color1 = ambientResult*color0*0.2;
+    
+    // Specular Color:
+    vec4 color2 = vec4(0.8, 0.8, 0.8, 1.0);
+    
+    // Lighting
+    vec3 Normal = normalize(n);
+    vec3 EyeVert = normalize(EyePos - posVarying).xyz;
+    vec3 LightVert = normalize(LightPos - posVarying).xyz;
+    vec3 EyeLight = normalize(LightVert+EyeVert);
+    // Simple Silhouette
+    float sil = max(dot(Normal,EyeVert), 0.0);
+    if (sil < 0.3) gl_FragColor = color1;
+    else
+    {
+        gl_FragColor = color0;
+        // Specular part
+        float spec = pow(max(dot(Normal,EyeLight),0.0), shininess);
+        if (spec < 0.2) gl_FragColor *= 0.8;
+        else gl_FragColor = color2;
+        // Diffuse part
+        float diffuse = max(dot(Normal,LightVert),0.0);
+        if (diffuse < 0.5) gl_FragColor *=0.8;
+    }
 }
+
