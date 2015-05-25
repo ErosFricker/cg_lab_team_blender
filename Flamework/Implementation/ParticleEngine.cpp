@@ -48,9 +48,9 @@ float angle;
 
 const float STEP_TIME = 0.01f;
 //The length of the sides of the quadrilateral drawn for each particle.
-const float PARTICLE_SIZE = 0.1;
+const float PARTICLE_SIZE = 0.01;
 
-const float GRAVITY = 3.0f;
+const float GRAVITY = 5.0f;
 
 vmml::vec3f ParticleEngine::curColor() {
     vmml::vec3f color;
@@ -91,7 +91,7 @@ vmml::vec3f ParticleEngine::curVelocity() {
 
 
 void ParticleEngine::createParticle(EmitterParticle* p) {
-    p->pos = vmml::vec3f(0, 0, 0);
+    p->pos = vmml::vec3f(0, 0, 99);
     p->velocity = curVelocity() + vmml::vec3f(0.5f * randomFloat() - 0.25f,
                                               0.5f * randomFloat() - 0.25f,
                                               0.5f * randomFloat() - 0.25f);
@@ -137,26 +137,27 @@ void ParticleEngine::advance(float dt) {
 }
 
 ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager, ModelData()) {
-    
     Model::GroupMap &groups = getGroups();
     Geometry &geometry = groups["geom"];
+    
     //TODO: Change vertices for quads!
     GeometryData::VboVertices vertices;
     GeometryData::VboIndices indices;
     
+    
     for (int i = 0; i < NUM_PARTICLES; i++) {
         createParticle(particles + i);
     }
-   /* for (int i = 0; i < 5/STEP_TIME; i++) {
+    for (int i = 0; i < 5/STEP_TIME; i++) {
         step();
-    }*/
+    }
     //TODO: Add particles to array and to geometry
     for (int i = 0; i < NUM_PARTICLES; i++) {
         EmitterParticle p = particles[i];
-        float zPos = 0;
+        float zPos = 99.0;
         float size = PARTICLE_SIZE / 2.0f;
         Point3 pos = {p.pos[0]-size, p.pos[1]-size, zPos};
-        Vector3 normal = {0.0, 0.0, fmodf(i, 2.0)-1.0};
+        Vector3 normal = {0.0, 0.0, 1.0f};
         Vector3 tangent = {.0, 1.0, 0.0};
         Vector3 bitangent = {1.0, 0.0, 0.0};
         TexCoord coord = {0.0, 0.0};
@@ -175,10 +176,7 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
         
         indices.push_back(i);
         indices.push_back(i+1);
-        indices.push_back(i+1);
         indices.push_back(i+2);
-        indices.push_back(i+2);
-        indices.push_back(i);
     }
 
     geometry.copyVertexData(vertices);
@@ -198,11 +196,48 @@ ParticleEngine::~ParticleEngine(){}
 
 
 void ParticleEngine::draw(GLenum mode, float deltaT) {
-     Geometry &geom = getGroups()["geom"];
+    advance(0.1);
+    Geometry &geometry = getGroups()["geom"];
     std::vector<EmitterParticle*> ps;
     for (int i = 0;  i< NUM_PARTICLES; i++) {
         ps.push_back(particles+i);
     }
+    std::sort(ps.begin(), ps.end(), compareParticles);
+    
+    GeometryData::VboVertices vertices;
+    GeometryData::VboIndices indices;
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        EmitterParticle p = particles[i];
+        float zPos = 99.0;
+        float size = PARTICLE_SIZE / 2.0f;
+        Point3 pos = {p.pos[0]-size, p.pos[1]-size, zPos};
+        Vector3 normal = {0.0, 0.0, 1.0f};
+        Vector3 tangent = {.0, 1.0, 0.0};
+        Vector3 bitangent = {1.0, 0.0, 0.0};
+        TexCoord coord = {0.0, 0.0};
+        Vertex v1 = {pos, normal, tangent, bitangent, zPos};
+        vertices.push_back(v1);
+        
+        Point3 pos2 = {p.pos[0], p.pos[1]+size, p.pos[2]};
+        TexCoord coord2 = {1.0, 0.0};
+        Vertex v2 = {pos2, normal, tangent, bitangent, zPos};
+        vertices.push_back(v2);
+        
+        Point3 pos3 = {p.pos[0]+size, p.pos[1]-size, zPos};
+        TexCoord coord3 = {1.0, 1.0};
+        Vertex v3 = {pos3, normal, tangent, bitangent, coord3};
+        vertices.push_back(v3);
+        
+        indices.push_back(i);
+        indices.push_back(i+1);
+        indices.push_back(i+2);
+    }
+    geometry.copyVertexData(vertices);
+    geometry.copyIndexData(indices);
+    geometry.initializeVertexBuffer();
+    
+    
+    
     glBlendFunc(GL_ONE, GL_ONE);
     glEnable(GL_BLEND);
     Model::draw(mode);

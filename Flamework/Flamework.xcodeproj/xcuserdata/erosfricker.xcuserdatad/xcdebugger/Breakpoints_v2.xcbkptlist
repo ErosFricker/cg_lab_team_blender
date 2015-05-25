@@ -55,152 +55,109 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "Implementation/ParticleEngine.cpp"
+            timestampString = "454235234.080442"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "ParticleEngine::draw(GLenum mode, float deltaT)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Implementation/ParticleEngine.cpp"
+            timestampString = "454235234.080442"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "ParticleEngine::draw(GLenum mode, float deltaT)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Implementation/ParticleEngine.cpp"
+            timestampString = "454235234.080442"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "ParticleEngine::draw(GLenum mode, float deltaT)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Implementation/ParticleEngine.cpp"
+            timestampString = "454235234.080442"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "ParticleEngine::draw(GLenum mode, float deltaT)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Implementation/ParticleEngine.cpp"
+            timestampString = "454234516.892489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "ParticleEngine::advance(float dt)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Implementation/ParticleEngine.cpp"
+            timestampString = "454234531.589086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "ParticleEngine::advance(float dt)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "Implementation/DemoSceneManager.cpp"
-            timestampString = "454179541.904966"
+            timestampString = "454235466.625325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "694"
-            endingLineNumber = "694"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
             landmarkName = "DemoSceneManager::draw(double deltaT)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoSceneManager::draw(double)"
-                  moduleName = "Flamework"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erosfricker/Documents/Computer_Graphics/cg_lab_team_blender/Flamework/Implementation/DemoSceneManager.cpp"
-                  timestampString = "454166294.647716"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "645"
-                  endingLineNumber = "645"
-                  offsetFromSymbolStart = "1112">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoSceneManager::draw(double)"
-                  moduleName = "Flamework"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erosfricker/Documents/Computer_Graphics/cg_lab_team_blender/Flamework/Implementation/DemoSceneManager.cpp"
-                  timestampString = "454166294.647929"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "645"
-                  endingLineNumber = "645"
-                  offsetFromSymbolStart = "1140">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoSceneManager::draw(double)"
-                  moduleName = "Flamework"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erosfricker/Documents/Computer_Graphics/cg_lab_team_blender/Flamework/Implementation/DemoSceneManager.cpp"
-                  timestampString = "454166294.648076"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "645"
-                  endingLineNumber = "645"
-                  offsetFromSymbolStart = "1152">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoSceneManager::draw(double)"
-                  moduleName = "Flamework"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erosfricker/Documents/Computer_Graphics/cg_lab_team_blender/Flamework/Implementation/DemoSceneManager.cpp"
-                  timestampString = "454166294.648222"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "645"
-                  endingLineNumber = "645"
-                  offsetFromSymbolStart = "1988">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoSceneManager::draw(double)"
-                  moduleName = "Flamework"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erosfricker/Documents/Computer_Graphics/cg_lab_team_blender/Flamework/Implementation/DemoSceneManager.cpp"
-                  timestampString = "454166294.648363"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "645"
-                  endingLineNumber = "645"
-                  offsetFromSymbolStart = "3772">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoSceneManager::draw(double)"
-                  moduleName = "Flamework"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erosfricker/Documents/Computer_Graphics/cg_lab_team_blender/Flamework/Implementation/DemoSceneManager.cpp"
-                  timestampString = "454166294.648507"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "645"
-                  endingLineNumber = "645"
-                  offsetFromSymbolStart = "4760">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoSceneManager::draw(double)"
-                  moduleName = "Flamework"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erosfricker/Documents/Computer_Graphics/cg_lab_team_blender/Flamework/Implementation/DemoSceneManager.cpp"
-                  timestampString = "454166294.648655"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "645"
-                  endingLineNumber = "645"
-                  offsetFromSymbolStart = "6708">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Implementation/ParticleEngine.cpp"
-            timestampString = "454160391.671847"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "ParticleEngine::draw(GLenum mode, float deltaT)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Implementation/ParticleEngine.cpp"
-            timestampString = "454160391.671847"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "ParticleEngine::draw(GLenum mode, float deltaT)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
