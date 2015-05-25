@@ -68,6 +68,7 @@ public:
 
     vmml::mat4f getHaloModelMatrix(float size, float scaling);
     vmml::mat4f getScoreModelMatrix(vmml::vec4f position, int place, float scale);
+    void checkLights(vmml::vec3f);
     
     vmml::vec3f distanceBetween(vmml::vec3f vec1, vmml::vec3f vec2);
     vmml::mat4f orientToViewer(vmml::vec3f eye, vmml::vec3f lookAt, vmml::vec3f point);
@@ -126,6 +127,8 @@ private:
     vmml::vec3f _positionShip;
     
     vmml::vec4f _color;
+    vmml::vec4f _lights[5];
+    int _lightDistance[5];
     vmml::mat4f _acceleratorRotation;
     
     MatrixStack _modelMatrixStack;

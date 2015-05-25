@@ -188,6 +188,11 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
             shader->setUniform("EyePos", _eyePos);
             
             shader->setUniform("LightPos", vmml::vec4f(0.01, 2.01, 75., 1.f));
+            shader->setUniform("Light1", _lights[0]);
+            shader->setUniform("Light2", _lights[1]);
+            shader->setUniform("Light3", _lights[2]);
+            shader->setUniform("Light4", _lights[3]);
+            shader->setUniform("Light5", _lights[4]);
             shader->setUniform("Ia", vmml::vec3f(1.f));
             shader->setUniform("Id", vmml::vec3f(1.f));
             shader->setUniform("Is", vmml::vec3f(1.f));
@@ -342,6 +347,50 @@ vmml::mat4f DemoSceneManager::getScoreModelMatrix(vmml::vec4f position, int plac
     * vmml::create_scaling(scale);
 }
 
+void DemoSceneManager::checkLights(vmml::vec3f position){
+    int delta = sqrt(position.x()*position.x() + position.y()*position.y() + position.z()*position.z());
+    for(int i = 0; i < 5; i++){
+        if (delta < _lightDistance[4]){
+            
+            int tmpDist = _lightDistance[4];
+            vmml::vec4f tmpPos = _lights[4];
+            _lightDistance[4] = delta;
+            _lights[4] = vmml::vec4f(position, 1.f);
+            
+            for(int k = 3; k >= 0; k--){
+                int tmpDist2 = _lightDistance[k];
+                vmml::vec4f tmpPos2 = _lights[k];
+                _lightDistance[k] = tmpDist;
+                _lights[k] = tmpPos;
+                tmpDist = tmpDist2;
+                tmpPos = tmpPos2;
+            }
+        }
+        else{
+            for(int j = 0; j < 4; j++){
+                
+                if (delta < _lightDistance[j] && delta > _lightDistance[j+1]){
+                    //_put light there and push back
+                    int tmpDist = _lightDistance[j];
+                    vmml::vec4f tmpPos = _lights[j];
+                    _lightDistance[j] = delta;
+                    _lights[j] = vmml::vec4f(position, 1.f);
+                    
+                    for(int k = 3; k >= 0; k--){
+                        int tmpDist2 = _lightDistance[k];
+                        vmml::vec4f tmpPos2 = _lights[k];
+                        _lightDistance[k] = tmpDist;
+                        _lights[k] = tmpPos;
+                        tmpDist = tmpDist2;
+                        tmpPos = tmpPos2;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
 
 float _explosionAnimationTimer;
 vmml::mat4f _explosionmatrix;
@@ -381,6 +430,11 @@ void DemoSceneManager::draw(double deltaT)
         _particleSpawnProbability = 10;  // 20
         _maxParticleNumber = 20;        // 25
         _particleSpeedIncrement = 10;
+        
+        for(int i = 0; i < 5; i++){
+            _lights[i] = vmml::vec4f(0., 0., 0., 1.f);
+            _lightDistance[i] = 1000;
+        }
         
         // Navigation
         steeringDirection = 0;
@@ -502,11 +556,18 @@ void DemoSceneManager::draw(double deltaT)
         if (_collision && _explosionAnimationTimer < 0.0001) {
             shouldStop = true;
         }
+        
+        //Check if the particle is one of the 5 closest for lighting
+        vmml::vec3f position = it->getPosition(_time).getPosition();
+        checkLights(position);
+        
         drawModel(0, "core");
         
         // Collisiondetection
         vmml::vec3f absolutePosition = _steeringMatrix*(it->getPosition(_time)).getPosition();
         if(hasCollided(absolutePosition, _positionShip)) _collision = true;
+        
+        
         
         // Draw Halo
         vmml::mat4f tmp = _modelMatrix;
@@ -631,7 +692,6 @@ void DemoSceneManager::draw(double deltaT)
         
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE); // transparancy
-        int j;
         float sign;
         for (int g=0; g<2; ++g)
         {
