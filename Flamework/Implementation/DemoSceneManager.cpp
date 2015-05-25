@@ -685,7 +685,7 @@ void DemoSceneManager::draw(double deltaT)
     shader->setUniform("deltaT", deltaT);
     
     shader->setUniform("ColorVector", _color);
-    particleEngine->draw(GL_TRIANGLE_STRIP, deltaT);
+    particleEngine->draw(GL_TRIANGLES, deltaT);
     glEnable(GL_CULL_FACE);
     
 }

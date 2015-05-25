@@ -28,7 +28,7 @@ float randomFloat(){
 
 //Returns the position of the particle, after rotating the camera.
 vmml::vec3f adjParticlePos(vmml::vec3f pos) {
-    return rotateParticle(pos, vmml::vec3f(1, 0, 0), -30);
+    return rotateParticle(pos, vmml::vec3f(1, 0, 0), 0.1);
 }
 bool compareParticles(EmitterParticle* particle1, EmitterParticle* particle2) {
     return adjParticlePos(particle1->pos)[2] <
@@ -48,9 +48,9 @@ float angle;
 
 const float STEP_TIME = 0.01f;
 //The length of the sides of the quadrilateral drawn for each particle.
-const float PARTICLE_SIZE = 0.01;
+const float PARTICLE_SIZE = 0.05;
 
-const float GRAVITY = 5.0f;
+const float GRAVITY = 10.0f;
 
 vmml::vec3f ParticleEngine::curColor() {
     vmml::vec3f color;
@@ -91,13 +91,13 @@ vmml::vec3f ParticleEngine::curVelocity() {
 
 
 void ParticleEngine::createParticle(EmitterParticle* p) {
-    p->pos = vmml::vec3f(0, 0, 99);
+    p->pos = vmml::vec3f(0.0, -.8, 99);
     p->velocity = curVelocity() + vmml::vec3f(0.5f * randomFloat() - 0.25f,
-                                              0.5f * randomFloat() - 0.25f,
+                                              -0.1f,
                                               0.5f * randomFloat() - 0.25f);
     p->color = curColor();
     p->timeAlive = 0;
-    p->lifespan = randomFloat() + 1;
+    p->lifespan = randomFloat();
 }
 void ParticleEngine::step() {
     colorTime += STEP_TIME / 10;
@@ -105,10 +105,10 @@ void ParticleEngine::step() {
         colorTime -= 1;
     }
     
-    angle += 0.5f * STEP_TIME;
+  /*  angle += 0.1f * STEP_TIME;
     while (angle > 2 * M_PI_F) {
         angle -= 2 * M_PI_F;
-    }
+    }*/
     for(int i = 0; i < NUM_PARTICLES; i++) {
         EmitterParticle* p = particles + i;
         
@@ -156,6 +156,7 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
         EmitterParticle p = particles[i];
         float zPos = 99.0;
         float size = PARTICLE_SIZE / 2.0f;
+        
         Point3 pos = {p.pos[0]-size, p.pos[1]-size, zPos};
         Vector3 normal = {0.0, 0.0, 1.0f};
         Vector3 tangent = {.0, 1.0, 0.0};
@@ -164,19 +165,31 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
         Vertex v1 = {pos, normal, tangent, bitangent, coord};
         vertices.push_back(v1);
         
-        Point3 pos2 = {p.pos[0], p.pos[1]+size, zPos};
+        Point3 pos2 = {p.pos[0]-size, p.pos[1]+size, p.pos[2]};
         TexCoord coord2 = {1.0, 0.0};
         Vertex v2 = {pos2, normal, tangent, bitangent, coord2};
         vertices.push_back(v2);
         
-        Point3 pos3 = {p.pos[0]+size, p.pos[1]-size, zPos};
+        
+        Point3 pos3 = {p.pos[0]+size, p.pos[1]+size, zPos};
         TexCoord coord3 = {1.0, 1.0};
         Vertex v3 = {pos3, normal, tangent, bitangent, coord3};
         vertices.push_back(v3);
-        
-        indices.push_back(i);
-        indices.push_back(i+1);
-        indices.push_back(i+2);
+        Point3 pos4 = {p.pos[0]+size, p.pos[1]-size, zPos};
+        TexCoord coord4 = {1.0, 1.0};
+        Vertex v4 = {pos4, normal, tangent, bitangent, coord4};
+        vertices.push_back(v4);
+    }
+    
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        if (i%4 == 0) {
+            indices.push_back(i);
+            indices.push_back(i+1);
+            indices.push_back(i+2);
+            indices.push_back(i);
+            indices.push_back(i+2);
+            indices.push_back(i+3);
+        }
     }
 
     geometry.copyVertexData(vertices);
@@ -186,7 +199,10 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
     MaterialData md;
     md.textures["DiffuseMap"] = "fire_particle.png";
     MaterialPtr material = sceneManager->createMaterial("fire_particle", md);
+
     setMaterial(material);
+    ShaderPtr shader = getMaterial()->getShader();
+    shader->registerAttrib("TexCoord", 2, GL_FLOAT, sizeof(Vertex), offsetof(Vertex, texCoord));
     //sceneManager->createModel("fire_particle", ModelData("fire_particle.obj"));
     
 }
@@ -206,39 +222,56 @@ void ParticleEngine::draw(GLenum mode, float deltaT) {
     
     GeometryData::VboVertices vertices;
     GeometryData::VboIndices indices;
+    ShaderPtr shader = getMaterial()->getShader();
     for (int i = 0; i < NUM_PARTICLES; i++) {
         EmitterParticle p = particles[i];
         float zPos = 99.0;
         float size = PARTICLE_SIZE / 2.0f;
+        
         Point3 pos = {p.pos[0]-size, p.pos[1]-size, zPos};
         Vector3 normal = {0.0, 0.0, 1.0f};
         Vector3 tangent = {.0, 1.0, 0.0};
         Vector3 bitangent = {1.0, 0.0, 0.0};
         TexCoord coord = {0.0, 0.0};
-        Vertex v1 = {pos, normal, tangent, bitangent, zPos};
+        Vertex v1 = {pos, normal, tangent, bitangent, coord};
         vertices.push_back(v1);
         
-        Point3 pos2 = {p.pos[0], p.pos[1]+size, p.pos[2]};
+        Point3 pos2 = {p.pos[0]-size, p.pos[1]+size, p.pos[2]};
         TexCoord coord2 = {1.0, 0.0};
-        Vertex v2 = {pos2, normal, tangent, bitangent, zPos};
+        Vertex v2 = {pos2, normal, tangent, bitangent, coord2};
         vertices.push_back(v2);
         
-        Point3 pos3 = {p.pos[0]+size, p.pos[1]-size, zPos};
+        
+        Point3 pos3 = {p.pos[0]+size, p.pos[1]+size, zPos};
         TexCoord coord3 = {1.0, 1.0};
         Vertex v3 = {pos3, normal, tangent, bitangent, coord3};
         vertices.push_back(v3);
-        
-        indices.push_back(i);
-        indices.push_back(i+1);
-        indices.push_back(i+2);
+        Point3 pos4 = {p.pos[0]+size, p.pos[1]-size, zPos};
+        TexCoord coord4 = {1.0, 1.0};
+        Vertex v4 = {pos4, normal, tangent, bitangent, coord4};
+        vertices.push_back(v4);
     }
+    
+    
+    
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        if (i%4 == 0) {
+            indices.push_back(i);
+            indices.push_back(i+1);
+            indices.push_back(i+2);
+            indices.push_back(i);
+            indices.push_back(i+2);
+            indices.push_back(i+3);
+        }
+    }
+    
     geometry.copyVertexData(vertices);
     geometry.copyIndexData(indices);
     geometry.initializeVertexBuffer();
     
     
     
-    glBlendFunc(GL_ONE, GL_ONE);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     Model::draw(mode);
     glDisable(GL_BLEND);
