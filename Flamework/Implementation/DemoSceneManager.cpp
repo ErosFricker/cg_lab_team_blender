@@ -184,11 +184,14 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
             shader->setUniform("EyePos", _eyePos);
             
             shader->setUniform("LightPos", vmml::vec4f(0.01, 2.01, 75., 1.f));
+            if(name == "ship"){
             shader->setUniform("Lights", _lights[0]);
             shader->setUniform("Light2", _lights[1]);
             shader->setUniform("Light3", _lights[2]);
             shader->setUniform("Light4", _lights[3]);
             shader->setUniform("Light5", _lights[4]);
+            }
+            
             shader->setUniform("Ia", vmml::vec3f(1.f));
             shader->setUniform("Id", vmml::vec3f(1.f));
             shader->setUniform("Is", vmml::vec3f(1.f));
@@ -460,12 +463,19 @@ void DemoSceneManager::draw(double deltaT)
         createOrthonormalSystems();
     }
     
-            glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            glEnable(GL_DEPTH_TEST);
-            glDepthFunc(GL_LEQUAL);
-            glCullFace(GL_BACK);
-            glDisable(GL_CULL_FACE);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glCullFace(GL_BACK);
+    glDisable(GL_CULL_FACE);
+    
+    
+    
+    
+    
+    
+    // STEERING
     
     
     
@@ -504,49 +514,11 @@ void DemoSceneManager::draw(double deltaT)
             if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
     
     
-    // Draw Particles
-    std::list<CoreParticle>::iterator it;
-    for (it = _particleList.begin(); it != _particleList.end(); ++it)
-    {
-        // Draw Core
-        _modelMatrix = _steeringMatrix * (*it).getModelMatrix(_time);
-        if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
-            
-            _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
-            float rotationValue = (-M_PI)*_explosionAnimationTimer;
-            _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
-            _explosionmatrix = _modelMatrix;
-            
-            _explosionAnimationTimer -=0.001;
-            
-            
-        }
-        if (_collision && _explosionAnimationTimer < 0.0001) {
-            shouldStop = true;
-        }
-        
-        //Check if the particle is one of the 5 closest for lighting
-        vmml::vec3f position = it->getPosition(_time).getPosition();
-        checkLights(position);
-        
-        drawModel(0, "core");
-        
-        // Collisiondetection
-        vmml::vec3f absolutePosition = _steeringMatrix*(it->getPosition(_time)).getPosition();
-        if(hasCollided(absolutePosition, _positionShip)) _collision = true;
-        
-        
-        
-        // Draw Halo
-        vmml::mat4f tmp = _modelMatrix;
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparancy
-        float halo_scal = fabs(sin(it->getRandom1()*25.f*_time + it->getRandom2()));
-        _modelMatrix *= getHaloModelMatrix(_particleSize, halo_scal);
-        drawModel(0, "halo");
-        glDisable(GL_BLEND);
-        _modelMatrix = tmp;
-    }
+                _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
+                float rotationValue = (-M_PI)*_explosionAnimationTimer;
+                _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
+                _modelMatrix = _modelMatrix*vmml::create_translation(vmml::vec3f(0.0, 0.0, _explosionAnimationTimer));
+                _explosionmatrix = _modelMatrix;
     
                 _explosionAnimationTimer -=0.1;
     
@@ -590,6 +562,11 @@ void DemoSceneManager::draw(double deltaT)
                 if (_collision && _explosionAnimationTimer < 0.0001) {
                     shouldStop = true;
                 }
+                
+                //Check if the particle is one of the 5 closest for lighting
+                vmml::vec3f position = it->getPosition(_time).getPosition();
+                checkLights(position);
+                
                 drawModel(0, "core");
     
                 // Collisiondetection
@@ -623,25 +600,38 @@ void DemoSceneManager::draw(double deltaT)
     
             _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
     
-    if (_particleAnimationTimer >0.0f) {
-        
-        
-        // Motion Fire
-        vmml::mat4f tmp;
-        vmml::mat4f fireparticleMatrix = vmml::create_rotation(-M_PI_F/2.f, vmml::vec3f(1,0,0))
-        * vmml::create_scaling(0.1f);
-        
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_ONE, GL_ONE); // transparancy
-        float sign;
-        for (int g=0; g<2; ++g)
-        {
-            if (g==0) sign = 1.f;
-            else sign = -1.f;
-            _modelMatrix = vmml::create_translation(vmml::vec3f(sign*.56f,-2.4f,81.f)) * fireparticleMatrix;
-            tmp = _modelMatrix;
-            
-            for (int h=0; h<10; ++h)
+            if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
+    
+                _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
+                float rotationValue = (-M_PI)*_explosionAnimationTimer;
+                _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
+                _explosionmatrix = _modelMatrix;
+    
+                _explosionAnimationTimer -=0.001;
+    
+    
+            }
+            if (_collision && _explosionAnimationTimer < 0.0001) {
+                shouldStop = true;
+            }
+    
+    
+            if (steeringDirection<0.0f) {
+                _modelMatrix*=vmml::create_rotation(0.4f, vmml::vec3f::UNIT_Z);
+            }else if (steeringDirection > 0.0f){
+                _modelMatrix*=vmml::create_rotation(-0.4f, vmml::vec3f::UNIT_Z);
+            }
+    
+            drawModel(0, "ship");
+    
+    
+    
+    
+    
+            // BLACKHOLE (TEST, blue sphere)
+            // -----------------------------------------------------------------------
+            glDisable(GL_DEPTH_TEST);
+            if (_collision)
             {
                 loadSound("explosion.mp3")->play();
                 //_modelMatrix = _modelMatrixShip * vmml::create_scaling(3.f);
