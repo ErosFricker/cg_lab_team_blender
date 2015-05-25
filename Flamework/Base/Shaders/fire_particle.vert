@@ -42,7 +42,7 @@ void main()
     
     posVarying = ModelMatrix * Position;
     normalVarying = normalize(NormalMatrix * Normal);
-    tangentVarying = normalize(NormalMatrix * Tangent);
+    tangentVarying = normalize(Tangent);
     texCoordVarying = TexCoord;
     colorVarying = ColorVector;
     
