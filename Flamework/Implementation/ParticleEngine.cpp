@@ -51,6 +51,7 @@ const float STEP_TIME = 0.01f;
 const float PARTICLE_SIZE = 0.2f;
 
 const float GRAVITY = 3.0f;
+vmml::vec3f STARTING_POSITION;
 
 vmml::vec3f ParticleEngine::curColor() {
     vmml::vec3f color;
@@ -97,7 +98,8 @@ vmml::vec3f ParticleEngine::curVelocity() {
 
 
 void ParticleEngine::createParticle(EmitterParticle* p) {
-    p->pos = vmml::vec3f(0.0, -.77, 99);
+    //p->pos = vmml::vec3f(0.0, -.77, 99);
+    p->pos = STARTING_POSITION;
     p->velocity = curVelocity() + vmml::vec3f(0.5f * randomFloat() - 0.25f,
                                               -0.1f,
                                               0.5f * randomFloat() - 0.25f);
@@ -142,9 +144,10 @@ void ParticleEngine::advance(float dt) {
     }
 }
 
-ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager, ModelData()) {
+ParticleEngine::ParticleEngine(SceneManager* sceneManager, vmml::vec3f startPosition) : Model(sceneManager, ModelData()) {
     Model::GroupMap &groups = getGroups();
     Geometry &geometry = groups["geom"];
+    STARTING_POSITION = startPosition;
     
     //TODO: Change vertices for quads!
     GeometryData::VboVertices vertices;

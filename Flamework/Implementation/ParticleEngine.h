@@ -42,7 +42,7 @@ private:
     
     
 public:
-    explicit ParticleEngine(SceneManager *sceneManager);
+    explicit ParticleEngine(SceneManager *sceneManager, vmml::vec3f startPosition);
     ~ParticleEngine();
     
     void advance(float dt);

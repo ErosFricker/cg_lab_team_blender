@@ -110,7 +110,7 @@ void DemoSceneManager::onScaleEnded(float x, float y)
     _scaling += scaleDelta * SCALE_SPEED;
     _lScale = cScale;
 }
-ParticleEngine* particleEngine;
+ParticleEngine* bigAuspuff;
 
 void DemoSceneManager::initialize(size_t width, size_t height)
 {
@@ -139,13 +139,9 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("nine.obj", true, true);
     loadModel("black_hole.obj", true, true);
     
-    //CREATE PARTICLE ENGINE
-    ModelPtr model = getModel("fire_particle");
-    if (!model) {
-        SceneManager* sm = this;
-        std::make_shared<ParticleEngine>(sm);
-    }
-    particleEngine = new ParticleEngine(this);
+    //CREATE PARTICLE ENGINES
+    bigAuspuff = new ParticleEngine(this, vmml::vec3f(0.0, -.77, 99));
+    
     
     
     
@@ -621,7 +617,7 @@ void DemoSceneManager::draw(double deltaT)
                 _maxParticleNumber += 0;
             }
     
-            if (_particleAnimationTimer >0.0f) {
+            /*if (_particleAnimationTimer >0.0f) {
     
     
                 // Motion Fire
@@ -656,7 +652,7 @@ void DemoSceneManager::draw(double deltaT)
                 }
                 glDisable(GL_BLEND);
                 _particleAnimationTimer -=.5f;
-            }
+            }*/
     
     
     
@@ -667,7 +663,7 @@ void DemoSceneManager::draw(double deltaT)
     //glDisable(GL_CULL_FACE);
     
     _modelMatrix = vmml::mat4f::IDENTITY;
-    ShaderPtr shader = particleEngine->getMaterial()->getShader();
+    ShaderPtr shader = bigAuspuff->getMaterial()->getShader();
     shader->setUniform("ProjectionMatrix", vmml::mat4f::IDENTITY);
     shader->setUniform("ViewMatrix", _viewMatrix);
     shader->setUniform("ModelMatrix", _modelMatrix);
@@ -685,7 +681,7 @@ void DemoSceneManager::draw(double deltaT)
     shader->setUniform("deltaT", deltaT);
     
     shader->setUniform("ColorVector", _color);
-    particleEngine->draw(GL_TRIANGLES, deltaT);
+    bigAuspuff->draw(GL_TRIANGLES, deltaT);
     glEnable(GL_CULL_FACE);
     
 }
