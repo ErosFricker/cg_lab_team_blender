@@ -228,7 +228,14 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager, vmml::vec3f startPosi
     
 }
 
-ParticleEngine::~ParticleEngine(){}
+GLuint vertexBuffer;
+GLuint indexBuffer;
+
+ParticleEngine::~ParticleEngine(){
+    glDeleteBuffers(1, &vertexBuffer);
+    glDeleteBuffers(1, &indexBuffer);
+
+}
 
 
 
@@ -289,15 +296,17 @@ void ParticleEngine::draw(GLenum mode, float deltaT) {
     
     geometry.copyVertexData(vertices);
     geometry.copyIndexData(indices);
-    geometry.initializeVertexBuffer();
-    
-    
+    vertexBuffer = geometry.getVertexBuffer();
+    indexBuffer = geometry.getIndexBuffer();
+
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(Vertex), geometry.getVertexData().get(), GL_STATIC_DRAW);
     
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     Model::draw(mode);
     glDisable(GL_BLEND);
-    
-    //TODO: Change drawing code (see WiggleCube)
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
     
  }
