@@ -184,8 +184,9 @@ void DemoSceneManager::drawModel(float deltaT, const std::string &name, GLenum m
             shader->setUniform("EyePos", _eyePos);
             
             shader->setUniform("LightPos", vmml::vec4f(0.01, 2.01, 75., 1.f));
+           
             if(name == "ship"){
-            shader->setUniform("Lights", _lights[0]);
+            shader->setUniform("Light1", _lights[0]);
             shader->setUniform("Light2", _lights[1]);
             shader->setUniform("Light3", _lights[2]);
             shader->setUniform("Light4", _lights[3]);
