@@ -28,7 +28,7 @@ float randomFloat(){
 
 //Returns the position of the particle, after rotating the camera.
 vmml::vec3f adjParticlePos(vmml::vec3f pos) {
-    return rotateParticle(pos, vmml::vec3f(1, 0, 0), 0.1);
+    return rotateParticle(pos, vmml::vec3f(0, 0, 0), 0.1);
 }
 bool compareParticles(EmitterParticle* particle1, EmitterParticle* particle2) {
     return adjParticlePos(particle1->pos)[2] <
@@ -48,9 +48,9 @@ float angle;
 
 const float STEP_TIME = 0.01f;
 //The length of the sides of the quadrilateral drawn for each particle.
-const float PARTICLE_SIZE = 0.05;
+const float PARTICLE_SIZE = 0.2f;
 
-const float GRAVITY = 10.0f;
+const float GRAVITY = 3.0f;
 
 vmml::vec3f ParticleEngine::curColor() {
     vmml::vec3f color;
@@ -86,12 +86,18 @@ vmml::vec3f ParticleEngine::curColor() {
 }
 
 vmml::vec3f ParticleEngine::curVelocity() {
-    return vmml::vec3f(2 * cos(angle), 2.0f, 2 * sin(angle));
+    float xVelocity = fmodf(randomFloat(), 0.4);
+    if (fmodf(randomFloat(), 2.0) == 0) {
+        xVelocity = -xVelocity;
+    }
+    float zVelocity = randomFloat();
+    float yVelocity = fmodf(randomFloat(), -0.6f);
+    return vmml::vec3f(xVelocity, -1.0f, zVelocity);
 }
 
 
 void ParticleEngine::createParticle(EmitterParticle* p) {
-    p->pos = vmml::vec3f(0.0, -.8, 99);
+    p->pos = vmml::vec3f(0.0, -.77, 99);
     p->velocity = curVelocity() + vmml::vec3f(0.5f * randomFloat() - 0.25f,
                                               -0.1f,
                                               0.5f * randomFloat() - 0.25f);
@@ -143,7 +149,14 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
     //TODO: Change vertices for quads!
     GeometryData::VboVertices vertices;
     GeometryData::VboIndices indices;
-    
+    /*v -1.000000 0.000000 1.000000
+     v 1.000000 0.000000 1.000000
+     v -1.000000 0.000000 -1.000000
+     v 1.000000 0.000000 -1.000000
+     vt 0.999900 0.000100
+     vt 0.999900 0.999900
+     vt 0.000100 0.999900
+     vt 0.000100 0.000100*/
     
     for (int i = 0; i < NUM_PARTICLES; i++) {
         createParticle(particles + i);
@@ -159,24 +172,26 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
         
         Point3 pos = {p.pos[0]-size, p.pos[1]-size, zPos};
         Vector3 normal = {0.0, 0.0, 1.0f};
-        Vector3 tangent = {.0, 1.0, 0.0};
+        
+        float lifeTime = (1-p.timeAlive/p.lifespan);
+        Vector3 tangent = {lifeTime, 1.0, 0.0};
         Vector3 bitangent = {1.0, 0.0, 0.0};
-        TexCoord coord = {0.0, 0.0};
+        TexCoord coord = {1.0, 0.0};
         Vertex v1 = {pos, normal, tangent, bitangent, coord};
         vertices.push_back(v1);
         
         Point3 pos2 = {p.pos[0]-size, p.pos[1]+size, p.pos[2]};
-        TexCoord coord2 = {1.0, 0.0};
+        TexCoord coord2 = {1.0, 1.0};
         Vertex v2 = {pos2, normal, tangent, bitangent, coord2};
         vertices.push_back(v2);
         
         
         Point3 pos3 = {p.pos[0]+size, p.pos[1]+size, zPos};
-        TexCoord coord3 = {1.0, 1.0};
+        TexCoord coord3 = {0.0, 1.0};
         Vertex v3 = {pos3, normal, tangent, bitangent, coord3};
         vertices.push_back(v3);
         Point3 pos4 = {p.pos[0]+size, p.pos[1]-size, zPos};
-        TexCoord coord4 = {1.0, 1.0};
+        TexCoord coord4 = {0.0, 0.0};
         Vertex v4 = {pos4, normal, tangent, bitangent, coord4};
         vertices.push_back(v4);
     }
@@ -197,12 +212,15 @@ ParticleEngine::ParticleEngine(SceneManager* sceneManager) : Model(sceneManager,
     
     geometry.initializeVertexBuffer();
     MaterialData md;
-    md.textures["DiffuseMap"] = "fire_particle.png";
+    md.textures["DiffuseMap"] = "fire_particle_3.png";
     MaterialPtr material = sceneManager->createMaterial("fire_particle", md);
 
     setMaterial(material);
     ShaderPtr shader = getMaterial()->getShader();
     shader->registerAttrib("TexCoord", 2, GL_FLOAT, sizeof(Vertex), offsetof(Vertex, texCoord));
+    shader->registerAttrib("Tangent", 3, GL_FLOAT, sizeof(Vertex), offsetof(Vertex, tangent));
+
+
     //sceneManager->createModel("fire_particle", ModelData("fire_particle.obj"));
     
 }
@@ -230,24 +248,25 @@ void ParticleEngine::draw(GLenum mode, float deltaT) {
         
         Point3 pos = {p.pos[0]-size, p.pos[1]-size, zPos};
         Vector3 normal = {0.0, 0.0, 1.0f};
-        Vector3 tangent = {.0, 1.0, 0.0};
+        float lifeTime = (1-p.timeAlive/p.lifespan);
+        Vector3 tangent = {lifeTime, 1.0, 0.0};
         Vector3 bitangent = {1.0, 0.0, 0.0};
-        TexCoord coord = {0.0, 0.0};
+        TexCoord coord = {1.0, 0.0};
         Vertex v1 = {pos, normal, tangent, bitangent, coord};
         vertices.push_back(v1);
         
         Point3 pos2 = {p.pos[0]-size, p.pos[1]+size, p.pos[2]};
-        TexCoord coord2 = {1.0, 0.0};
+        TexCoord coord2 = {1.0, 1.0};
         Vertex v2 = {pos2, normal, tangent, bitangent, coord2};
         vertices.push_back(v2);
         
         
         Point3 pos3 = {p.pos[0]+size, p.pos[1]+size, zPos};
-        TexCoord coord3 = {1.0, 1.0};
+        TexCoord coord3 = {0.0, 1.0};
         Vertex v3 = {pos3, normal, tangent, bitangent, coord3};
         vertices.push_back(v3);
         Point3 pos4 = {p.pos[0]+size, p.pos[1]-size, zPos};
-        TexCoord coord4 = {1.0, 1.0};
+        TexCoord coord4 = {0.0, 0.0};
         Vertex v4 = {pos4, normal, tangent, bitangent, coord4};
         vertices.push_back(v4);
     }
