@@ -11,6 +11,11 @@ uniform mediump mat4 ProjectionMatrix;
 uniform mediump mat3 NormalMatrix;
 
 uniform mediump vec4 LightPos;
+uniform mediump vec4 Light1;
+uniform mediump vec4 Light2;
+uniform mediump vec4 Light3;
+uniform mediump vec4 Light4;
+uniform mediump vec4 Light5;
 uniform mediump vec4 EyePos;
 
 uniform lowp vec3 Ka;   // ambient material coefficient
@@ -73,6 +78,13 @@ void main()
     lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy);
     gl_FragColor = (ambientResult + diffuseResult)*color + specularResult;*/
     
+    mediump vec4 lights[5];
+    lights[4]= Light5;
+    lights[3]= Light4;
+    lights[2]= Light3;
+    lights[1]= Light2;
+    lights[0]= Light1;
+    
     // TBN-Matrix
     mediump vec3 n = normalize(normalVarying);
     mediump vec3 t = normalize(tangentVarying - dot(tangentVarying, n));
@@ -94,23 +106,48 @@ void main()
     vec4 color2 = vec4(0.8, 0.8, 0.8, 1.0);
     
     // Lighting
+    vec4 totalLight;
     vec3 Normal = normalize(n);
     vec3 EyeVert = normalize(EyePos - posVarying).xyz;
     vec3 LightVert = normalize(LightPos - posVarying).xyz;
     vec3 EyeLight = normalize(LightVert+EyeVert);
+    
     // Simple Silhouette
     float sil = max(dot(Normal,EyeVert), 0.0);
-    if (sil < 0.3) gl_FragColor = color1;
+    if (sil < 0.3) totalLight = color1;
     else
     {
-        gl_FragColor = color0;
+        totalLight = color0;
         // Specular part
         float spec = pow(max(dot(Normal,EyeLight),0.0), shininess);
-        if (spec < 0.2) gl_FragColor *= 0.8;
-        else gl_FragColor = color2;
+        if (spec < 0.2) totalLight *= 0.8;
+        else totalLight = color2;
         // Diffuse part
         float diffuse = max(dot(Normal,LightVert),0.0);
-        if (diffuse < 0.5) gl_FragColor *=0.8;
+        if (diffuse < 0.5) totalLight *=0.8;
     }
+        
+    for(int i = 0; i < 5; i++){
+        LightVert = normalize(lights[i] - posVarying).xyz;
+        EyeLight = normalize(LightVert+EyeVert);
+        
+        // Simple Silhouette
+        float sil = max(dot(Normal,EyeVert), 0.0);
+        if (sil < 0.3) totalLight = totalLight + color1;
+        else
+        {
+            totalLight = totalLight + color0;
+            // Specular part
+            float spec = pow(max(dot(Normal,EyeLight),0.0), shininess);
+            if (spec < 0.2) totalLight *= 0.8;
+            else totalLight = totalLight + color2;
+            // Diffuse part
+            float diffuse = max(dot(Normal,LightVert),0.0);
+            if (diffuse < 0.5) totalLight *=0.8;
+        }
+    }
+    
+    gl_FragColor = totalLight;
+
 }
 

@@ -9,6 +9,11 @@ uniform mediump mat4 ProjectionMatrix;
 uniform mediump mat3 NormalMatrix;
 
 uniform mediump vec4 LightPos;
+uniform mediump vec4 Light1;
+uniform mediump vec4 Light2;
+uniform mediump vec4 Light3;
+uniform mediump vec4 Light4;
+uniform mediump vec4 Light5;
 uniform mediump vec4 EyePos;
 
 uniform lowp vec3 Ka;   // ambient material coefficient
