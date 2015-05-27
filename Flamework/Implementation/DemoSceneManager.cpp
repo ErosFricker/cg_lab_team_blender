@@ -122,8 +122,8 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     
     loadModel("accelerator.obj", true, true);
     loadModel("ship.obj", true, true);
-    loadModel("core.obj", true, true);
-    loadModel("electron.obj", true, true);
+    //loadModel("core.obj", true, true);
+    //loadModel("electron.obj", true, true);
     loadModel("black_hole.obj", true, true);
     loadModel("halo.obj", true, true);
     loadModel("fire_particle.obj", true, true);
