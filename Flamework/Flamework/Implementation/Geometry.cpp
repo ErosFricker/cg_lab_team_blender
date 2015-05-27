@@ -58,6 +58,8 @@ void Geometry::initializeVertexBuffer()
 void Geometry::draw(GLenum mode)
 {
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, _nVertices*sizeof(Vertex), _vertexData.get(), GL_STATIC_DRAW);
+
 
 #ifndef USE_GL_ES2
     glEnableClientState(GL_VERTEX_ARRAY);

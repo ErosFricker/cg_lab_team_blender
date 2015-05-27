@@ -47,7 +47,7 @@ DemoSceneManager::DemoSceneManager(Application *application)
     
 }
 
-ParticleEngine* bigAuspuff;
+ParticleEngine *bigAuspuff;//, *leftAuspuff;
 
 DemoSceneManager::~DemoSceneManager() {
 }
@@ -140,8 +140,13 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("nine.obj", true, true);
     loadModel("black_hole.obj", true, true);
     
+    
     //CREATE PARTICLE ENGINES
-    bigAuspuff = new ParticleEngine(this, vmml::vec3f(0.0, -.77, 99));
+    bigAuspuff = new ParticleEngine(this, vmml::vec3f(0.0, -0.79, 99));
+    loadModel("fire_particle_purple.obj", true, true);
+    
+    
+    // leftAuspuff = new ParticleEngine(this, vmml::vec3f(-0.3, -0.65, 99));
     
 }
 
@@ -526,7 +531,6 @@ void DemoSceneManager::draw(double deltaT)
         
         loadSound("you_lose.mp3")->play();
         shouldStop = true;
-        delete bigAuspuff;
         
     }
     drawModel(0.1f*_time, "accelerator");
@@ -686,42 +690,43 @@ void DemoSceneManager::draw(double deltaT)
         _maxParticleNumber += 0;
     }
     
-    /*if (_particleAnimationTimer >0.0f) {
-     
-     
-     // Motion Fire
-     vmml::mat4f tmp;
-     vmml::mat4f fireparticleMatrix = vmml::create_rotation(-M_PI_F/2.f, vmml::vec3f(1,0,0))
-     * vmml::create_scaling(0.1f);
-     
-     glEnable(GL_BLEND);
-     glBlendFunc(GL_ONE, GL_ONE); // transparancy
-     int j;
-     float sign;
-     for (int g=0; g<2; ++g)
-     {
-     if (g==0) sign = 1.f;
-     else sign = -1.f;
-     _modelMatrix = vmml::create_translation(vmml::vec3f(sign*.56f,-2.4f,81.f)) * fireparticleMatrix;
-     tmp = _modelMatrix;
-     
-     for (int h=0; h<10; ++h)
-     {
-     for (int i=0; i<10; ++i)
-     {
-     int j = 0;
-     float x = pow(-1.f, rand()%2) * (rand()%(50+h*10)) /100.f;
-     float y = pow(-1.f, rand()%2) * (rand()%(50+h*10)) /100.f;
-     _modelMatrix *= vmml::create_translation(vmml::vec3f(x+sign*0.1*h,j,y-0.4*h));;
-     drawModel(0, "fire_particle");
-     j += 0.01;
-     _modelMatrix = tmp;
-     }
-     }
-     }
-     glDisable(GL_BLEND);
-     _particleAnimationTimer -=.5f;
-     }*/
+    if (_particleAnimationTimer >0.0f) {
+        
+        
+        // Motion Fire
+        vmml::mat4f tmp;
+        vmml::mat4f fireparticleMatrix = vmml::create_rotation(-M_PI_F/2.f, vmml::vec3f(1,0,0))
+        * vmml::create_scaling(0.1f);
+        
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_ONE, GL_ONE); // transparancy
+        int j;
+        float sign;
+        for (int g=0; g<2; ++g)
+        {
+            if (g==0) sign = 1.f;
+            else sign = -1.f;
+            _modelMatrix = vmml::create_translation(vmml::vec3f(sign*.56f,-2.4f,81.f)) * fireparticleMatrix;
+            tmp = _modelMatrix;
+            
+            for (int h=0; h<5; ++h)
+            {
+                for (int i=0; i<5; ++i)
+                {
+                    int j = 0;
+                    float x = pow(-1.f, rand()%2) * (rand()%(50+h*10)) /100.f;
+                    float y = pow(-1.f, rand()%2) * (rand()%(50+h*10)) /100.f;
+                    _modelMatrix *= vmml::create_translation(vmml::vec3f(x+sign*0.1*h,j,y-0.4*h));;
+                    drawModel(0, "fire_particle_purple");
+                    j += 0.01;
+                    _modelMatrix = tmp;
+                }
+            }
+        }
+        glDisable(GL_BLEND);
+        
+        _particleAnimationTimer -=.5f;
+    }
     
     
     if (!shouldStop) {
@@ -753,6 +758,7 @@ void DemoSceneManager::draw(double deltaT)
         
         shader->setUniform("ColorVector", _color);
         bigAuspuff->draw(GL_TRIANGLES, deltaT);
+        // leftAuspuff->draw(GL_TRIANGLES, deltaT);
         glEnable(GL_CULL_FACE);
     }
     

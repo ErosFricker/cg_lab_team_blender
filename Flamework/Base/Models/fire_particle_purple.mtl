@@ -1,4 +1,4 @@
-newmtl fire_particle
+newmtl fire_particle_purple
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -6,4 +6,4 @@ Ks 0.500000 0.500000 0.500000
 # Ni 1.000000
 d 1.000000
 # illum 2
-map_Kd fire_particle_blue.png
+map_Kd fire_particle_purple.png

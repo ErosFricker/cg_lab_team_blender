@@ -15,6 +15,11 @@
 		B90E113F1B1331EE00C917D1 /* fire_particle_new.png in Resources */ = {isa = PBXBuildFile; fileRef = B90E113E1B1331EE00C917D1 /* fire_particle_new.png */; };
 		B90E11411B13343E00C917D1 /* fire_particle_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B90E11401B13343E00C917D1 /* fire_particle_3.png */; };
 		B92F88551AEFD133005EDB9C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92F88541AEFD133005EDB9C /* SettingsViewController.m */; };
+		B95F81DC1B160BD000E8457C /* fire_particle_purple.obj in Resources */ = {isa = PBXBuildFile; fileRef = B95F81DB1B160BD000E8457C /* fire_particle_purple.obj */; };
+		B95F81DE1B160BE800E8457C /* fire_particle_purple.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B95F81DD1B160BE800E8457C /* fire_particle_purple.mtl */; };
+		B95F81E01B160C0600E8457C /* fire_particle_purple.vert in Resources */ = {isa = PBXBuildFile; fileRef = B95F81DF1B160C0600E8457C /* fire_particle_purple.vert */; };
+		B95F81E21B160C0F00E8457C /* fire_particle_purple.frag in Resources */ = {isa = PBXBuildFile; fileRef = B95F81E11B160C0F00E8457C /* fire_particle_purple.frag */; };
+		B95F81E41B160D8600E8457C /* fire_particle_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = B95F81E31B160D8600E8457C /* fire_particle_purple.png */; };
 		B98819821AED0A14006536E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B98819811AED0A14006536E8 /* Assets.xcassets */; };
 		B98819A11AED0B9C006536E8 /* alexisv3laserital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */; };
 		B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B98819901AED0B9C006536E8 /* alexisv3half.ttf */; };
@@ -186,6 +191,11 @@
 		B90E11401B13343E00C917D1 /* fire_particle_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire_particle_3.png; sourceTree = "<group>"; };
 		B92F88531AEFD133005EDB9C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B92F88541AEFD133005EDB9C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		B95F81DB1B160BD000E8457C /* fire_particle_purple.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fire_particle_purple.obj; sourceTree = "<group>"; };
+		B95F81DD1B160BE800E8457C /* fire_particle_purple.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fire_particle_purple.mtl; sourceTree = "<group>"; };
+		B95F81DF1B160C0600E8457C /* fire_particle_purple.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fire_particle_purple.vert; sourceTree = "<group>"; };
+		B95F81E11B160C0F00E8457C /* fire_particle_purple.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fire_particle_purple.frag; sourceTree = "<group>"; };
+		B95F81E31B160D8600E8457C /* fire_particle_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire_particle_purple.png; sourceTree = "<group>"; };
 		B98819811AED0A14006536E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B988198E1AED0B9C006536E8 /* alexisv3laserital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3laserital.ttf; sourceTree = "<group>"; };
 		B98819901AED0B9C006536E8 /* alexisv3half.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alexisv3half.ttf; sourceTree = "<group>"; };
@@ -518,6 +528,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B95F81E51B160EAA00E8457C /* fire_particle_purple */ = {
+			isa = PBXGroup;
+			children = (
+				B95F81E31B160D8600E8457C /* fire_particle_purple.png */,
+				B95F81DD1B160BE800E8457C /* fire_particle_purple.mtl */,
+				B95F81DB1B160BD000E8457C /* fire_particle_purple.obj */,
+			);
+			name = fire_particle_purple;
+			sourceTree = "<group>";
+		};
 		B98819831AED0B90006536E8 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -838,6 +858,7 @@
 		F87C331F1910561A00E8A523 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B95F81E51B160EAA00E8457C /* fire_particle_purple */,
 				D5B102871B0FFCCA005FB9BE /* Fire */,
 				D5B102141B0F6FAD005FB9BE /* Numbers */,
 				D51142321B0BB10F001A6B98 /* Smoke */,
@@ -855,6 +876,8 @@
 		F87C33301910561A00E8A523 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				B95F81DF1B160C0600E8457C /* fire_particle_purple.vert */,
+				B95F81E11B160C0F00E8457C /* fire_particle_purple.frag */,
 				D5B1028C1B0FFCE9005FB9BE /* Fire_Particle */,
 				D5B102511B0F7216005FB9BE /* Numbers */,
 				B98819E61AED3FF5006536E8 /* ship.frag */,
@@ -1043,6 +1066,7 @@
 				D5B1023F1B0F70B3005FB9BE /* five.mtl in Resources */,
 				D5B102481B0F70B3005FB9BE /* seven.obj in Resources */,
 				D5B102941B0FFDC1005FB9BE /* fire_particle.frag in Resources */,
+				B95F81E41B160D8600E8457C /* fire_particle_purple.png in Resources */,
 				B9EF71701B12320300EFC5F2 /* flame.obj in Resources */,
 				B9EF71541B12287600EFC5F2 /* flame.frag in Resources */,
 				B98819A11AED0B9C006536E8 /* alexisv3laserital.ttf in Resources */,
@@ -1066,6 +1090,7 @@
 				D5B1026E1B0F781D005FB9BE /* four.frag in Resources */,
 				D5B102471B0F70B3005FB9BE /* seven.mtl in Resources */,
 				D5B102451B0F70B3005FB9BE /* one.mtl in Resources */,
+				B95F81DE1B160BE800E8457C /* fire_particle_purple.mtl in Resources */,
 				D56387AC1B0AC13800732BE5 /* electron.obj in Resources */,
 				D5202FBF1B04143B004F65B5 /* accelerator_stars.jpg in Resources */,
 				B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */,
@@ -1099,6 +1124,7 @@
 				D5B102741B0F781D005FB9BE /* seven.frag in Resources */,
 				D5B102431B0F70B3005FB9BE /* nine.mtl in Resources */,
 				B9EF714D1B121FF700EFC5F2 /* you_lose.mp3 in Resources */,
+				B95F81E01B160C0600E8457C /* fire_particle_purple.vert in Resources */,
 				D5B102401B0F70B3005FB9BE /* five.obj in Resources */,
 				F8ED69F416E64F7400E6D6CA /* Default.png in Resources */,
 				D5B1024C1B0F70B3005FB9BE /* three.obj in Resources */,
@@ -1130,6 +1156,8 @@
 				D5B102501B0F70B3005FB9BE /* zero.obj in Resources */,
 				D56387B21B0AC21900732BE5 /* metal_texture.jpg in Resources */,
 				F8ED6AD016E652B800E6D6CA /* ACKNOWLEDGEMENTS in Resources */,
+				B95F81E21B160C0F00E8457C /* fire_particle_purple.frag in Resources */,
+				B95F81DC1B160BD000E8457C /* fire_particle_purple.obj in Resources */,
 				D5B102901B0FFD01005FB9BE /* fire_particle.vert in Resources */,
 				D5B1023D1B0F70B3005FB9BE /* eight.mtl in Resources */,
 				F8ED6AD116E652B800E6D6CA /* LICENSE in Resources */,

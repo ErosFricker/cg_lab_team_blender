@@ -74,7 +74,7 @@ void main()
     float radial_blur = 0.0;
     float radial_bright = 0.0;
     vec2 radial_origin = vec2(0.0, -2.0);
-    radial_blur = deltaT / 100.0;
+    radial_blur = deltaT / 1000.0;
 
     
     if (deltaT < 3.0) {
@@ -84,23 +84,23 @@ void main()
     }
     else if (deltaT < 6.0) {
 
-        radial_bright = 1.2;
-        radial_blur*=1.2;
+        radial_bright = 0.8;
+        radial_blur*=1.05;
     }else if (deltaT < 9.0){
 
-        radial_bright = 2.4;
-        radial_blur*=1.4;
+        radial_bright = 1.0;
+        radial_blur*=1.1;
     }else if (deltaT < 12.0){
 
-        radial_bright = 3.2;
-        radial_blur*=1.6;
+        radial_bright = 1.2;
+        radial_blur*=1.15;
     } else if (deltaT <15.0){
 
-        radial_bright = 6.4;
-        radial_blur*=1.8;
+        radial_bright = 1.4;
+        radial_blur*=1.2;
     }else if (deltaT > 18.0){
-        radial_bright = 10.0;
-        radial_blur*=2.0;
+        radial_bright = 2.0;
+        radial_blur*=1.2;
     }
     
     

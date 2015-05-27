@@ -194,7 +194,7 @@ GLint Shader::findUniformLocation(const std::string &name)
     }
     if (loc < 0)
     {
-        util::log("Couldn't find uniform '" + name + "'.", util::LM_WARNING);
+     //   util::log("Couldn't find uniform '" + name + "'.", util::LM_WARNING);
     }
     return loc;
 }
@@ -208,7 +208,7 @@ GLint Shader::findAttribLocation(const std::string &name, GLint size, GLenum typ
     }
     if (loc < 0)
     {
-        util::log("Couldn't find attrib '" + name + "'.", util::LM_WARNING);
+       // util::log("Couldn't find attrib '" + name + "'.", util::LM_WARNING);
     }
     return loc;
 }
@@ -242,7 +242,7 @@ void Shader::bind()
         }
         else
         {
-            util::log("Couldn't bind attrib '" + i->first + "' because its location is not valid.", util::LM_ERROR);
+         //   util::log("Couldn't bind attrib '" + i->first + "' because its location is not valid.", util::LM_ERROR);
         }
     }
     
