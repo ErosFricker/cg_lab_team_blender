@@ -1,5 +1,5 @@
-mtllib core.mtl
-o core
+mtllib silver_particle.mtl
+o silver_particle
 v -0.195090 0.980785 0.000000
 v -0.382683 0.923880 0.000000
 v -0.555570 0.831470 0.000000
@@ -683,7 +683,7 @@ vt 0.312335 0.462671
 vt 0.227553 0.445807
 vt 0.404329 0.480970
 vt 0.153240 0.431025
-usemtl core
+usemtl silver_particle
 s off
 f 4/1 19/2 20/3
 f 2/4 17/5 18/6

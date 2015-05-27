@@ -53,6 +53,38 @@
 		D511423A1B0BB183001A6B98 /* halo.vert in Resources */ = {isa = PBXBuildFile; fileRef = D51142391B0BB183001A6B98 /* halo.vert */; };
 		D511423C1B0BB18E001A6B98 /* halo.frag in Resources */ = {isa = PBXBuildFile; fileRef = D511423B1B0BB18E001A6B98 /* halo.frag */; };
 		D511423E1B0BB649001A6B98 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = D511423D1B0BB649001A6B98 /* snow.png */; };
+		D51D14F61B16579A00EC753A /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14E41B16579900EC753A /* fire.jpg */; };
+		D51D14F71B16579A00EC753A /* fire.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D51D14E51B16579900EC753A /* fire.mtl */; };
+		D51D14F81B16579A00EC753A /* fire.obj in Resources */ = {isa = PBXBuildFile; fileRef = D51D14E61B16579900EC753A /* fire.obj */; };
+		D51D14F91B16579A00EC753A /* forest_particle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D51D14E71B16579900EC753A /* forest_particle.mtl */; };
+		D51D14FA1B16579A00EC753A /* forest_particle.obj in Resources */ = {isa = PBXBuildFile; fileRef = D51D14E81B16579A00EC753A /* forest_particle.obj */; };
+		D51D14FB1B16579A00EC753A /* forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14E91B16579A00EC753A /* forest.jpg */; };
+		D51D14FC1B16579A00EC753A /* gold_particle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D51D14EA1B16579A00EC753A /* gold_particle.mtl */; };
+		D51D14FD1B16579A00EC753A /* gold_particle.obj in Resources */ = {isa = PBXBuildFile; fileRef = D51D14EB1B16579A00EC753A /* gold_particle.obj */; };
+		D51D14FE1B16579A00EC753A /* gold.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14EC1B16579A00EC753A /* gold.jpg */; };
+		D51D14FF1B16579A00EC753A /* nm1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14ED1B16579A00EC753A /* nm1.jpg */; };
+		D51D15001B16579A00EC753A /* polygon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14EE1B16579A00EC753A /* polygon.jpg */; };
+		D51D15011B16579A00EC753A /* silver_particle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D51D14EF1B16579A00EC753A /* silver_particle.mtl */; };
+		D51D15021B16579A00EC753A /* silver_particle.obj in Resources */ = {isa = PBXBuildFile; fileRef = D51D14F01B16579A00EC753A /* silver_particle.obj */; };
+		D51D15031B16579A00EC753A /* silver2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14F11B16579A00EC753A /* silver2.jpg */; };
+		D51D15041B16579A00EC753A /* water_particle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D51D14F21B16579A00EC753A /* water_particle.mtl */; };
+		D51D15051B16579A00EC753A /* water_particle.obj in Resources */ = {isa = PBXBuildFile; fileRef = D51D14F31B16579A00EC753A /* water_particle.obj */; };
+		D51D15061B16579A00EC753A /* water.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14F41B16579A00EC753A /* water.jpg */; };
+		D51D15071B16579A00EC753A /* weave.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D51D14F51B16579A00EC753A /* weave.jpg */; };
+		D51D15131B1657D200EC753A /* fire.frag in Resources */ = {isa = PBXBuildFile; fileRef = D51D15091B1657D200EC753A /* fire.frag */; };
+		D51D15141B1657D200EC753A /* fire.vert in Resources */ = {isa = PBXBuildFile; fileRef = D51D150A1B1657D200EC753A /* fire.vert */; };
+		D51D15151B1657D200EC753A /* forest_particle.frag in Resources */ = {isa = PBXBuildFile; fileRef = D51D150B1B1657D200EC753A /* forest_particle.frag */; };
+		D51D15161B1657D200EC753A /* forest_particle.vert in Resources */ = {isa = PBXBuildFile; fileRef = D51D150C1B1657D200EC753A /* forest_particle.vert */; };
+		D51D15171B1657D200EC753A /* gold_particle.frag in Resources */ = {isa = PBXBuildFile; fileRef = D51D150D1B1657D200EC753A /* gold_particle.frag */; };
+		D51D15181B1657D200EC753A /* gold_particle.vert in Resources */ = {isa = PBXBuildFile; fileRef = D51D150E1B1657D200EC753A /* gold_particle.vert */; };
+		D51D15191B1657D200EC753A /* silver_particle.frag in Resources */ = {isa = PBXBuildFile; fileRef = D51D150F1B1657D200EC753A /* silver_particle.frag */; };
+		D51D151A1B1657D200EC753A /* silver_particle.vert in Resources */ = {isa = PBXBuildFile; fileRef = D51D15101B1657D200EC753A /* silver_particle.vert */; };
+		D51D151B1B1657D200EC753A /* water_particle.frag in Resources */ = {isa = PBXBuildFile; fileRef = D51D15111B1657D200EC753A /* water_particle.frag */; };
+		D51D151C1B1657D200EC753A /* water_particle.vert in Resources */ = {isa = PBXBuildFile; fileRef = D51D15121B1657D200EC753A /* water_particle.vert */; };
+		D51D15251B1657E900EC753A /* Atom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D151D1B1657E900EC753A /* Atom.cpp */; };
+		D51D15261B1657E900EC753A /* Atom2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D151F1B1657E900EC753A /* Atom2.cpp */; };
+		D51D15271B1657E900EC753A /* Atom3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D15211B1657E900EC753A /* Atom3.cpp */; };
+		D51D15281B1657E900EC753A /* Atom4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51D15231B1657E900EC753A /* Atom4.cpp */; };
 		D5202FA51B03F609004F65B5 /* accelerator.vert in Resources */ = {isa = PBXBuildFile; fileRef = D5202FA41B03F609004F65B5 /* accelerator.vert */; };
 		D5202FA71B03F619004F65B5 /* accelerator.frag in Resources */ = {isa = PBXBuildFile; fileRef = D5202FA61B03F619004F65B5 /* accelerator.frag */; };
 		D5202FBA1B040F7C004F65B5 /* accelerator.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D5202FB81B040F7C004F65B5 /* accelerator.mtl */; };
@@ -67,11 +99,7 @@
 		D5202FCB1B041BF9004F65B5 /* ship.obj in Resources */ = {isa = PBXBuildFile; fileRef = D5202FC51B041BF9004F65B5 /* ship.obj */; };
 		D5202FD11B04D532004F65B5 /* core.vert in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD01B04D532004F65B5 /* core.vert */; };
 		D5202FD31B04D541004F65B5 /* core.frag in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD21B04D541004F65B5 /* core.frag */; };
-		D5202FD71B04DDDF004F65B5 /* core.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD51B04DDDF004F65B5 /* core.mtl */; };
-		D5202FD81B04DDDF004F65B5 /* core.obj in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD61B04DDDF004F65B5 /* core.obj */; };
-		D5202FDA1B04DE5B004F65B5 /* water_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5202FD91B04DE5B004F65B5 /* water_texture.jpg */; };
 		D5202FDE1B060017004F65B5 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5202FDC1B060017004F65B5 /* Particle.cpp */; };
-		D53C05111B0D1BD60023A96C /* nm1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D53C05101B0D1BD60023A96C /* nm1.jpg */; };
 		D54C07FD1B0E908E0028372D /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54C07FB1B0E908E0028372D /* Position.cpp */; };
 		D54C08001B0E91560028372D /* CoreParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54C07FE1B0E91560028372D /* CoreParticle.cpp */; };
 		D56387AA1B0AC12A00732BE5 /* electron.mtl in Resources */ = {isa = PBXBuildFile; fileRef = D56387A91B0AC12A00732BE5 /* electron.mtl */; };
@@ -81,8 +109,6 @@
 		D56387B21B0AC21900732BE5 /* metal_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D56387B11B0AC21900732BE5 /* metal_texture.jpg */; };
 		D56387B91B0B45C900732BE5 /* black_hole.vert in Resources */ = {isa = PBXBuildFile; fileRef = D56387B81B0B45C900732BE5 /* black_hole.vert */; };
 		D56387BB1B0B45D800732BE5 /* black_hole.frag in Resources */ = {isa = PBXBuildFile; fileRef = D56387BA1B0B45D800732BE5 /* black_hole.frag */; };
-		D5B102111B0EA970005FB9BE /* fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5B102101B0EA970005FB9BE /* fire.jpg */; };
-		D5B102131B0EBFE3005FB9BE /* polygon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5B102121B0EBFE3005FB9BE /* polygon.jpg */; };
 		D5B102331B0F70B3005FB9BE /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B102151B0F70B3005FB9BE /* 0.png */; };
 		D5B102341B0F70B3005FB9BE /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B102161B0F70B3005FB9BE /* 1.png */; };
 		D5B102351B0F70B3005FB9BE /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B102171B0F70B3005FB9BE /* 2.png */; };
@@ -233,6 +259,42 @@
 		D51142391B0BB183001A6B98 /* halo.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = halo.vert; sourceTree = "<group>"; };
 		D511423B1B0BB18E001A6B98 /* halo.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = halo.frag; sourceTree = "<group>"; };
 		D511423D1B0BB649001A6B98 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
+		D51D14E41B16579900EC753A /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fire.jpg; sourceTree = "<group>"; };
+		D51D14E51B16579900EC753A /* fire.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fire.mtl; sourceTree = "<group>"; };
+		D51D14E61B16579900EC753A /* fire.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fire.obj; sourceTree = "<group>"; };
+		D51D14E71B16579900EC753A /* forest_particle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forest_particle.mtl; sourceTree = "<group>"; };
+		D51D14E81B16579A00EC753A /* forest_particle.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forest_particle.obj; sourceTree = "<group>"; };
+		D51D14E91B16579A00EC753A /* forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = forest.jpg; sourceTree = "<group>"; };
+		D51D14EA1B16579A00EC753A /* gold_particle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gold_particle.mtl; sourceTree = "<group>"; };
+		D51D14EB1B16579A00EC753A /* gold_particle.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gold_particle.obj; sourceTree = "<group>"; };
+		D51D14EC1B16579A00EC753A /* gold.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gold.jpg; sourceTree = "<group>"; };
+		D51D14ED1B16579A00EC753A /* nm1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nm1.jpg; sourceTree = "<group>"; };
+		D51D14EE1B16579A00EC753A /* polygon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polygon.jpg; sourceTree = "<group>"; };
+		D51D14EF1B16579A00EC753A /* silver_particle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = silver_particle.mtl; sourceTree = "<group>"; };
+		D51D14F01B16579A00EC753A /* silver_particle.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = silver_particle.obj; sourceTree = "<group>"; };
+		D51D14F11B16579A00EC753A /* silver2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = silver2.jpg; sourceTree = "<group>"; };
+		D51D14F21B16579A00EC753A /* water_particle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = water_particle.mtl; sourceTree = "<group>"; };
+		D51D14F31B16579A00EC753A /* water_particle.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = water_particle.obj; sourceTree = "<group>"; };
+		D51D14F41B16579A00EC753A /* water.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = water.jpg; sourceTree = "<group>"; };
+		D51D14F51B16579A00EC753A /* weave.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = weave.jpg; sourceTree = "<group>"; };
+		D51D15091B1657D200EC753A /* fire.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fire.frag; sourceTree = "<group>"; };
+		D51D150A1B1657D200EC753A /* fire.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fire.vert; sourceTree = "<group>"; };
+		D51D150B1B1657D200EC753A /* forest_particle.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = forest_particle.frag; sourceTree = "<group>"; };
+		D51D150C1B1657D200EC753A /* forest_particle.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = forest_particle.vert; sourceTree = "<group>"; };
+		D51D150D1B1657D200EC753A /* gold_particle.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = gold_particle.frag; sourceTree = "<group>"; };
+		D51D150E1B1657D200EC753A /* gold_particle.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = gold_particle.vert; sourceTree = "<group>"; };
+		D51D150F1B1657D200EC753A /* silver_particle.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = silver_particle.frag; sourceTree = "<group>"; };
+		D51D15101B1657D200EC753A /* silver_particle.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = silver_particle.vert; sourceTree = "<group>"; };
+		D51D15111B1657D200EC753A /* water_particle.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = water_particle.frag; sourceTree = "<group>"; };
+		D51D15121B1657D200EC753A /* water_particle.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = water_particle.vert; sourceTree = "<group>"; };
+		D51D151D1B1657E900EC753A /* Atom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atom.cpp; sourceTree = "<group>"; };
+		D51D151E1B1657E900EC753A /* Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Atom.h; path = ../Implementation/Atom.h; sourceTree = "<group>"; };
+		D51D151F1B1657E900EC753A /* Atom2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atom2.cpp; sourceTree = "<group>"; };
+		D51D15201B1657E900EC753A /* Atom2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Atom2.h; path = ../Implementation/Atom2.h; sourceTree = "<group>"; };
+		D51D15211B1657E900EC753A /* Atom3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atom3.cpp; sourceTree = "<group>"; };
+		D51D15221B1657E900EC753A /* Atom3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Atom3.h; path = ../Implementation/Atom3.h; sourceTree = "<group>"; };
+		D51D15231B1657E900EC753A /* Atom4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atom4.cpp; sourceTree = "<group>"; };
+		D51D15241B1657E900EC753A /* Atom4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Atom4.h; path = ../Implementation/Atom4.h; sourceTree = "<group>"; };
 		D5202FA41B03F609004F65B5 /* accelerator.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = accelerator.vert; sourceTree = "<group>"; };
 		D5202FA61B03F619004F65B5 /* accelerator.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = accelerator.frag; sourceTree = "<group>"; };
 		D5202FB81B040F7C004F65B5 /* accelerator.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = accelerator.mtl; sourceTree = "<group>"; };
@@ -247,12 +309,8 @@
 		D5202FC51B041BF9004F65B5 /* ship.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ship.obj; path = Base/Models/ship.obj; sourceTree = SOURCE_ROOT; };
 		D5202FD01B04D532004F65B5 /* core.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = core.vert; sourceTree = "<group>"; };
 		D5202FD21B04D541004F65B5 /* core.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = core.frag; sourceTree = "<group>"; };
-		D5202FD51B04DDDF004F65B5 /* core.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = core.mtl; sourceTree = "<group>"; };
-		D5202FD61B04DDDF004F65B5 /* core.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = core.obj; sourceTree = "<group>"; };
-		D5202FD91B04DE5B004F65B5 /* water_texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = water_texture.jpg; sourceTree = "<group>"; };
 		D5202FDB1B05FDA3004F65B5 /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		D5202FDC1B060017004F65B5 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
-		D53C05101B0D1BD60023A96C /* nm1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nm1.jpg; sourceTree = "<group>"; };
 		D54C07FB1B0E908E0028372D /* Position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Position.cpp; sourceTree = "<group>"; };
 		D54C07FC1B0E908E0028372D /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Position.h; path = ../Implementation/Position.h; sourceTree = "<group>"; };
 		D54C07FE1B0E91560028372D /* CoreParticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoreParticle.cpp; sourceTree = "<group>"; };
@@ -264,8 +322,6 @@
 		D56387B11B0AC21900732BE5 /* metal_texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = metal_texture.jpg; sourceTree = "<group>"; };
 		D56387B81B0B45C900732BE5 /* black_hole.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = black_hole.vert; sourceTree = "<group>"; };
 		D56387BA1B0B45D800732BE5 /* black_hole.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = black_hole.frag; sourceTree = "<group>"; };
-		D5B102101B0EA970005FB9BE /* fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fire.jpg; sourceTree = "<group>"; };
-		D5B102121B0EBFE3005FB9BE /* polygon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polygon.jpg; sourceTree = "<group>"; };
 		D5B102151B0F70B3005FB9BE /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		D5B102161B0F70B3005FB9BE /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		D5B102171B0F70B3005FB9BE /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
@@ -602,10 +658,51 @@
 			name = Smoke;
 			sourceTree = "<group>";
 		};
+		D51D14E31B1656FB00EC753A /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				D51D14E41B16579900EC753A /* fire.jpg */,
+				D51D14E51B16579900EC753A /* fire.mtl */,
+				D51D14E61B16579900EC753A /* fire.obj */,
+				D51D14E71B16579900EC753A /* forest_particle.mtl */,
+				D51D14E81B16579A00EC753A /* forest_particle.obj */,
+				D51D14E91B16579A00EC753A /* forest.jpg */,
+				D51D14EA1B16579A00EC753A /* gold_particle.mtl */,
+				D51D14EB1B16579A00EC753A /* gold_particle.obj */,
+				D51D14EC1B16579A00EC753A /* gold.jpg */,
+				D51D14ED1B16579A00EC753A /* nm1.jpg */,
+				D51D14EE1B16579A00EC753A /* polygon.jpg */,
+				D51D14EF1B16579A00EC753A /* silver_particle.mtl */,
+				D51D14F01B16579A00EC753A /* silver_particle.obj */,
+				D51D14F11B16579A00EC753A /* silver2.jpg */,
+				D51D14F21B16579A00EC753A /* water_particle.mtl */,
+				D51D14F31B16579A00EC753A /* water_particle.obj */,
+				D51D14F41B16579A00EC753A /* water.jpg */,
+				D51D14F51B16579A00EC753A /* weave.jpg */,
+			);
+			name = Atoms;
+			sourceTree = "<group>";
+		};
+		D51D15081B1657BA00EC753A /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				D51D15091B1657D200EC753A /* fire.frag */,
+				D51D150A1B1657D200EC753A /* fire.vert */,
+				D51D150B1B1657D200EC753A /* forest_particle.frag */,
+				D51D150C1B1657D200EC753A /* forest_particle.vert */,
+				D51D150D1B1657D200EC753A /* gold_particle.frag */,
+				D51D150E1B1657D200EC753A /* gold_particle.vert */,
+				D51D150F1B1657D200EC753A /* silver_particle.frag */,
+				D51D15101B1657D200EC753A /* silver_particle.vert */,
+				D51D15111B1657D200EC753A /* water_particle.frag */,
+				D51D15121B1657D200EC753A /* water_particle.vert */,
+			);
+			name = Atoms;
+			sourceTree = "<group>";
+		};
 		D5202F911B03983A004F65B5 /* Accelerator */ = {
 			isa = PBXGroup;
 			children = (
-				D5B102121B0EBFE3005FB9BE /* polygon.jpg */,
 				C3CA766D1B0B80DE00AD1D00 /* accelerator_black_new.png */,
 				D5202FBE1B04143B004F65B5 /* accelerator_stars.jpg */,
 				D5202FBC1B04121A004F65B5 /* accelerator_black.png */,
@@ -615,18 +712,6 @@
 				D5202FB91B040F7C004F65B5 /* accelerator.obj */,
 			);
 			name = Accelerator;
-			sourceTree = "<group>";
-		};
-		D5202FD41B04DDCB004F65B5 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				D5B102101B0EA970005FB9BE /* fire.jpg */,
-				D53C05101B0D1BD60023A96C /* nm1.jpg */,
-				D5202FD91B04DE5B004F65B5 /* water_texture.jpg */,
-				D5202FD51B04DDDF004F65B5 /* core.mtl */,
-				D5202FD61B04DDDF004F65B5 /* core.obj */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		D56387A81B0AC0F600732BE5 /* Electron */ = {
@@ -823,6 +908,10 @@
 		F87C33191910557D00E8A523 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D51D151E1B1657E900EC753A /* Atom.h */,
+				D51D15201B1657E900EC753A /* Atom2.h */,
+				D51D15221B1657E900EC753A /* Atom3.h */,
+				D51D15241B1657E900EC753A /* Atom4.h */,
 				D5202FDB1B05FDA3004F65B5 /* Particle.h */,
 				D54C07FC1B0E908E0028372D /* Position.h */,
 				F87C331A1910557D00E8A523 /* DemoSceneManager.h */,
@@ -834,6 +923,10 @@
 		F87C331B1910557D00E8A523 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				D51D151D1B1657E900EC753A /* Atom.cpp */,
+				D51D151F1B1657E900EC753A /* Atom2.cpp */,
+				D51D15211B1657E900EC753A /* Atom3.cpp */,
+				D51D15231B1657E900EC753A /* Atom4.cpp */,
 				F87C331C1910557D00E8A523 /* DemoSceneManager.cpp */,
 				B9FD35D01B0CE8FE005F9D0D /* ParticleEngine.cpp */,
 				B9FD35D11B0CE8FE005F9D0D /* ParticleEngine.h */,
@@ -858,13 +951,13 @@
 		F87C331F1910561A00E8A523 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D51D14E31B1656FB00EC753A /* Atoms */,
 				B95F81E51B160EAA00E8457C /* fire_particle_purple */,
 				D5B102871B0FFCCA005FB9BE /* Fire */,
 				D5B102141B0F6FAD005FB9BE /* Numbers */,
 				D51142321B0BB10F001A6B98 /* Smoke */,
 				B9EF71521B12282200EFC5F2 /* Flame */,
 				D56387A81B0AC0F600732BE5 /* Electron */,
-				D5202FD41B04DDCB004F65B5 /* Core */,
 				B9EF71421B1216C900EFC5F2 /* Black_hole */,
 				D5202F911B03983A004F65B5 /* Accelerator */,
 				B98819E11AED3EA2006536E8 /* Ship */,
@@ -876,6 +969,7 @@
 		F87C33301910561A00E8A523 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				D51D15081B1657BA00EC753A /* Atoms */,
 				B95F81DF1B160C0600E8457C /* fire_particle_purple.vert */,
 				B95F81E11B160C0F00E8457C /* fire_particle_purple.frag */,
 				D5B1028C1B0FFCE9005FB9BE /* Fire_Particle */,
@@ -1037,7 +1131,10 @@
 			files = (
 				D5B1024E1B0F70B3005FB9BE /* two.obj in Resources */,
 				D511423C1B0BB18E001A6B98 /* halo.frag in Resources */,
+				D51D151C1B1657D200EC753A /* water_particle.vert in Resources */,
+				D51D15071B16579A00EC753A /* weave.jpg in Resources */,
 				D51142351B0BB131001A6B98 /* halo.mtl in Resources */,
+				D51D14FB1B16579A00EC753A /* forest.jpg in Resources */,
 				B9FDAF3C1B0E532F00BAE6BD /* points.png in Resources */,
 				B9EF713F1B11FB1900EFC5F2 /* explosion.mp3 in Resources */,
 				D511423A1B0BB183001A6B98 /* halo.vert in Resources */,
@@ -1046,21 +1143,26 @@
 				D5B1024A1B0F70B3005FB9BE /* six.obj in Resources */,
 				B9EF716F1B12320300EFC5F2 /* flame.mtl in Resources */,
 				D5202FD11B04D532004F65B5 /* core.vert in Resources */,
+				D51D151B1B1657D200EC753A /* water_particle.frag in Resources */,
 				B9EF713B1B11F92E00EFC5F2 /* swoosh.mp3 in Resources */,
 				D5202FBB1B040F7C004F65B5 /* accelerator.obj in Resources */,
 				D56387AE1B0AC14500732BE5 /* electron.vert in Resources */,
-				D5B102111B0EA970005FB9BE /* fire.jpg in Resources */,
 				B9D545CA1B0B6FFE00B9CC77 /* alexis_bitmap.fnt in Resources */,
 				D5B1023C1B0F70B3005FB9BE /* 9.png in Resources */,
 				D5B102341B0F70B3005FB9BE /* 1.png in Resources */,
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				D53C05111B0D1BD60023A96C /* nm1.jpg in Resources */,
 				B98819A31AED0B9C006536E8 /* alexisv3half.ttf in Resources */,
+				D51D15021B16579A00EC753A /* silver_particle.obj in Resources */,
 				B9EF71561B12289A00EFC5F2 /* flame.vert in Resources */,
 				D5B102381B0F70B3005FB9BE /* 5.png in Resources */,
 				D5B1024B1B0F70B3005FB9BE /* three.mtl in Resources */,
 				B98819FD1AED5078006536E8 /* pampam.mp3 in Resources */,
+				D51D14FF1B16579A00EC753A /* nm1.jpg in Resources */,
+				D51D15181B1657D200EC753A /* gold_particle.vert in Resources */,
+				D51D14FD1B16579A00EC753A /* gold_particle.obj in Resources */,
+				D51D14FE1B16579A00EC753A /* gold.jpg in Resources */,
 				D5202FA51B03F609004F65B5 /* accelerator.vert in Resources */,
+				D51D15051B16579A00EC753A /* water_particle.obj in Resources */,
 				B98819821AED0A14006536E8 /* Assets.xcassets in Resources */,
 				B9EF71441B1216E600EFC5F2 /* black_hole.obj in Resources */,
 				D5B1023F1B0F70B3005FB9BE /* five.mtl in Resources */,
@@ -1074,7 +1176,6 @@
 				D5B102361B0F70B3005FB9BE /* 3.png in Resources */,
 				D5B102551B0F7255005FB9BE /* zero.frag in Resources */,
 				D5B102391B0F70B3005FB9BE /* 6.png in Resources */,
-				D5202FD81B04DDDF004F65B5 /* core.obj in Resources */,
 				D5202FCB1B041BF9004F65B5 /* ship.obj in Resources */,
 				D5B1027A1B0F781D005FB9BE /* two.frag in Resources */,
 				D56387B91B0B45C900732BE5 /* black_hole.vert in Resources */,
@@ -1086,7 +1187,10 @@
 				D5202FC71B041BF9004F65B5 /* s_1024_I.png in Resources */,
 				D5B102731B0F781D005FB9BE /* one.vert in Resources */,
 				D5B1023E1B0F70B3005FB9BE /* eight.obj in Resources */,
+				D51D15161B1657D200EC753A /* forest_particle.vert in Resources */,
 				D5B102351B0F70B3005FB9BE /* 2.png in Resources */,
+				D51D15151B1657D200EC753A /* forest_particle.frag in Resources */,
+				D51D14F61B16579A00EC753A /* fire.jpg in Resources */,
 				D5B1026E1B0F781D005FB9BE /* four.frag in Resources */,
 				D5B102471B0F70B3005FB9BE /* seven.mtl in Resources */,
 				D5B102451B0F70B3005FB9BE /* one.mtl in Resources */,
@@ -1094,16 +1198,18 @@
 				D56387AC1B0AC13800732BE5 /* electron.obj in Resources */,
 				D5202FBF1B04143B004F65B5 /* accelerator_stars.jpg in Resources */,
 				B9B138EB1AE78ACB00F3FFED /* Main.storyboard in Resources */,
-				D5202FDA1B04DE5B004F65B5 /* water_texture.jpg in Resources */,
 				D511423E1B0BB649001A6B98 /* snow.png in Resources */,
 				D5B1029A1B100483005FB9BE /* fire_particle.png in Resources */,
 				D5B1023A1B0F70B3005FB9BE /* 7.png in Resources */,
 				B9D545CB1B0B6FFE00B9CC77 /* alexis_bitmap.png in Resources */,
 				D5B102921B0FFDAC005FB9BE /* fire_particle.mtl in Resources */,
+				D51D15171B1657D200EC753A /* gold_particle.frag in Resources */,
 				D51142361B0BB131001A6B98 /* halo.obj in Resources */,
 				D5B102751B0F781D005FB9BE /* seven.vert in Resources */,
 				F87C33491910561A00E8A523 /* test.mp3 in Resources */,
 				D5B102721B0F781D005FB9BE /* one.frag in Resources */,
+				D51D14FC1B16579A00EC753A /* gold_particle.mtl in Resources */,
+				D51D14FA1B16579A00EC753A /* forest_particle.obj in Resources */,
 				D5B102461B0F70B3005FB9BE /* one.obj in Resources */,
 				D5202FC91B041BF9004F65B5 /* s_1024_S.png in Resources */,
 				D5B102711B0F781D005FB9BE /* nine.vert in Resources */,
@@ -1111,11 +1217,10 @@
 				D5B1024D1B0F70B3005FB9BE /* two.mtl in Resources */,
 				B9FDAF381B0E511F00BAE6BD /* rustypipe.png in Resources */,
 				D5B102371B0F70B3005FB9BE /* 4.png in Resources */,
-				D5202FD71B04DDDF004F65B5 /* core.mtl in Resources */,
+				D51D14F91B16579A00EC753A /* forest_particle.mtl in Resources */,
 				283D33F312AEDA3D00C06CB4 /* FrameworkViewController.xib in Resources */,
 				D5B102491B0F70B3005FB9BE /* six.mtl in Resources */,
 				D5B102761B0F781D005FB9BE /* six.frag in Resources */,
-				D5B102131B0EBFE3005FB9BE /* polygon.jpg in Resources */,
 				D5B102771B0F781D005FB9BE /* six.vert in Resources */,
 				C3CA766E1B0B80DE00AD1D00 /* accelerator_black_new.png in Resources */,
 				D5202FBD1B04121A004F65B5 /* accelerator_black.png in Resources */,
@@ -1123,10 +1228,12 @@
 				B9D545CF1B0B792800B9CC77 /* auspuff.pex in Resources */,
 				D5B102741B0F781D005FB9BE /* seven.frag in Resources */,
 				D5B102431B0F70B3005FB9BE /* nine.mtl in Resources */,
+				D51D15041B16579A00EC753A /* water_particle.mtl in Resources */,
 				B9EF714D1B121FF700EFC5F2 /* you_lose.mp3 in Resources */,
 				B95F81E01B160C0600E8457C /* fire_particle_purple.vert in Resources */,
 				D5B102401B0F70B3005FB9BE /* five.obj in Resources */,
 				F8ED69F416E64F7400E6D6CA /* Default.png in Resources */,
+				D51D14F81B16579A00EC753A /* fire.obj in Resources */,
 				D5B1024C1B0F70B3005FB9BE /* three.obj in Resources */,
 				D5B102421B0F70B3005FB9BE /* four.obj in Resources */,
 				D5B1023B1B0F70B3005FB9BE /* 8.png in Resources */,
@@ -1142,6 +1249,7 @@
 				D5202FCA1B041BF9004F65B5 /* ship.mtl in Resources */,
 				B98819E91AED3FFB006536E8 /* ship.vert in Resources */,
 				D5B1026B1B0F781D005FB9BE /* eight.vert in Resources */,
+				D51D15191B1657D200EC753A /* silver_particle.frag in Resources */,
 				D5B1024F1B0F70B3005FB9BE /* zero.mtl in Resources */,
 				B90E11411B13343E00C917D1 /* fire_particle_3.png in Resources */,
 				D5B102411B0F70B3005FB9BE /* four.mtl in Resources */,
@@ -1149,6 +1257,7 @@
 				D5B1026F1B0F781D005FB9BE /* four.vert in Resources */,
 				D5B102331B0F70B3005FB9BE /* 0.png in Resources */,
 				D5202FC81B041BF9004F65B5 /* s_1024_N.png in Resources */,
+				D51D15131B1657D200EC753A /* fire.frag in Resources */,
 				B90E113D1B132FD900C917D1 /* fire_particle_blue.png in Resources */,
 				D5B1027B1B0F781D005FB9BE /* two.vert in Resources */,
 				F8ED69F516E64F7400E6D6CA /* Default@2x.png in Resources */,
@@ -1156,14 +1265,21 @@
 				D5B102501B0F70B3005FB9BE /* zero.obj in Resources */,
 				D56387B21B0AC21900732BE5 /* metal_texture.jpg in Resources */,
 				F8ED6AD016E652B800E6D6CA /* ACKNOWLEDGEMENTS in Resources */,
+				D51D14F71B16579A00EC753A /* fire.mtl in Resources */,
 				B95F81E21B160C0F00E8457C /* fire_particle_purple.frag in Resources */,
+				D51D15141B1657D200EC753A /* fire.vert in Resources */,
 				B95F81DC1B160BD000E8457C /* fire_particle_purple.obj in Resources */,
+				D51D151A1B1657D200EC753A /* silver_particle.vert in Resources */,
+				D51D15011B16579A00EC753A /* silver_particle.mtl in Resources */,
 				D5B102901B0FFD01005FB9BE /* fire_particle.vert in Resources */,
+				D51D15001B16579A00EC753A /* polygon.jpg in Resources */,
 				D5B1023D1B0F70B3005FB9BE /* eight.mtl in Resources */,
 				F8ED6AD116E652B800E6D6CA /* LICENSE in Resources */,
 				D5B102701B0F781D005FB9BE /* nine.frag in Resources */,
 				D5202FC61B041BF9004F65B5 /* s_1024_C.png in Resources */,
 				B98819A91AED0B9C006536E8 /* alexisv3bulletital.ttf in Resources */,
+				D51D15031B16579A00EC753A /* silver2.jpg in Resources */,
+				D51D15061B16579A00EC753A /* water.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1176,6 +1292,7 @@
 			files = (
 				F87C33131910554000E8A523 /* PhysicalObject.cpp in Sources */,
 				F87C330B1910554000E8A523 /* main.m in Sources */,
+				D51D15271B1657E900EC753A /* Atom3.cpp in Sources */,
 				F87C330F1910554000E8A523 /* Geometry.cpp in Sources */,
 				B92F88551AEFD133005EDB9C /* SettingsViewController.m in Sources */,
 				F87C330D1910554000E8A523 /* TextureData.mm in Sources */,
@@ -1184,6 +1301,7 @@
 				F87C33181910554000E8A523 /* Texture.cpp in Sources */,
 				F87C330A1910554000E8A523 /* Gyro.mm in Sources */,
 				F87C33091910554000E8A523 /* FrameworkViewController.mm in Sources */,
+				D51D15281B1657E900EC753A /* Atom4.cpp in Sources */,
 				F87C33081910554000E8A523 /* FrameworkAppDelegate.m in Sources */,
 				F87C33141910554000E8A523 /* PhysicsManager.cpp in Sources */,
 				F87C33161910554000E8A523 /* Shader.cpp in Sources */,
@@ -1197,11 +1315,13 @@
 				F814A6161716A0E000A2A910 /* obj.cpp in Sources */,
 				F87C331D1910557D00E8A523 /* DemoSceneManager.cpp in Sources */,
 				F87C33061910554000E8A523 /* Camera.cpp in Sources */,
+				D51D15251B1657E900EC753A /* Atom.cpp in Sources */,
 				F87C33171910554000E8A523 /* ShaderData.cpp in Sources */,
 				F87C33071910554000E8A523 /* EAGLView.m in Sources */,
 				F87C330E1910554000E8A523 /* Util.mm in Sources */,
 				B9FD35D21B0CE8FE005F9D0D /* ParticleEngine.cpp in Sources */,
 				F814A6171716A0E000A2A910 /* obj_parser.cpp in Sources */,
+				D51D15261B1657E900EC753A /* Atom2.cpp in Sources */,
 				F87C33051910554000E8A523 /* Application.cpp in Sources */,
 				B9EF714B1B12191700EFC5F2 /* RankingViewController.m in Sources */,
 			);

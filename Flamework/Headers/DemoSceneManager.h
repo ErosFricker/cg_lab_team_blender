@@ -16,6 +16,11 @@
 #include "Particle.h"
 #include "CoreParticle.h"
 
+#include "Atom.h"
+#include "Atom2.h"
+#include "Atom3.h"
+#include "Atom4.h"
+
 #include <stack>
 #include <list>
 
@@ -78,9 +83,9 @@ public:
     
 private:
     
-    
     std::list<Particle> _activeParticles;
     std::list<CoreParticle> _particleList;
+    std::list<Atom> _atoms;
     
     double _time;
     float _rotationValue;
@@ -111,6 +116,43 @@ private:
     float _particleSpawnProbability;
     float _maxParticleNumber;
     float _particleSpeedIncrement;
+    
+    Atom _config;
+    Atom2 _config2;
+    Atom3 _config3;
+    Atom4 _config4;
+    
+    float _speedMin;
+    float _speedMax;
+    float _speedInc;
+    
+    float _rotation1Max;
+    float _rotation1Min;
+    float _rot1Inc;
+    
+    float _rotation2Max;
+    float _rotation2Min;
+    float _rot2Inc;
+    
+    float _shakeAmplitudeMax;
+    float _shakeAmplitudeMin;
+    float _shakeAmpInc;
+    
+    float _shakeRateMax;
+    float _shakeRateMin;
+    float _shakeRateInc;
+    
+    float _P_atom;
+    float _P_atomInc;
+    
+    float _P_atom2;
+    float _P_atom2Inc;
+    
+    float _P_atom3;
+    float _P_atom3Inc;
+    
+    float _P_atom4;
+    float _P_atom4Inc;
 
     vmml::vec2f _scrolling;
     vmml::vec2f _lScrollPos;
