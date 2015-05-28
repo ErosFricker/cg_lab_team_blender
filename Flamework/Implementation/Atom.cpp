@@ -8,16 +8,41 @@
 
 #include "Atom.h"
 
-const unsigned int Atom::NUMBER_OF_TYPES = 5;
+const unsigned int Atom::NUMBER_OF_TYPES = 15;
 
 const std::string Atom::TYPE[] =
 {
-    "water_particle",
+    "water_particle",   // 1
     "fire",
     "silver_particle",
     "gold_particle",
-    "forest_particle"
+    "forest_particle",
+    "stone1_particle",
+    "stone2_particle",
+    "stone3_particle",
+    "storm_particle",
+    "wood_particle",
+    "blood_particle",
+    "cloud_particle",
+    "marble_particle",
+    "marmor_particle",
+    "metal_particle",
 };
+
+/*
+ loadModel("stone1_particle.obj", true, true);
+ loadModel("stone2_particle.obj", true, true);
+ loadModel("stone3_particle.obj", true, true);
+ loadModel("storm_particle.obj", true, true);
+ loadModel("wood_particle.obj", true, true);
+ loadModel("blood_particle.obj", true, true);
+ loadModel("cloud_particle.obj", true, true);
+ loadModel("diamond_particle.obj", true, true);
+ loadModel("marble_particle.obj", true, true);
+ loadModel("marmor_particle.obj", true, true);
+ loadModel("metal_particle.obj", true, true);
+ */
+
 
 float Atom::_speedMin = 18.f;
 float Atom::_speedMax = 20.f;

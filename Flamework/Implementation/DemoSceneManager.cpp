@@ -146,6 +146,19 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("silver_particle.obj", true, true);
     loadModel("forest_particle.obj", true, true);
     
+    // NEW
+    loadModel("stone1_particle.obj", true, true);
+    loadModel("stone2_particle.obj", true, true);
+    loadModel("stone3_particle.obj", true, true);
+    loadModel("storm_particle.obj", true, true);
+    loadModel("wood_particle.obj", true, true);
+    loadModel("blood_particle.obj", true, true);
+    loadModel("cloud_particle.obj", true, true);
+    loadModel("diamond_particle.obj", true, true);
+    loadModel("marble_particle.obj", true, true);
+    loadModel("marmor_particle.obj", true, true);
+    loadModel("metal_particle.obj", true, true);
+    
     //CREATE PARTICLE ENGINES
     bigAuspuff = new ParticleEngine(this, vmml::vec3f(0.0, -0.79, 99));
     loadModel("fire_particle_purple.obj", true, true);
