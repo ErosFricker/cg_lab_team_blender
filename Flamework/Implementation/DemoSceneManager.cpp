@@ -122,8 +122,8 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     
     loadModel("accelerator.obj", true, true);
     loadModel("ship.obj", true, true);
-    loadModel("core.obj", true, true);
-    loadModel("electron.obj", true, true);
+    //loadModel("core.obj", true, true);
+    //loadModel("electron.obj", true, true);
     loadModel("black_hole.obj", true, true);
     loadModel("halo.obj", true, true);
     loadModel("fire_particle.obj", true, true);
@@ -140,6 +140,24 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("nine.obj", true, true);
     loadModel("black_hole.obj", true, true);
     
+    loadModel("fire.obj", true, true);
+    loadModel("water_particle.obj", true, true);
+    loadModel("gold_particle.obj", true, true);
+    loadModel("silver_particle.obj", true, true);
+    loadModel("forest_particle.obj", true, true);
+    
+    // NEW
+    loadModel("stone1_particle.obj", true, true);
+    loadModel("stone2_particle.obj", true, true);
+    loadModel("stone3_particle.obj", true, true);
+    loadModel("storm_particle.obj", true, true);
+    loadModel("wood_particle.obj", true, true);
+    loadModel("blood_particle.obj", true, true);
+    loadModel("cloud_particle.obj", true, true);
+    loadModel("diamond_particle.obj", true, true);
+    loadModel("marble_particle.obj", true, true);
+    loadModel("marmor_particle.obj", true, true);
+    loadModel("metal_particle.obj", true, true);
     
     //CREATE PARTICLE ENGINES
     bigAuspuff = new ParticleEngine(this, vmml::vec3f(0.0, -0.79, 99));
@@ -465,6 +483,63 @@ void DemoSceneManager::draw(double deltaT)
         _explosionmatrix = vmml::mat4f::IDENTITY;
         // Others
         createOrthonormalSystems();
+        
+        // Atoms
+        _speedMin = 10.f;
+        _speedMax = 15.f;
+        _speedInc = 5.f;
+        
+        _rotation1Max = 5.f;
+        _rotation1Min = 0.f;
+        _rot1Inc = 5.f;
+        
+        _rotation2Max = 5.f;
+        _rotation2Min = 0.f;
+        _rot2Inc = 5.f;
+        
+        _shakeAmplitudeMax = 0.1f;
+        _shakeAmplitudeMin = 0.f;
+        _shakeAmpInc = 0.03;
+        
+        _shakeRateMax = 10.f;
+        _shakeRateMin = 0.f;
+        _shakeRateInc = 5.f;
+        
+        _P_atom = 1.f;
+        _P_atomInc = 1.f;
+        
+        _P_atom2 = 2.f;
+        _P_atom2Inc = 1.f;
+        
+        _P_atom3 = 3.f;
+        _P_atom3Inc = 1.f;
+        
+        _P_atom4 = 4.f;
+        _P_atom4Inc = 1.f;
+        
+        _config.setSpeedLimits(_speedMin, _speedMax);
+        _config.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
+        
+        _config2.setSpeedLimits(_speedMin, _speedMax);
+        _config2.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config2.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config2.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config2.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
+        
+        _config3.setSpeedLimits(_speedMin, _speedMax);
+        _config3.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config3.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config3.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config3.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
+        
+        _config4.setSpeedLimits(_speedMin, _speedMax);
+        _config4.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config4.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config4.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config4.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
     }
     
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -475,17 +550,7 @@ void DemoSceneManager::draw(double deltaT)
     glDisable(GL_CULL_FACE);
     
     
-    
-    
-    
-    
-    // STEERING
-    
-    
-    
-    
-    
-    
+
     // STEERING
     
     /* Gyro, sucks
@@ -493,10 +558,6 @@ void DemoSceneManager::draw(double deltaT)
      gyro->read();
      _gyroMatrix *= vmml::create_rotation(_gyroSpeed*gyro->getRoll(), vmml::vec3f::UNIT_Z);
      */
-    
-    
-    
-    
     
     // Touch/Scroll
     _rotationValue += steeringDirection;
@@ -507,6 +568,7 @@ void DemoSceneManager::draw(double deltaT)
     /*_gyroRotationMatrix;*/
     
     
+    
     // ACCELERATOR
     
     // Texturespeed
@@ -515,9 +577,9 @@ void DemoSceneManager::draw(double deltaT)
     // float accelerated = fmodf(_textureSpeedFac*pow(_time,_textureSpeedExp),0.496f);
     
     _modelMatrix = _steeringMatrix * _modelMatrixAccelerator;
-    if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
-        
-        
+    
+    if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true)
+    {
         _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
         float rotationValue = (-M_PI)*_explosionAnimationTimer;
         _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
@@ -525,9 +587,8 @@ void DemoSceneManager::draw(double deltaT)
         _explosionmatrix = _modelMatrix;
         
         _explosionAnimationTimer -=0.1;
-        
-        
     }
+    
     if (_collision && _explosionAnimationTimer < 0.0001) {
         
         loadSound("you_lose.mp3")->play();
@@ -537,47 +598,81 @@ void DemoSceneManager::draw(double deltaT)
     drawModel(0.12f*_time, "accelerator");
     
     // PARTICLES
-    
     // Particle generator
+    
+    // 4er
+    if (rand()%101<_P_atom4)
+    {
+        Atom4 atom4(_time);
+        for (int i=0; i<4; ++i) _atoms.push_front(*(atom4.getAtoms()+i));
+    }
+
+    // 3er
+    if (rand()%101<_P_atom3)
+    {
+        Atom3 atom3(_time);
+        for (int i=0; i<3; ++i) _atoms.push_front(*(atom3.getAtoms()+i));
+    }
+    
+    // 2er
+    if (rand()%101<_P_atom2)
+    {
+        Atom2 atom2(_time);
+        for (int i=0; i<2; ++i) _atoms.push_front(*(atom2.getAtoms()+i));
+    }
+    
+    // 1er
+    if (rand()%101<_P_atom)
+    {
+        Atom atom(_time);
+        _atoms.push_front(atom);
+    }
+    
+    
+
+    
+    
+    /*
     if (rand()%101<_particleSpawnProbability && _particleList.size()<_maxParticleNumber)
     {
         CoreParticle p;
         p.create(_time, _particleSpeed, _particleSize, rand());
         _particleList.push_front(p);
     }
+    */
     
     // Draw Particles
-    std::list<CoreParticle>::iterator it;
-    for (it = _particleList.begin(); it != _particleList.end(); ++it)
+    std::list<Atom>::iterator it;
+    for (it = _atoms.begin(); it != _atoms.end(); ++it)
     {
         // Draw Core
-        _modelMatrix = _steeringMatrix * (*it).getModelMatrix(_time);
-        if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
-            
+        _modelMatrix = (*it).getModelMatrix(_time, _steeringMatrix);
+        
+        if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true)
+        {
             _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
             float rotationValue = (-M_PI)*_explosionAnimationTimer;
             _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
             _explosionmatrix = _modelMatrix;
-            
             _explosionAnimationTimer -=0.001;
-            
-            
         }
+        
         if (_collision && _explosionAnimationTimer < 0.0001) {
             shouldStop = true;
         }
         
         //Check if the particle is one of the 5 closest for lighting
-        vmml::vec3f position = it->getPosition(_time).getPosition();
+        vmml::vec3f position = it->getAbsoultPosition(_time, _steeringMatrix);
         checkLights(position);
         
-        drawModel(0, "core");
+        drawModel(0, it->getParticleType());
         
         // Collisiondetection
-        vmml::vec3f absolutePosition = _steeringMatrix*(it->getPosition(_time)).getPosition();
+        vmml::vec3f absolutePosition = it->getAbsoultPosition(_time, _steeringMatrix);
         if(hasCollided(absolutePosition, _positionShip)) _collision = true;
         
         // Draw Halo
+        /*
         vmml::mat4f tmp = _modelMatrix;
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparancy
@@ -586,13 +681,14 @@ void DemoSceneManager::draw(double deltaT)
         drawModel(0, "halo");
         glDisable(GL_BLEND);
         _modelMatrix = tmp;
+         */
     }
     
     // Remove passed particles, increase the speed where appropriate, and update the score
-    std::list<CoreParticle>::const_iterator iterator;
-    while (!(*(--_particleList.end())).getPosition(_time).isValid())
+    while (_atoms.begin() != _atoms.end()
+           && ((*(--_atoms.end())).getAbsoultPosition(_time, _steeringMatrix).z()) > 90 )
     {
-        _particleList.pop_back();
+        _atoms.pop_back();
         ++_particlesPassed;
         ++_score;
     }
@@ -615,11 +711,11 @@ void DemoSceneManager::draw(double deltaT)
         
         
     }
+    
     if (_collision && _explosionAnimationTimer < 0.0001) {
         shouldStop = true;
         
     }
-    
     
     if (steeringDirection<0.0f) {
         _modelMatrix*=vmml::create_rotation(0.4f, vmml::vec3f::UNIT_Z);
@@ -702,7 +798,6 @@ void DemoSceneManager::draw(double deltaT)
         
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE); // transparancy
-        int j;
         float sign;
         for (int g=0; g<2; ++g)
         {
