@@ -786,6 +786,50 @@ void DemoSceneManager::draw(double deltaT)
         _particleSpawnProbability += 0;
         _maxParticleNumber += 0;
         _boostIsOn = true;
+        
+        _speedMin += _speedInc;
+        _speedMax += _speedInc;
+        
+        _rotation1Max += _rot1Inc;
+        _rotation1Min += _rot1Inc;
+        
+        _rotation2Max += _rot2Inc;
+        _rotation2Min += _rot2Inc;
+        
+        _shakeAmplitudeMax += _shakeAmpInc;
+        _shakeAmplitudeMin += _shakeAmpInc;
+        
+        _shakeRateMax += _shakeRateInc;
+        _shakeRateMin += _shakeRateInc;
+        
+        _P_atom += _P_atomInc;
+        _P_atom2 += _P_atom2Inc;
+        _P_atom3 += _P_atom3Inc;
+        _P_atom4 += _P_atom4Inc;
+        
+        _config.setSpeedLimits(_speedMin, _speedMax);
+        _config.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
+        
+        _config2.setSpeedLimits(_speedMin, _speedMax);
+        _config2.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config2.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config2.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config2.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
+        
+        _config3.setSpeedLimits(_speedMin, _speedMax);
+        _config3.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config3.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config3.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config3.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
+        
+        _config4.setSpeedLimits(_speedMin, _speedMax);
+        _config4.setRotation1SpeedLimits(_rotation1Min, _rotation1Max);
+        _config4.setRotation2SpeedLimits(_rotation2Min, _rotation2Max);
+        _config4.setShakeAmplitudeLimits(_shakeAmplitudeMin, _shakeAmplitudeMax);
+        _config4.setShakeRateLimits(_shakeRateMin, _shakeRateMax);
     }
     
     if (_particleAnimationTimer >0.0f) {
