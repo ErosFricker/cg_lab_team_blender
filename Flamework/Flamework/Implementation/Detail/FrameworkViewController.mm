@@ -271,6 +271,7 @@ enum
     _application.draw(deltaT);
     if (((DemoSceneManager*)_application.getSceneManager())->shouldStop) {
         RankingViewController* ranking = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ranking"];
+        ranking.score = ((DemoSceneManager*)_application.getSceneManager())->getScore();
         [self showViewController:ranking sender:self];
     }
     
@@ -288,6 +289,9 @@ enum
 - (BOOL)shouldAutorotate
 {
     return NO;
+}
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 @end

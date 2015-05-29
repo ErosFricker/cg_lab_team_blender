@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RankingViewController : UIViewController
+@property (nonatomic) NSInteger score;
 
 @end

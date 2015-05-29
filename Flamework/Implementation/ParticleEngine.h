@@ -47,7 +47,7 @@ public:
     
     void advance(float dt);
     
-    virtual void draw(GLenum mode = GL_TRIANGLES, float deltaT = 0.0);
+    virtual void draw(GLenum mode = GL_TRIANGLES, float deltaT = 0.0, bool boost = false);
 };
 
 typedef std::shared_ptr<ParticleEngine> ParticleEnginePtr;

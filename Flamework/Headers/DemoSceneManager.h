@@ -75,6 +75,7 @@ public:
     vmml::mat4f haloMatrix(vmml::vec3f eye, vmml::vec3f lookAt, vmml::vec3f point, float originalSize);
     vmml::mat4f fakeScaling(vmml::vec3f position, float originalSize);
     bool hasCollided(vmml::vec3f vec1, vmml::vec3f vec2);
+    int getScore();
     
 private:
     

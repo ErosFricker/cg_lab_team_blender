@@ -22,9 +22,13 @@ float timeUntilNextStep;
 float colorTime;
 float angle;
 const float STEP_TIME = 0.002f;
-const float PARTICLE_SIZE = 0.15f;
-const float GRAVITY = 0.15f;
+float PARTICLE_SIZE = 0.15f;
+float GRAVITY = 0.15f;
 vmml::vec3f STARTING_POSITION;
+
+int DemoSceneManager::getScore(){
+    return _score;
+}
 
 
 vmml::vec3f rotateParticle(vmml::vec3f v, vmml::vec3f axis, float degrees) {
@@ -219,7 +223,14 @@ ParticleEngine::~ParticleEngine(){
 
 
 
-void ParticleEngine::draw(GLenum mode, float deltaT) {
+void ParticleEngine::draw(GLenum mode, float deltaT, bool boost) {
+    if (boost) {
+        GRAVITY = 3.0f;
+        PARTICLE_SIZE = 0.25f;
+    }else{
+        GRAVITY = 0.15f;
+        PARTICLE_SIZE = 0.15f;
+    }
     advance(0.1);
     Geometry &geometry = getGroups()["geom"];
     Geometry::VertexDataPtr ptr = geometry.getVertexData();

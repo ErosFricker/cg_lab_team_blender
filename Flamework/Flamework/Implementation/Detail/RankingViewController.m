@@ -10,6 +10,7 @@
 #include "StartScreenViewController.h"
 
 @interface RankingViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
 
@@ -17,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.scoreLabel setText:[NSString stringWithFormat:@"Your Score: %li", (long)self.score]];
     // Do any additional setup after loading the view.
 }
 
@@ -37,6 +39,9 @@
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 

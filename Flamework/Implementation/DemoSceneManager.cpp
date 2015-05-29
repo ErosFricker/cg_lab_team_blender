@@ -398,6 +398,7 @@ float _explosionAnimationTimer;
 vmml::mat4f _explosionmatrix;
 
 float _particleAnimationTimer = 0.0f;
+bool _boostIsOn = false;
 
 void DemoSceneManager::draw(double deltaT)
 {
@@ -533,7 +534,7 @@ void DemoSceneManager::draw(double deltaT)
         shouldStop = true;
         
     }
-    drawModel(0.1f*_time, "accelerator");
+    drawModel(0.12f*_time, "accelerator");
     
     // PARTICLES
     
@@ -688,6 +689,7 @@ void DemoSceneManager::draw(double deltaT)
         _particlesPassed = 0;
         _particleSpawnProbability += 0;
         _maxParticleNumber += 0;
+        _boostIsOn = true;
     }
     
     if (_particleAnimationTimer >0.0f) {
@@ -726,6 +728,8 @@ void DemoSceneManager::draw(double deltaT)
         glDisable(GL_BLEND);
         
         _particleAnimationTimer -=.5f;
+    }else{
+        _boostIsOn = false;
     }
     
     
@@ -757,7 +761,7 @@ void DemoSceneManager::draw(double deltaT)
         
         
         shader->setUniform("ColorVector", _color);
-        bigAuspuff->draw(GL_TRIANGLES, deltaT);
+        bigAuspuff->draw(GL_TRIANGLES, deltaT, _boostIsOn);
         // leftAuspuff->draw(GL_TRIANGLES, deltaT);
         glEnable(GL_CULL_FACE);
     }

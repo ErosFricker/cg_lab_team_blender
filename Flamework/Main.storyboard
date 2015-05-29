@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WHc-OR-yNd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WHc-OR-yNd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="alexisv3bulletital.ttf">
+            <string>AlexisBulletItalic</string>
+        </mutableArray>
         <mutableArray key="alexisv3half.ttf">
             <string>AlexisHalftone</string>
             <string>AlexisHalftone</string>
@@ -76,6 +79,7 @@
                             <constraint firstAttribute="centerX" secondItem="I8c-hl-Ujm" secondAttribute="centerX" id="vud-jl-Jro"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="TitleTextLabel" destination="S9K-ve-6f8" id="i6W-TY-GoN"/>
                         <outlet property="backgroundImageView" destination="e4N-8i-oe7" id="Y22-2M-QWE"/>
@@ -100,6 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="view" destination="LOI-zE-cFU" id="Ais-69-Tbj"/>
                     </connections>
@@ -123,8 +128,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackhole.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="lIh-8K-FVG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU LOSE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nX9-8e-Kd6">
-                                <rect key="frame" x="40" y="76" width="521" height="114"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="YOU LOSE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nX9-8e-Kd6">
+                                <rect key="frame" x="40" y="76" width="521" height="102"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="521" id="Cl9-dO-WPM"/>
                                     <constraint firstAttribute="height" constant="114" id="Xao-UH-MXk"/>
@@ -161,22 +166,38 @@
                                     <segue destination="WHc-OR-yNd" kind="show" identifier="returnToMainMenu" id="qZh-66-NFO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvK-LA-8ab">
+                                <rect key="frame" x="76" y="172" width="448" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="448" id="IGW-JB-IdV"/>
+                                    <constraint firstAttribute="height" constant="79" id="RWp-jF-e0K"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AlexisBulletItalic" family="Alexis Bullet Italic" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nX9-8e-Kd6" firstAttribute="leading" secondItem="nvn-2t-ip5" secondAttribute="leading" constant="40" id="2fu-1q-nDY"/>
                             <constraint firstAttribute="trailing" secondItem="nX9-8e-Kd6" secondAttribute="trailing" constant="39" id="NcW-cR-dUl"/>
                             <constraint firstAttribute="trailing" secondItem="lIh-8K-FVG" secondAttribute="trailing" id="OrH-tm-YJ1"/>
+                            <constraint firstAttribute="centerX" secondItem="PvK-LA-8ab" secondAttribute="centerX" id="SIo-3f-zG6"/>
                             <constraint firstItem="lIh-8K-FVG" firstAttribute="top" secondItem="nvn-2t-ip5" secondAttribute="top" id="WlY-wq-FKi"/>
                             <constraint firstItem="Sfj-Eg-EMA" firstAttribute="top" secondItem="fNz-kf-1aY" secondAttribute="bottom" constant="79" id="YBW-BO-ipQ"/>
                             <constraint firstItem="lIh-8K-FVG" firstAttribute="leading" secondItem="nvn-2t-ip5" secondAttribute="leading" id="YMg-eu-Zha"/>
                             <constraint firstItem="nX9-8e-Kd6" firstAttribute="top" secondItem="Eoe-nq-E9F" secondAttribute="bottom" constant="56" id="diy-gq-Mf2"/>
+                            <constraint firstItem="PvK-LA-8ab" firstAttribute="top" secondItem="Eoe-nq-E9F" secondAttribute="bottom" constant="152" id="e0a-6G-YDB"/>
                             <constraint firstAttribute="centerX" secondItem="fNz-kf-1aY" secondAttribute="centerX" id="g9Q-Lc-m7r"/>
                             <constraint firstItem="lrD-Bd-v4n" firstAttribute="top" secondItem="lIh-8K-FVG" secondAttribute="bottom" id="k03-vt-dQw"/>
                             <constraint firstItem="fNz-kf-1aY" firstAttribute="top" secondItem="nX9-8e-Kd6" secondAttribute="bottom" constant="126" id="lAj-wW-gaq"/>
                             <constraint firstAttribute="centerX" secondItem="Sfj-Eg-EMA" secondAttribute="centerX" id="rMi-Rf-Gq9"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="scoreLabel" destination="PvK-LA-8ab" id="99R-X3-DSt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zE-Tb-3f3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,19 +230,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SFX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57Q-Ke-y5Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SFX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57Q-Ke-y5Q">
                                 <rect key="frame" x="284" y="344" width="32" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LFe-e2-cQX">
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LFe-e2-cQX">
                                 <rect key="frame" x="58" y="224" width="484" height="31"/>
                                 <connections>
                                     <action selector="backgroundMusicSliderValueChanged:" destination="hQn-Ip-eLT" eventType="valueChanged" id="d4r-tu-eUz"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="fF5-YJ-Y2W">
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="fF5-YJ-Y2W">
                                 <rect key="frame" x="58" y="425" width="484" height="31"/>
                                 <connections>
                                     <action selector="sfxSliderValueChanged:" destination="hQn-Ip-eLT" eventType="valueChanged" id="Umk-KH-5C9"/>
@@ -267,6 +288,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="SFXLabel" destination="57Q-Ke-y5Q" id="5Sr-ma-o5A"/>
                         <outlet property="backgroundMusicLabel" destination="KMh-Qd-Mcy" id="sMt-lO-dZ2"/>
@@ -286,7 +308,7 @@
         <image name="blackhole.jpg" width="600" height="358"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J39-aa-JyD"/>
+        <segue reference="M6q-gZ-UnA"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
