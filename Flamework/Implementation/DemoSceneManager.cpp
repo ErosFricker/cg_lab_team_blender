@@ -48,7 +48,6 @@ DemoSceneManager::DemoSceneManager(Application *application)
 }
 
 ParticleEngine *bigAuspuff;//, *leftAuspuff;
-
 DemoSceneManager::~DemoSceneManager() {
 }
 
@@ -158,6 +157,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("marble_particle.obj", true, true);
     loadModel("marmor_particle.obj", true, true);
     loadModel("metal_particle.obj", true, true);
+    loadModel("quad2.obj", true, true);
     
     //CREATE PARTICLE ENGINES
     bigAuspuff = new ParticleEngine(this, vmml::vec3f(0.0, -0.79, 99));
@@ -303,6 +303,27 @@ void DemoSceneManager::createViewMatrix()
     _eyePos = vmml::vec3f(0, 0, 100);
     _viewMatrix = lookAt(_eyePos, vmml::vec3f::ZERO, vmml::vec3f::UP);
 }
+ShaderPtr _shader;
+
+
+void DemoSceneManager::useShader(const std::string &shaderName, const std::string &modelName)
+{
+    //getting shader pointer/loading shader if not already loaded
+    if(getShader(shaderName).get()) {
+        _shader = getShader(shaderName);
+    } else {
+        _shader = loadShader(shaderName);
+    }
+    
+    //setting new shader for material of specified model
+    Model::GroupMap &groups = getModel(modelName)->getGroups();
+    for (auto i = groups.begin(); i != groups.end(); ++i)
+    {
+        Geometry &geometry = i->second;
+        MaterialPtr material = geometry.getMaterial();
+        material->setShader(_shader);
+    }
+}
 
 vmml::mat4f DemoSceneManager::getShipShakingMatrix(float time, float amplitudeLeft, float amplituderight,float shakingfactorLeft, float shakingfactorRight)
 {
@@ -421,7 +442,6 @@ bool _boostIsOn = false;
 void DemoSceneManager::draw(double deltaT)
 {
     _time += deltaT;
-    
     
     
     
@@ -597,6 +617,39 @@ void DemoSceneManager::draw(double deltaT)
     }
     drawModel(0.12f*_time, "accelerator");
     
+    
+    // SHIP
+    
+    // The Ship
+    _shipModifierMatrix = getShipShakingMatrix(_time, _amplitudeVertical, _amplitudeHorizontal, _shakingVertical, _shakingHorizontal);
+    
+    _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
+    
+    if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
+        
+        _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
+        float rotationValue = (-M_PI)*_explosionAnimationTimer;
+        _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
+        _explosionmatrix = _modelMatrix;
+        
+        _explosionAnimationTimer -=0.001;
+        
+        
+    }
+    
+    if (_collision && _explosionAnimationTimer < 0.0001) {
+        shouldStop = true;
+        
+    }
+    
+    if (steeringDirection<0.0f) {
+        _modelMatrix*=vmml::create_rotation(0.4f, vmml::vec3f::UNIT_Z);
+    }else if (steeringDirection > 0.0f){
+        _modelMatrix*=vmml::create_rotation(-0.4f, vmml::vec3f::UNIT_Z);
+    }
+    
+    drawModel(0, "ship");
+    
     // PARTICLES
     // Particle generator
     
@@ -693,37 +746,6 @@ void DemoSceneManager::draw(double deltaT)
         ++_score;
     }
     
-    // SHIP
-    
-    // The Ship
-    _shipModifierMatrix = getShipShakingMatrix(_time, _amplitudeVertical, _amplitudeHorizontal, _shakingVertical, _shakingHorizontal);
-    
-    _modelMatrix =  _shipModifierMatrix * _modelMatrixShip;
-    
-    if (_explosionAnimationTimer > 0.0f && _explosionAnimationTimer < 1.0f && _collision == true) {
-        
-        _modelMatrix= _modelMatrix*vmml::create_scaling(_explosionAnimationTimer);
-        float rotationValue = (-M_PI)*_explosionAnimationTimer;
-        _modelMatrix = _modelMatrix*vmml::create_rotation(rotationValue, vmml::vec3f::UNIT_Y);
-        _explosionmatrix = _modelMatrix;
-        
-        _explosionAnimationTimer -=0.001;
-        
-        
-    }
-    
-    if (_collision && _explosionAnimationTimer < 0.0001) {
-        shouldStop = true;
-        
-    }
-    
-    if (steeringDirection<0.0f) {
-        _modelMatrix*=vmml::create_rotation(0.4f, vmml::vec3f::UNIT_Z);
-    }else if (steeringDirection > 0.0f){
-        _modelMatrix*=vmml::create_rotation(-0.4f, vmml::vec3f::UNIT_Z);
-    }
-    
-    drawModel(0, "ship");
     
     
     
@@ -904,5 +926,10 @@ void DemoSceneManager::draw(double deltaT)
         // leftAuspuff->draw(GL_TRIANGLES, deltaT);
         glEnable(GL_CULL_FACE);
     }
+
+
+    
+    
+    
     
 }

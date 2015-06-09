@@ -176,6 +176,8 @@ private:
     
     MatrixStack _modelMatrixStack;
     vmml::mat3f _orthonormalBases[NUMBER_OF_ORTHOGONALSYSTEMS];
+    
+    void useShader(const std::string &shaderName, const std::string &modelName);
 };
 
 

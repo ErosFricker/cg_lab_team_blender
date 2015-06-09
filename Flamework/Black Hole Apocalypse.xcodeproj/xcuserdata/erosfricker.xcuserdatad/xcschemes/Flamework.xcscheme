@@ -17,7 +17,7 @@
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "Flamework.app"
                BlueprintName = "Flamework"
-               ReferencedContainer = "container:Flamework.xcodeproj">
+               ReferencedContainer = "container:Black Hole Apocalypse.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "Flamework.app"
             BlueprintName = "Flamework"
-            ReferencedContainer = "container:Flamework.xcodeproj">
+            ReferencedContainer = "container:Black Hole Apocalypse.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -55,7 +55,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "Flamework.app"
             BlueprintName = "Flamework"
-            ReferencedContainer = "container:Flamework.xcodeproj">
+            ReferencedContainer = "container:Black Hole Apocalypse.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,7 +74,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "Flamework.app"
             BlueprintName = "Flamework"
-            ReferencedContainer = "container:Flamework.xcodeproj">
+            ReferencedContainer = "container:Black Hole Apocalypse.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

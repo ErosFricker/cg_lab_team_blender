@@ -33,6 +33,8 @@
 		B9D545CB1B0B6FFE00B9CC77 /* alexis_bitmap.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */; };
 		B9D545CF1B0B792800B9CC77 /* auspuff.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CD1B0B792700B9CC77 /* auspuff.pex */; };
 		B9D545D01B0B792800B9CC77 /* black_hole.pex in Resources */ = {isa = PBXBuildFile; fileRef = B9D545CE1B0B792800B9CC77 /* black_hole.pex */; };
+		B9D615AD1B26BA19002F030B /* default.frag in Resources */ = {isa = PBXBuildFile; fileRef = B9D615AC1B26BA19002F030B /* default.frag */; };
+		B9D615AF1B26BA20002F030B /* default.vert in Resources */ = {isa = PBXBuildFile; fileRef = B9D615AE1B26BA20002F030B /* default.vert */; };
 		B9EF713B1B11F92E00EFC5F2 /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9EF713A1B11F92E00EFC5F2 /* swoosh.mp3 */; };
 		B9EF713F1B11FB1900EFC5F2 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B9EF713E1B11FB1900EFC5F2 /* explosion.mp3 */; };
 		B9EF71441B1216E600EFC5F2 /* black_hole.obj in Resources */ = {isa = PBXBuildFile; fileRef = B9EF71431B1216E600EFC5F2 /* black_hole.obj */; };
@@ -300,6 +302,8 @@
 		B9D545C91B0B6FFE00B9CC77 /* alexis_bitmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alexis_bitmap.png; sourceTree = "<group>"; };
 		B9D545CD1B0B792700B9CC77 /* auspuff.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = auspuff.pex; sourceTree = "<group>"; };
 		B9D545CE1B0B792800B9CC77 /* black_hole.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = black_hole.pex; sourceTree = "<group>"; };
+		B9D615AC1B26BA19002F030B /* default.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = default.frag; sourceTree = "<group>"; };
+		B9D615AE1B26BA20002F030B /* default.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = default.vert; sourceTree = "<group>"; };
 		B9EF713A1B11F92E00EFC5F2 /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		B9EF713E1B11FB1900EFC5F2 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		B9EF71431B1216E600EFC5F2 /* black_hole.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = black_hole.obj; sourceTree = "<group>"; };
@@ -1180,6 +1184,8 @@
 				D5202FA61B03F619004F65B5 /* accelerator.frag */,
 				D5202FD01B04D532004F65B5 /* core.vert */,
 				D5202FD21B04D541004F65B5 /* core.frag */,
+				B9D615AC1B26BA19002F030B /* default.frag */,
+				B9D615AE1B26BA20002F030B /* default.vert */,
 				D56387AD1B0AC14500732BE5 /* electron.vert */,
 				D56387AF1B0AC14F00732BE5 /* electron.frag */,
 				B9EF71531B12287600EFC5F2 /* flame.frag */,
@@ -1305,7 +1311,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Flamework" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Black Hole Apocalypse" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -1446,6 +1452,7 @@
 				D5B102721B0F781D005FB9BE /* one.frag in Resources */,
 				D51D14FC1B16579A00EC753A /* gold_particle.mtl in Resources */,
 				D51D14FA1B16579A00EC753A /* forest_particle.obj in Resources */,
+				B9D615AD1B26BA19002F030B /* default.frag in Resources */,
 				D5B102461B0F70B3005FB9BE /* one.obj in Resources */,
 				D5202FC91B041BF9004F65B5 /* s_1024_S.png in Resources */,
 				D5B102711B0F781D005FB9BE /* nine.vert in Resources */,
@@ -1529,6 +1536,7 @@
 				D5B102501B0F70B3005FB9BE /* zero.obj in Resources */,
 				F8ED6AD016E652B800E6D6CA /* ACKNOWLEDGEMENTS in Resources */,
 				D51D14F71B16579A00EC753A /* fire.mtl in Resources */,
+				B9D615AF1B26BA20002F030B /* default.vert in Resources */,
 				B95F81E21B160C0F00E8457C /* fire_particle_purple.frag in Resources */,
 				D51D15141B1657D200EC753A /* fire.vert in Resources */,
 				B95F81DC1B160BD000E8457C /* fire_particle_purple.obj in Resources */,
@@ -1598,6 +1606,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1622,6 +1632,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1690,7 +1702,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Flamework" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Black Hole Apocalypse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

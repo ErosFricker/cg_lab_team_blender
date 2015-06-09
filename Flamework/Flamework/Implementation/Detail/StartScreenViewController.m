@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIFont* titleFont = [UIFont fontWithName:@"Alexis Bullet Italic" size:100.0f];
+    UIFont* titleFont = [UIFont fontWithName:@"Alexis Bullet Italic" size:90.0f];
     UIFont* buttonFont = [UIFont fontWithName:@"Alexis Laser Italic" size:50.0f];
     
     [_TitleTextLabel setFont:titleFont];

@@ -40,10 +40,10 @@
                                     <segue destination="hQn-Ip-eLT" kind="presentation" identifier="settings" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="qOQ-up-A85"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Black Hole Apocalypse" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9K-ve-6f8">
-                                <rect key="frame" x="16" y="50" width="568" height="180"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Black Hole Apocalypse" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S9K-ve-6f8">
+                                <rect key="frame" x="16" y="50" width="568" height="266"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="QoE-TZ-rCU"/>
+                                    <constraint firstAttribute="height" constant="266" id="QoE-TZ-rCU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,7 +62,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Kg-nn-EbI" firstAttribute="top" secondItem="I8c-hl-Ujm" secondAttribute="bottom" constant="67" id="13N-F6-wCa"/>
-                            <constraint firstItem="I8c-hl-Ujm" firstAttribute="top" secondItem="S9K-ve-6f8" secondAttribute="bottom" constant="150" id="5Lw-hY-AOe"/>
+                            <constraint firstItem="I8c-hl-Ujm" firstAttribute="top" secondItem="S9K-ve-6f8" secondAttribute="bottom" constant="64" id="5Lw-hY-AOe"/>
                             <constraint firstItem="I8c-hl-Ujm" firstAttribute="leading" secondItem="7l1-Rq-NTq" secondAttribute="leading" constant="63" id="8q2-uf-iSO"/>
                             <constraint firstAttribute="trailing" secondItem="7Kg-nn-EbI" secondAttribute="trailing" constant="63" id="C3u-Ka-Wod"/>
                             <constraint firstItem="e4N-8i-oe7" firstAttribute="top" secondItem="7l1-Rq-NTq" secondAttribute="top" id="DVa-Ia-ieE"/>
@@ -71,7 +71,7 @@
                             <constraint firstAttribute="centerX" secondItem="S9K-ve-6f8" secondAttribute="centerX" id="MfA-JS-640"/>
                             <constraint firstAttribute="trailing" secondItem="I8c-hl-Ujm" secondAttribute="trailing" constant="63" id="QoN-9C-k3Z"/>
                             <constraint firstItem="e4N-8i-oe7" firstAttribute="leading" secondItem="7l1-Rq-NTq" secondAttribute="leading" id="R35-j2-bGc"/>
-                            <constraint firstItem="S9K-ve-6f8" firstAttribute="top" secondItem="qxo-h0-TLU" secondAttribute="bottom" constant="30" id="TON-mz-O8h"/>
+                            <constraint firstItem="S9K-ve-6f8" firstAttribute="top" secondItem="qxo-h0-TLU" secondAttribute="bottom" constant="50" id="TON-mz-O8h"/>
                             <constraint firstItem="S9K-ve-6f8" firstAttribute="leading" secondItem="7l1-Rq-NTq" secondAttribute="leading" constant="16" id="bND-Qu-ZfB"/>
                             <constraint firstAttribute="trailing" secondItem="S9K-ve-6f8" secondAttribute="trailing" constant="16" id="mNb-sw-cot"/>
                             <constraint firstItem="kRp-Qg-BWl" firstAttribute="top" secondItem="e4N-8i-oe7" secondAttribute="bottom" id="meE-fS-x8m"/>
@@ -138,7 +138,7 @@
                                 <color key="textColor" red="1" green="0.29460181164422439" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNz-kf-1aY">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNz-kf-1aY">
                                 <rect key="frame" x="187" y="316" width="226" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="gyV-oh-kPg"/>
@@ -152,7 +152,7 @@
                                     <segue destination="MVl-99-Wiw" kind="show" id="J39-aa-JyD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfj-Eg-EMA">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfj-Eg-EMA">
                                 <rect key="frame" x="56" y="425" width="488" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="488" id="LqI-LA-kxU"/>
@@ -166,7 +166,7 @@
                                     <segue destination="WHc-OR-yNd" kind="show" identifier="returnToMainMenu" id="qZh-66-NFO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvK-LA-8ab">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvK-LA-8ab">
                                 <rect key="frame" x="76" y="172" width="448" height="79"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="448" id="IGW-JB-IdV"/>
