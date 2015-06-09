@@ -355,8 +355,7 @@ vmml::mat4f DemoSceneManager::haloMatrix(vmml::vec3f eye, vmml::vec3f lookAt, vm
 
 vmml::mat4f DemoSceneManager::getHaloModelMatrix(float size, float scaling) {
     float s = 3.5*size + scaling;
-    return vmml::create_rotation(M_PI_F/2.f, vmml::vec3f(1,0,0))
-    * vmml::create_scaling(s);
+    return vmml::create_scaling(s);
 }
 
 vmml::mat4f DemoSceneManager::getScoreModelMatrix(vmml::vec4f position, int place, float scale) {
@@ -601,6 +600,7 @@ void DemoSceneManager::draw(double deltaT)
     // Particle generator
     
     // 4er
+    /*
     if (rand()%101<_P_atom4)
     {
         Atom4 atom4(_time);
@@ -620,18 +620,14 @@ void DemoSceneManager::draw(double deltaT)
         Atom2 atom2(_time);
         for (int i=0; i<2; ++i) _atoms.push_front(*(atom2.getAtoms()+i));
     }
-    
+    */
     // 1er
-    if (rand()%101<_P_atom)
+    if (rand()%50<_P_atom)
     {
         Atom atom(_time);
         _atoms.push_front(atom);
     }
-    
-    
 
-    
-    
     /*
     if (rand()%101<_particleSpawnProbability && _particleList.size()<_maxParticleNumber)
     {
@@ -672,21 +668,21 @@ void DemoSceneManager::draw(double deltaT)
         if(hasCollided(absolutePosition, _positionShip)) _collision = true;
         
         // Draw Halo
-        /*
-        vmml::mat4f tmp = _modelMatrix;
+        vmml::mat4f haloMatrix = it->getModelMatrixWoRot(_time, _steeringMatrix);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // transparancy
-        float halo_scal = fabs(sin(it->getRandom1()*25.f*_time + it->getRandom2()));
-        _modelMatrix *= getHaloModelMatrix(_particleSize, halo_scal);
+        float halo_scal = it->getHaloSize(_time)*10.f;//fabs(it->);
+        haloMatrix *= getHaloModelMatrix(_particleSize, halo_scal);
+        vmml::mat4f tmp = _modelMatrix;
+        _modelMatrix = haloMatrix;
         drawModel(0, "halo");
         glDisable(GL_BLEND);
         _modelMatrix = tmp;
-         */
     }
     
     // Remove passed particles, increase the speed where appropriate, and update the score
     while (_atoms.begin() != _atoms.end()
-           && ((*(--_atoms.end())).getAbsoultPosition(_time, _steeringMatrix).z()) > 90 )
+           && ((*(--_atoms.end())).getAbsoultPosition(_time, _steeringMatrix).z()) > 95 )
     {
         _atoms.pop_back();
         ++_particlesPassed;
@@ -724,9 +720,6 @@ void DemoSceneManager::draw(double deltaT)
     }
     
     drawModel(0, "ship");
-    
-    
-    
     
     
     // BLACKHOLE (TEST, blue sphere)

@@ -91,12 +91,23 @@ void Atom::createRandom(float time) {
 vmml::mat4f Atom::getModelMatrix(float time) {
     vmml::vec3f position = getRelativePosition(time);
     return vmml::create_translation(position)
-            * vmml::create_rotation(_rot1speed*time, _rot1)
+            * vmml::create_rotation(_rot1speed, _rot1)
             * vmml::create_scaling(1.f/100.f * position.z() * _originalSize);
 }
 
 vmml::mat4f Atom::getModelMatrix(float time, vmml::mat4f steeringMatrix) {
     return steeringMatrix * getModelMatrix(time);
+}
+
+vmml::mat4f Atom::getModelMatrixWoRot(float time) {
+    vmml::vec3f position = getRelativePosition(time);
+    return vmml::create_translation(position)
+    *vmml::create_rotation(2.f, vmml::normalize(vmml::vec3f(1.f,1.f,1.f)))
+    * vmml::create_scaling(1.f/100.f * position.z() * _originalSize);
+}
+
+vmml::mat4f Atom::getModelMatrixWoRot(float time, vmml::mat4f steeringMatrix) {
+    return steeringMatrix * getModelMatrixWoRot(time);
 }
 
 vmml::vec3f Atom::getRelativePosition(float time) {
@@ -223,3 +234,7 @@ float Atom::createShakeAmplitude()
 float Atom::createShakeRate() {
     return _shakeRateMin + (((float) rand()) / (float) RAND_MAX)*(_shakeRateMax-_shakeRateMin);
 }
+float Atom::getHaloSize(float time) {
+    vmml::vec3f position = getRelativePosition(time);
+    return 1.f/150.f * position.z() * _originalSize;
+; }

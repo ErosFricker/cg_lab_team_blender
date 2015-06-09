@@ -25,6 +25,8 @@ public:
     
     vmml::mat4f getModelMatrix(float time);
     vmml::mat4f getModelMatrix(float time, vmml::mat4f steeringMatrix);
+    vmml::mat4f getModelMatrixWoRot(float time);
+    vmml::mat4f getModelMatrixWoRot(float time, vmml::mat4f steeringMatrix);
     vmml::vec3f getRelativePosition(float time);
     vmml::vec3f getAbsoultPosition(float time, vmml::mat4f steeringMatrix);
     
@@ -69,7 +71,7 @@ public:
     static void setRotation2SpeedLimits(float min, float max);
     static void setShakeAmplitudeLimits(float min, float max);
     static void setShakeRateLimits(float min, float max);
-    
+    float getHaloSize(float time);
 
 private:
     std::string _particleType;
@@ -87,6 +89,7 @@ private:
     float _speed;
     float _rot1speed;
     float _rot2speed;
+    float _haloSize;
     
     float _shakeRate;
     float _shakeAmplitude;

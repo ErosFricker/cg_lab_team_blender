@@ -127,11 +127,11 @@ void main()
         if (diffuse < 0.5) totalLight *=0.8;
     }
         
-    for(int i = 0; i < 5; i++){
+   for(int i = 0; i < 5; i++){
         LightVert = normalize(lights[i] - posVarying).xyz;
         EyeLight = normalize(LightVert+EyeVert);
         
-        // Simple Silhouette
+         //Simple Silhouette
         float sil = max(dot(Normal,EyeVert), 0.0);
         if (sil < 0.3) totalLight = totalLight + color1;
         else
@@ -146,6 +146,7 @@ void main()
             if (diffuse < 0.5) totalLight *=0.8;
         }
     }
+    
     
     gl_FragColor = totalLight;
 
