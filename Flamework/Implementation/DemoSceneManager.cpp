@@ -157,7 +157,7 @@ void DemoSceneManager::initialize(size_t width, size_t height)
     loadModel("marble_particle.obj", true, true);
     loadModel("marmor_particle.obj", true, true);
     loadModel("metal_particle.obj", true, true);
-    loadModel("quad2.obj", true, true);
+    //loadModel("quad2.obj", true, true);
     
     //CREATE PARTICLE ENGINES
     bigAuspuff = new ParticleEngine(this, vmml::vec3f(0.0, -0.79, 99));
@@ -505,25 +505,25 @@ void DemoSceneManager::draw(double deltaT)
         createOrthonormalSystems();
         
         // Atoms
-        _speedMin = 10.f;
-        _speedMax = 15.f;
-        _speedInc = 5.f;
+        _speedMin = 8.f;
+        _speedMax = 9.f;
+        _speedInc = 3.f;
         
         _rotation1Max = 5.f;
         _rotation1Min = 0.f;
-        _rot1Inc = 5.f;
+        _rot1Inc = 1.f;
         
         _rotation2Max = 5.f;
         _rotation2Min = 0.f;
-        _rot2Inc = 5.f;
+        _rot2Inc = 1.f;
         
-        _shakeAmplitudeMax = 0.1f;
+        _shakeAmplitudeMax = 0.0f;
         _shakeAmplitudeMin = 0.f;
-        _shakeAmpInc = 0.03;
+        _shakeAmpInc = 0.01f;
         
-        _shakeRateMax = 10.f;
+        _shakeRateMax = 0.f;
         _shakeRateMin = 0.f;
-        _shakeRateInc = 5.f;
+        _shakeRateInc = 0.1f;
         
         _P_atom = 1.f;
         _P_atomInc = 1.f;
