@@ -100,7 +100,7 @@ void main()
     lowp vec4 ambientResult = vec4(Ka * Ia, 1.0);
 
     // Silhouette Color:
-    vec4 color1 = ambientResult*color0*0.2;
+    vec4 color1 = ambientResult*color0*0.1;
     
     // Specular Color:
     vec4 color2 = vec4(0.8, 0.8, 0.8, 1.0);

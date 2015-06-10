@@ -389,42 +389,56 @@ vmml::mat4f DemoSceneManager::getScoreModelMatrix(vmml::vec4f position, int plac
 }
 
 void DemoSceneManager::checkLights(vmml::vec3f position){
+    position = position - vmml::vec3f
+    (
+     _amplitudeHorizontal * sin(_shakingHorizontal*_time + M_PI_F/2.f),
+     _amplitudeVertical*sin(_shakingVertical*_time),
+     0
+     );
     int delta = sqrt(position.x()*position.x() + position.y()*position.y() + position.z()*position.z());
     for(int i = 0; i < 5; i++){
         if (delta < _lightDistance[4]){
+            vmml::vec3f around = position-vmml::vec3f(_lightDistance[4]);
+            if(sqrt(around.x()*around.x() + around.y()*around.y() + around.z()*around.z()) > 0.5){
+                int tmpDist = _lightDistance[4];
+                vmml::vec4f tmpPos = _lights[4];
+                _lightDistance[4] = delta;
+                _lights[4] = vmml::vec4f(position, 1.f);
             
-            int tmpDist = _lightDistance[4];
-            vmml::vec4f tmpPos = _lights[4];
-            _lightDistance[4] = delta;
-            _lights[4] = vmml::vec4f(position, 1.f);
-            
-            for(int k = 3; k >= 0; k--){
-                int tmpDist2 = _lightDistance[k];
-                vmml::vec4f tmpPos2 = _lights[k];
-                _lightDistance[k] = tmpDist;
-                _lights[k] = tmpPos;
-                tmpDist = tmpDist2;
-                tmpPos = tmpPos2;
+                for(int k = 3; k >= 0; k--){
+                    int tmpDist2 = _lightDistance[k];
+                    vmml::vec4f tmpPos2 = _lights[k];
+                    _lightDistance[k] = tmpDist;
+                    _lights[k] = tmpPos;
+                    tmpDist = tmpDist2;
+                    tmpPos = tmpPos2;
+                }
+                
             }
+            break;
         }
         else{
             for(int j = 0; j < 4; j++){
                 
                 if (delta < _lightDistance[j] && delta > _lightDistance[j+1]){
                     //_put light there and push back
-                    int tmpDist = _lightDistance[j];
-                    vmml::vec4f tmpPos = _lights[j];
-                    _lightDistance[j] = delta;
-                    _lights[j] = vmml::vec4f(position, 1.f);
+                    vmml::vec3f around = position-vmml::vec3f(_lightDistance[j]);
+                    if(sqrt(around.x()*around.x() + around.y()*around.y() + around.z()*around.z()) > 0.5){
+                        int tmpDist = _lightDistance[j];
+                        vmml::vec4f tmpPos = _lights[j];
+                        _lightDistance[j] = delta;
+                        _lights[j] = vmml::vec4f(position, 1.f);
                     
-                    for(int k = 3; k >= 0; k--){
-                        int tmpDist2 = _lightDistance[k];
-                        vmml::vec4f tmpPos2 = _lights[k];
-                        _lightDistance[k] = tmpDist;
-                        _lights[k] = tmpPos;
-                        tmpDist = tmpDist2;
-                        tmpPos = tmpPos2;
+                        for(int k = 3; k >= 0; k--){
+                            int tmpDist2 = _lightDistance[k];
+                            vmml::vec4f tmpPos2 = _lights[k];
+                            _lightDistance[k] = tmpDist;
+                            _lights[k] = tmpPos;
+                            tmpDist = tmpDist2;
+                            tmpPos = tmpPos2;
+                        }
                     }
+                    break;
                 }
             }
         }
@@ -509,13 +523,13 @@ void DemoSceneManager::draw(double deltaT)
         _speedMax = 9.f;
         _speedInc = 3.f;
         
-        _rotation1Max = 5.f;
+        _rotation1Max = 4.f;
         _rotation1Min = 0.f;
-        _rot1Inc = 1.f;
+        _rot1Inc = 0.5f;
         
-        _rotation2Max = 5.f;
+        _rotation2Max = 4.f;
         _rotation2Min = 0.f;
-        _rot2Inc = 1.f;
+        _rot2Inc = 0.5f;
         
         _shakeAmplitudeMax = 0.0f;
         _shakeAmplitudeMin = 0.f;
