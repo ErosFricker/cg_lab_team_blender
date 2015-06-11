@@ -592,6 +592,7 @@ void ModelDataImpl::loadObjMtl(const std::string &mtlFile)
         else if (key  == "map_Kd")
         {
             auto &mat = _materials[materialName].textures["DiffuseMap"];
+            std::cout << mtlFile << "\n";
             ss >> mat >> std::ws;
         }
         else if (key  == "map_Ks")

@@ -46,6 +46,9 @@ public:
     void onScaleBegan(float x, float y);
     void onScaleMoved(float x, float y);
     void onScaleEnded(float x, float y);
+    SceneManager* getSceneManager(){
+        return _sceneManager;
+    }
     
 private:
     SceneManager     *_sceneManager;

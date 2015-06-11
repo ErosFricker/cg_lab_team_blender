@@ -40,27 +40,26 @@ void Particle::setRotation(vmml::mat4f rotation){
 }
 
 void Particle::generateRandomParticle(double seed) {
-    // Random seed
     srand((unsigned int) seed);
-    // Random floats between -1 and 1
-    float delta_x = (rand() % 101) / 100.f * pow(-1.f, rand()%2);
-    float delta_y = sqrt(1-(delta_x*delta_x));
-    if(rand()%2 == 0){
-        delta_y = -delta_y;
-    }
-    //float delta_y = (rand() % 101) / 100.f * pow(-1.f, rand()%2);
-    setTranslation(vmml::vec3f(delta_x, delta_y, 40.f));
+    float delta_x = (rand() % 201) / 100.f * pow(-1.f, rand()%2);
+    float delta_y = sqrt(4-(delta_x*delta_x)) * pow(-1.f, rand()%2);
+    setTranslation(vmml::vec3f(delta_x, delta_y, 80.f));
+    _electrons = rand()%4;
+    _system = rand()%100;
     lifeTime = 0.f;
+    _random1 = rand() %101 / 101.f;
+    _random2 = rand() %101 / 101.f;
 }
 
 vmml::mat4f Particle::getModelMatrix( float deltaT, float scaling) {
-    vmml::mat4f translation_particle =
-        vmml::create_translation(
-            vmml::vec3f(_translationVector.x()*lifeTime, _translationVector.y()*lifeTime, _translationVector.z()*lifeTime
-            )
-        );
     lifeTime += deltaT;
-    _modelMatrix = translation_particle * vmml::create_scaling(scaling);
+    _currentPosistion = vmml::vec3f(
+                            _translationVector.x()*lifeTime,
+                            _translationVector.y()*lifeTime,
+                            _translationVector.z()*lifeTime);
+    vmml::mat4f translation_particle = vmml::create_translation(vmml::vec3f(_currentPosistion));
+    _scaling = 1/100.f * _translationVector.z()*lifeTime*scaling;
+    _modelMatrix = translation_particle * vmml::create_scaling(_scaling);
     _modelMatrix = _rotationMatrix*_modelMatrix;
     return _modelMatrix;
 }
@@ -71,4 +70,10 @@ bool Particle::passed() {
 }
 
 float Particle::getLifetime() { return lifeTime; }
+unsigned int Particle::getNumberOfElectrons() { return _electrons; }
+unsigned int Particle::getOrthonormalSystem() { return _system; }
+vmml::vec3f Particle::getCurrentPosition() { return _currentPosistion; }
+float Particle::getCurrentScalingFactor() { return _scaling; }
+float Particle::getRandom1() { return _random1; }
+float Particle::getRandom2() { return _random2; }
 

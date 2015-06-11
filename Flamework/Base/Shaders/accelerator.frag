@@ -1,3 +1,4 @@
+precision mediump float;
 uniform mediump float deltaT;
 uniform mediump vec4 ColorVector;
 
@@ -68,7 +69,53 @@ void main()
         specularResult = vec4(clamp(specular, 0.0, 1.0), 1.0);
     }
     
+    
+    float radial_size = 0.9;
+    float radial_blur = 0.0;
+    float radial_bright = 0.0;
+    vec2 radial_origin = vec2(0.0, -2.0);
+    radial_blur = deltaT / 1000.0;
+
+    
+    if (deltaT < 3.0) {
+
+        radial_bright = 0.6;
+
+    }
+    else if (deltaT < 6.0) {
+
+        radial_bright = 0.8;
+        radial_blur*=1.05;
+    }else if (deltaT < 9.0){
+
+        radial_bright = 1.0;
+        radial_blur*=1.1;
+    }else if (deltaT < 12.0){
+
+        radial_bright = 1.2;
+        radial_blur*=1.15;
+    } else if (deltaT <15.0){
+
+        radial_bright = 1.4;
+        radial_blur*=1.2;
+    }else if (deltaT > 18.0){
+        radial_bright = 2.0;
+        radial_blur*=1.2;
+    }
+    
+    
+    
+    
     // Make the texture move
-    lowp vec4 color = texture2D(DiffuseMap, texCoordVarying.xy + vec2(0,-deltaT));
-    gl_FragColor = (ambientResult + diffuseResult)*color;
+    vec4 color = vec4(0.0);
+    vec2 texCoord = texCoordVarying.xy;
+    texCoord += radial_size*0.5 - radial_origin;
+    for (int i = 0;  i < 12; i++) {
+        float scale = 1.0 - radial_blur*(float(i)/11.0);
+        color += texture2D(DiffuseMap, (texCoord.xy*scale+radial_origin)+vec2(0, -deltaT));
+        
+    }
+    gl_FragColor = color / 12.0*radial_bright;
+
+    
 }

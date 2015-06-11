@@ -47,6 +47,13 @@ public:
     
     MaterialPtr     getMaterial()                       { return _material;     }
     void            setMaterial(MaterialPtr arg)        { _material     = arg;  }
+    GLuint getVertexBuffer() {
+        return _vertexBuffer;
+        
+    }
+    GLuint getIndexBuffer(){
+        return _indexBuffer;
+    }
 
 private:
     GLuint _indexBuffer, _vertexBuffer;

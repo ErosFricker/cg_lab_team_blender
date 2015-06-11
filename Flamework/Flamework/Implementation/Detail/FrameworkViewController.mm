@@ -12,7 +12,8 @@
 #include "Application.h"
 #include "Framework_GL.h"
 #include "Util.h"
-
+#include "DemoSceneManager.h"
+#include "RankingViewController.h"
 // Uniform index.
 enum
 {
@@ -35,7 +36,6 @@ enum
 }
 @property (nonatomic, strong) EAGLContext *context;
 @property (nonatomic, weak) CADisplayLink *displayLink;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @end
 
@@ -122,10 +122,6 @@ enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-        UIFont* buttonFont = [UIFont fontWithName:@"Alexis Laser Italic" size:50.0f];
-    [self.scoreLabel setFont:buttonFont];
-    [self.scoreLabel setText:@"0"];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     // resizeGesture.minimumNumberOfTouches = 2;
@@ -273,6 +269,11 @@ enum
     
     _application.update(deltaT);
     _application.draw(deltaT);
+    if (((DemoSceneManager*)_application.getSceneManager())->shouldStop) {
+        RankingViewController* ranking = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ranking"];
+        ranking.score = ((DemoSceneManager*)_application.getSceneManager())->getScore();
+        [self showViewController:ranking sender:self];
+    }
     
     [(EAGLView *)self.view presentFramebuffer];
 }
@@ -288,6 +289,9 @@ enum
 - (BOOL)shouldAutorotate
 {
     return NO;
+}
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 @end
