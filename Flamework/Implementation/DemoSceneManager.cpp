@@ -342,9 +342,7 @@ bool DemoSceneManager::hasCollided(vmml::vec3f vec1, vmml::vec3f vec2) {
     
     vmml::vec3f distanceVector = -vec1 + vec2;
     
-    if (-0.6 <= distanceVector.x() && distanceVector.x() <= 0.6 &&
-        -0.1 <= distanceVector.y() && distanceVector.y() <= 0.1 &&
-        -0.3 <= distanceVector.z() && distanceVector.z() <= 0.3)
+    if (fabs(distanceVector.x()) < .8f && vec1.y() < 0.f && fabs(distanceVector.z())<0.8f)
     {
         return true;
     }
@@ -927,7 +925,7 @@ void DemoSceneManager::draw(double deltaT)
         
         shader->setUniform("EyePos", _eyePos);
         
-        shader->setUniform("LightPos", vmml::vec4f(0.01, 2.01, 75., 1.f));
+        shader->setUniform("LightPos", vmml::vec4f(0.01, 2.01, 5., 1.f));
         shader->setUniform("Ia", vmml::vec3f(1.f));
         shader->setUniform("Id", vmml::vec3f(1.f));
         shader->setUniform("Is", vmml::vec3f(1.f));

@@ -120,27 +120,27 @@ void main()
         totalLight = color0;
         // Specular part
         float spec = pow(max(dot(Normal,EyeLight),0.0), shininess);
-        if (spec < 0.2) totalLight *= 0.8;
+        if (spec < 0.2) totalLight *= 0.7;
         else totalLight = color2;
         // Diffuse part
         float diffuse = max(dot(Normal,LightVert),0.0);
-        if (diffuse < 0.5) totalLight *=0.8;
+        if (diffuse < 0.5) totalLight *=0.7;
     }
         
     for(int i = 0; i < 5; i++){
-        LightVert = normalize(lights[i] - posVarying).xyz;
+        LightVert = normalize(lights[i]-posVarying).xyz;
         EyeLight = normalize(LightVert+EyeVert);
         
         // Simple Silhouette
         float sil = max(dot(Normal,EyeVert), 0.0);
-        if (sil < 0.3) totalLight = totalLight + color1;
+        if (sil < 0.3) totalLight += color1;
         else
         {
-            totalLight = totalLight + color0;
+            totalLight += color0;
             // Specular part
             float spec = pow(max(dot(Normal,EyeLight),0.0), shininess);
             if (spec < 0.2) totalLight *= 0.8;
-            else totalLight = totalLight + color2;
+            else totalLight += color2;
             // Diffuse part
             float diffuse = max(dot(Normal,LightVert),0.0);
             if (diffuse < 0.5) totalLight *=0.8;
